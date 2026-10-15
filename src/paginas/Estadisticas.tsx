@@ -26,7 +26,7 @@ export default function Estadisticas() {
       evs, ia, minutos, porDia: [...porDia.entries()].sort().slice(-14),
       pantallas: [...pantallas.entries()].sort((a, b) => b[1] - a[1]),
       preguntas: contar('chat'), fuentes: contar('fuente'), llamadasIA: ia.reduce((s, x) => s + x.llamadas, 0),
-      tarjetas: contar('repaso'), simuladores: contar('simulador'), museo: contar('museo'), rompecabezas: contar('rompecabezas'), preguntasParcial: contar('pregunta'), ejercicios: contar('ejercicio'), orales: contar('oral'), tutorias: contar('tutoria'),
+      tarjetas: contar('repaso'), simuladores: contar('simulador'), museo: contar('museo'), rompecabezas: contar('rompecabezas'), preguntasParcial: contar('pregunta'), ejercicios: contar('ejercicio'), orales: contar('oral'), casos: contar('caso'), tutorias: contar('tutoria'),
     }
   }, [])
   if (!datos) return null
@@ -52,6 +52,7 @@ export default function Estadisticas() {
         <Dato n={datos.simuladores} t="simuladores abiertos" />
         <Dato n={datos.orales} t="preguntas de examen oral" />
         <Dato n={datos.tutorias} t="tutorías ABP cerradas" />
+        <Dato n={datos.casos} t="casos clínicos resueltos" />
       </div>
       <section className="tarjeta p-4">
         <h2 className="mb-3 text-sm font-semibold">Minutos por día (últimos 14 días con uso)</h2>

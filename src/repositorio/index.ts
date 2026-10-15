@@ -4,7 +4,7 @@ import {
   armarTarjetas, camposComunes, claveEnGrupo, clavesDeBorrador, tarjetaDeClave, type BorradorTarjeta,
 } from '../tarjetas/crear'
 import type {
-  Alcance, Chat, ContenidoGuia, EstadoFSRS, ExamenOral, EstructuraAtlas, Evento, FichaEditada, Intento, Pregunta, Fragmento, Fuente, ImagenTarjeta, Nota, Pagina, Resaltado, Tarjeta, Tema, Tutoria, UsoIA,
+  Alcance, CasoEnCurso, Chat, ContenidoGuia, EstadoFSRS, ExamenOral, EstructuraAtlas, Evento, FichaEditada, Intento, Pregunta, Fragmento, Fuente, ImagenTarjeta, Nota, Pagina, Resaltado, Tarjeta, Tema, Tutoria, UsoIA,
 } from './tipos'
 
 export { nuevoId }
@@ -446,6 +446,24 @@ export const orales = {
     return db.orales.get(id)
   },
   borrar: (id: string) => db.orales.delete(id),
+}
+
+// ───────────────────────── Casos clínicos (Fase 5) ─────────────────────────
+
+export const casos = {
+  todos: () => db.casos.orderBy('actualizado').reverse().toArray(),
+  obtener: (id: string) => db.casos.get(id),
+  async crear(c: Pick<CasoEnCurso, 'unidadId' | 'caso'>) {
+    const ahora = Date.now()
+    const nuevo: CasoEnCurso = { ...c, id: nuevoId('ca-'), etapa: 'interrogatorio', preguntados: [], examinados: [], pedidos: [], creado: ahora, actualizado: ahora }
+    await db.casos.add(nuevo)
+    return nuevo
+  },
+  async actualizar(id: string, cambios: Partial<CasoEnCurso>) {
+    await db.casos.update(id, { ...cambios, actualizado: Date.now() })
+    return db.casos.get(id)
+  },
+  borrar: (id: string) => db.casos.delete(id),
 }
 
 // ───────────────────────── Borrado total ─────────────────────────

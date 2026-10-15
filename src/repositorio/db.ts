@@ -1,6 +1,6 @@
 import Dexie, { type EntityTable } from 'dexie'
 import type {
-  Ajuste, CacheIA, Chat, ContenidoGuia, Evento, ExamenOral, EstructuraAtlas, FichaEditada, Fragmento, Fuente, ImagenTarjeta, Intento, Pregunta, Nota, Pagina, Resaltado, Revision, Tarjeta, Tema, Tutoria, UsoIA,
+  Ajuste, CacheIA, CasoEnCurso, Chat, ContenidoGuia, Evento, ExamenOral, EstructuraAtlas, FichaEditada, Fragmento, Fuente, ImagenTarjeta, Intento, Pregunta, Nota, Pagina, Resaltado, Revision, Tarjeta, Tema, Tutoria, UsoIA,
 } from './tipos'
 
 /**
@@ -29,6 +29,7 @@ export class BaseEstudio extends Dexie {
   intentos!: EntityTable<Intento, 'id'>
   tutorias!: EntityTable<Tutoria, 'id'>
   orales!: EntityTable<ExamenOral, 'id'>
+  casos!: EntityTable<CasoEnCurso, 'id'>
 
   constructor(nombre = 'estudio-med') {
     super(nombre)
@@ -70,6 +71,10 @@ export class BaseEstudio extends Dexie {
     this.version(6).stores({
       orales: 'id, actualizado',
     })
+    // Fase 5: casos clínicos paso a paso.
+    this.version(7).stores({
+      casos: 'id, unidadId, actualizado',
+    })
   }
 }
 
@@ -78,7 +83,7 @@ export const db = new BaseEstudio()
 /** Tablas que se exportan en el respaldo (todas menos la caché de IA). */
 export const TABLAS_RESPALDO = [
   'ajustes', 'temas', 'contenidoGuia', 'fuentes', 'paginas', 'fragmentos', 'chats', 'notas', 'resaltados', 'usoIA', 'eventos',
-  'tarjetas', 'revisiones', 'imagenesTarjeta', 'estructurasAtlas', 'fichasEditadas', 'preguntas', 'intentos', 'tutorias', 'orales',
+  'tarjetas', 'revisiones', 'imagenesTarjeta', 'estructurasAtlas', 'fichasEditadas', 'preguntas', 'intentos', 'tutorias', 'orales', 'casos',
 ] as const
 export type TablaRespaldo = (typeof TABLAS_RESPALDO)[number]
 

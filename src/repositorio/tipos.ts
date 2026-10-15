@@ -280,7 +280,7 @@ export interface Pregunta {
 /** Un intento de práctica: una pregunta del banco o un ejercicio numérico de un simulador. */
 export interface Intento {
   id?: number
-  origen: 'pregunta' | 'ejercicio' | 'oral'
+  origen: 'pregunta' | 'ejercicio' | 'oral' | 'caso'
   preguntaId?: string
   /** Simulador del ejercicio numérico. */
   simulador?: string
@@ -432,6 +432,59 @@ export interface ExamenOral {
   actual: number
   /** Nota final 0–10 (promedio por código) al terminar. */
   nota?: number
+  terminado?: number
+  creado: number
+  actualizado: number
+}
+
+// ───────────────────────── Fase 5: caso clínico ─────────────────────────
+
+/** Analitos que la app reconoce para calcular valores derivados (osmolaridad, anión gap, TFG, FENa, gasometría). */
+export type ClaveAnalito =
+  | 'na' | 'k' | 'cl' | 'hco3' | 'glucemia' | 'urea' | 'creatinina' | 'albumina' | 'hematocrito'
+  | 'ph' | 'pco2' | 'orinaNa' | 'orinaCreatinina' | 'orinaOsm'
+
+export interface EstudioCaso {
+  nombre: string
+  grupo: 'laboratorio' | 'orina' | 'gases' | 'imagen' | 'otro'
+  resultado: string
+  clave?: ClaveAnalito
+  valor?: number
+  unidad?: string
+  relevante: boolean
+  /** La app corrigió el valor para que sea coherente (p. ej., HCO3− por Henderson-Hasselbalch). */
+  ajustado?: string
+}
+
+/** Caso generado por la IA a partir de la situación de la UP (datos, no cálculos). */
+export interface CasoClinico {
+  titulo: string
+  paciente: { edad: number; sexo: 'hombre' | 'mujer'; descripcion: string }
+  motivo: string
+  interrogatorio: { pregunta: string; respuesta: string; relevante: boolean }[]
+  examen: { sistema: string; hallazgo: string; relevante: boolean }[]
+  estudios: EstudioCaso[]
+  consigna: string
+  /** Lo que una interpretación completa tiene que incluir (rúbrica). */
+  puntos: string[]
+  fragmentoId?: string
+  frase?: string
+  verificada: boolean
+}
+
+export type EtapaCaso = 'interrogatorio' | 'examen' | 'estudios' | 'interpretacion' | 'devolucion'
+
+export interface CasoEnCurso {
+  id: string
+  unidadId: string
+  caso: CasoClinico
+  etapa: EtapaCaso
+  /** Índices revelados de interrogatorio, examen y estudios. */
+  preguntados: number[]
+  examinados: number[]
+  pedidos: number[]
+  interpretacion?: string
+  evaluacion?: { cubiertos: number[]; errores: string[]; devolucion: Segmento[]; nota: number }
   terminado?: number
   creado: number
   actualizado: number

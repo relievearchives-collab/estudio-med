@@ -29,6 +29,8 @@ const PracticaSesion = lazy(() => import('./paginas/Practica').then((m) => ({ de
 const PracticaSimulacro = lazy(() => import('./paginas/Practica').then((m) => ({ default: m.PracticaSimulacro })))
 const PracticaBanco = lazy(() => import('./paginas/Practica').then((m) => ({ default: m.PracticaBanco })))
 const PracticaMapa = lazy(() => import('./paginas/Practica').then((m) => ({ default: m.PracticaMapa })))
+const CasoInicio = lazy(() => import('./paginas/Caso').then((m) => ({ default: m.CasoInicio })))
+const CasoPagina = lazy(() => import('./paginas/Caso').then((m) => ({ default: m.CasoPagina })))
 const OralInicio = lazy(() => import('./paginas/Oral').then((m) => ({ default: m.OralInicio })))
 const OralExamen = lazy(() => import('./paginas/Oral').then((m) => ({ default: m.OralExamen })))
 const Resumen = lazy(() => import('./paginas/Resumen'))
@@ -52,6 +54,7 @@ const NAV_EXTRA = [
   { a: '/practica', nombre: 'Práctica de parcial', icono: 'check' },
   { a: '/tutoria', nombre: 'Tutoría ABP', icono: 'chat' },
   { a: '/oral', nombre: 'Examen oral', icono: 'mic' },
+  { a: '/caso', nombre: 'Caso clínico', icono: 'check' },
   { a: '/plan', nombre: 'Plan de estudio', icono: 'reloj' },
   { a: '/estadisticas', nombre: 'Mis estadísticas', icono: 'grafico' },
   { a: '/ajustes', nombre: 'Ajustes', icono: 'ajustes' },
@@ -125,6 +128,8 @@ function Marco() {
           <Route path="/practica/simulacro" element={<Suspense fallback={<Cargando />}><PracticaSimulacro /></Suspense>} />
           <Route path="/practica/banco" element={<Suspense fallback={<Cargando />}><PracticaBanco /></Suspense>} />
           <Route path="/practica/mapa" element={<Suspense fallback={<Cargando />}><PracticaMapa /></Suspense>} />
+          <Route path="/caso" element={<Suspense fallback={<Cargando />}><CasoInicio /></Suspense>} />
+          <Route path="/caso/:id" element={<Suspense fallback={<Cargando />}><CasoPagina /></Suspense>} />
           <Route path="/oral" element={<Suspense fallback={<Cargando />}><OralInicio /></Suspense>} />
           <Route path="/oral/:id" element={<Suspense fallback={<Cargando />}><OralExamen /></Suspense>} />
           <Route path="/resumen/:temaId" element={<Suspense fallback={<Cargando />}><Resumen /></Suspense>} />

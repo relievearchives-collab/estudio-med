@@ -203,4 +203,18 @@ Ajustes → fechas de los parciales; después mirá *Plan de hoy* en Hoy o Más 
 ### No verificado todavía
 - **Dictado real** (necesita micrófono; en Chrome/Edge con Web Speech) y la calidad de la evaluación con Gemini real.
 
+### Bloque 5: Caso clínico paso a paso ✅ (15/10/2026)
+- Paciente **ficticio** armado por la IA a partir de la situación problemática de la UP y tus fragmentos (nivel primer año). Pasos: **interrogatorio** (elegís qué preguntar), **examen físico** (qué examinar), **estudios** (qué pedir; hay preguntas y estudios que no aportan) e **interpretación** (escrita o dictada).
+- **Lo numérico lo hace el código:** la IA da los datos del paciente; los valores imposibles se descartan, una gasometría incoherente se corrige (HCO3− por Henderson-Hasselbalch, con aviso) y la app calcula con las fórmulas de los simuladores **osmolaridad plasmática, anión gap (corregido por albúmina), TFG CKD-EPI 2021 (adultos) con estadio, FENa e interpretación de la gasometría**, solo con los estudios que pediste.
+- **Devolución:** puntos esperados ✓/✗, errores conceptuales y citas; nota calculada por código (misma fórmula que el oral). **Cómo relevaste los datos:** relevantes pedidos sobre el total, lo que no hacía falta y lo que faltó (código). Ver el caso completo al final.
+- Casos anteriores con su nota, "Otro caso de la unidad". Cada caso corregido es un intento (`origen: 'caso'`) y suma en Estadísticas. Accesos: Más → *Caso clínico* y *Caso clínico* en cada UP. Tabla `casos` (Dexie v7) en el respaldo.
+
+### Verificado
+- `npm test`: **129 tests**. Nuevos: descarte de valores imposibles, corrección de gasometría incoherente, los 5 valores derivados con resultados conocidos (osmolaridad 290, anión gap 24, FENa 0,29 %, acidosis metabólica) y sin TFG en menores; validación del caso; flujo completo (revelar sin duplicar, nota 5 con un error, intento, proceso con lo que faltó); aviso sin material; respaldo con casos.
+- `npm run build` y lint sin errores ni avisos nuevos.
+- En el navegador con la guía real e IA simulada (UP1, diarrea): la IA mandó un HCO3− de 22 incoherente con pH 7,30 y pCO2 30 → la app lo corrigió a 14,3 y calculó osmolaridad 291,3, anión gap 11,7 (normal) y "acidemia · acidosis metabólica · compensación adecuada"; interpretación 6,5 con cita verificada; proceso "Interrogatorio 2 de 3, faltó ¿Tomaste líquidos?; Estudios 6 de 6 · 1 que no hacía falta". Vista de celular sin desbordes.
+
+### No verificado todavía
+- Calidad y coherencia clínica de los casos con Gemini real (la app corrige lo numérico, no la historia).
+
 Al final: `ESCALAR.md`.
