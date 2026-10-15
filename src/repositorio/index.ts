@@ -24,6 +24,10 @@ export interface Ajustes {
   retencion: number
   nuevasPorDia: number
   limiteDiarioIA: number
+  /** Plan de estudio: temaId → fecha en que el estudiante lo marcó como estudiado. */
+  temasEstudiados: Record<string, number>
+  /** Plan de estudio: máximo de temas nuevos por día que se considera llevadero. */
+  temasPorDiaMax: number
 }
 
 export const AJUSTES_POR_DEFECTO: Ajustes = {
@@ -39,6 +43,8 @@ export const AJUSTES_POR_DEFECTO: Ajustes = {
   retencion: 0.9,
   nuevasPorDia: 25,
   limiteDiarioIA: 0,
+  temasEstudiados: {},
+  temasPorDiaMax: 3,
 }
 
 export async function leerAjustes(): Promise<Ajustes> {
@@ -50,6 +56,12 @@ export async function leerAjustes(): Promise<Ajustes> {
 
 export async function guardarAjuste<K extends keyof Ajustes>(clave: K, valor: Ajustes[K]) {
   await db.ajustes.put({ clave, valor })
+}
+
+/** Marca o desmarca un tema como estudiado (el plan de estudio se recalcula solo). */
+export async function marcarEstudiado(temaId: string, estudiado: boolean) {
+  const { [temaId]: _, ...resto } = (await leerAjustes()).temasEstudiados
+  await guardarAjuste('temasEstudiados', estudiado ? { ...resto, [temaId]: Date.now() } : resto)
 }
 
 // ───────────────────────── Temas ─────────────────────────

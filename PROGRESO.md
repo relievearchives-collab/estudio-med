@@ -159,4 +159,19 @@ Más → **Simuladores** → *Ácido-base*: cargá una gasometría en el intérp
 ### Cómo probarlo
 Abrí una UP → *Tutoría ABP* (o Más → *Tutoría ABP*). Necesita la clave de Gemini para el tutor, la comparación y el cierre; las citas, la guía importada.
 
+### Bloque 2: Plan de estudio hasta los parciales ✅ (15/10/2026)
+- **Sin IA:** con las fechas de los parciales de Ajustes, reparte los temas pendientes de las UP de cada parcial en los días que faltan, de forma pareja y en el orden de la guía. El parcial 2 arranca el día después del parcial 1.
+- **Se reajusta solo:** tildás un tema cuando lo estudiaste; lo que quedó sin hacer se reparte en los días que quedan. Lo tildado hoy sigue en el día de hoy (el plan del día no cambia mientras tildás).
+- **Repaso:** los últimos 1–2 días antes de cada parcial son de repaso general + simulacro, con los temas flojos de la práctica y de las tarjetas. Si no alcanza el tiempo, esos días se usan para estudiar.
+- **Aviso** si el ritmo necesario supera el máximo de temas por día que elegiste (3 por defecto, se cambia en la pantalla del plan).
+- **"Plan de hoy"** en Hoy con los temas del día (casilla, *Preguntar*, *Tarjetas*) y **Más → Plan de estudio** con todos los días, el progreso por parcial y la lista de temas por UP para tildar.
+
+### Verificado
+- `npm test`: **111 tests**. Nuevos: fechas locales cruzando meses, reparto parejo, plan con días de repaso y temas flojos, reajuste al atrasarse, el día de hoy estable al tildar, días de repaso usados para estudiar cuando no alcanza, día del parcial y parciales pasados, plan de hoy.
+- `npm run build` y lint sin errores ni avisos nuevos.
+- En el navegador con la guía real y los parciales el 27/10 y el 24/11: 69 temas del Parcial 1 en 12 días → aviso "hasta 6 por día, más que tu máximo de 3"; tildar en Hoy tacha el tema sin cambiar el día; subir el máximo a 7 libera los 2 días de repaso. Vista de celular sin desbordes.
+
+### Cómo probarlo
+Ajustes → fechas de los parciales; después mirá *Plan de hoy* en Hoy o Más → **Plan de estudio**.
+
 Al final: `ESCALAR.md`.

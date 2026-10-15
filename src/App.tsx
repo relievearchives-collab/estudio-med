@@ -29,6 +29,7 @@ const PracticaSesion = lazy(() => import('./paginas/Practica').then((m) => ({ de
 const PracticaSimulacro = lazy(() => import('./paginas/Practica').then((m) => ({ default: m.PracticaSimulacro })))
 const PracticaBanco = lazy(() => import('./paginas/Practica').then((m) => ({ default: m.PracticaBanco })))
 const PracticaMapa = lazy(() => import('./paginas/Practica').then((m) => ({ default: m.PracticaMapa })))
+const Plan = lazy(() => import('./paginas/Plan'))
 const TutoriaIndice = lazy(() => import('./paginas/Tutoria').then((m) => ({ default: m.TutoriaIndice })))
 const TutoriaPagina = lazy(() => import('./paginas/Tutoria').then((m) => ({ default: m.TutoriaPagina })))
 const IndiceSimuladores = lazy(() => import('./paginas/Simuladores').then((m) => ({ default: m.IndiceSimuladores })))
@@ -47,6 +48,7 @@ const NAV_EXTRA = [
   { a: '/simuladores', nombre: 'Simuladores', icono: 'grafico' },
   { a: '/practica', nombre: 'Práctica de parcial', icono: 'check' },
   { a: '/tutoria', nombre: 'Tutoría ABP', icono: 'chat' },
+  { a: '/plan', nombre: 'Plan de estudio', icono: 'reloj' },
   { a: '/estadisticas', nombre: 'Mis estadísticas', icono: 'grafico' },
   { a: '/ajustes', nombre: 'Ajustes', icono: 'ajustes' },
   { a: '/creditos', nombre: 'Créditos', icono: 'info' },
@@ -119,6 +121,7 @@ function Marco() {
           <Route path="/practica/simulacro" element={<Suspense fallback={<Cargando />}><PracticaSimulacro /></Suspense>} />
           <Route path="/practica/banco" element={<Suspense fallback={<Cargando />}><PracticaBanco /></Suspense>} />
           <Route path="/practica/mapa" element={<Suspense fallback={<Cargando />}><PracticaMapa /></Suspense>} />
+          <Route path="/plan" element={<Suspense fallback={<Cargando />}><Plan /></Suspense>} />
           <Route path="/tutoria" element={<Suspense fallback={<Cargando />}><TutoriaIndice /></Suspense>} />
           <Route path="/tutoria/:id" element={<Suspense fallback={<Cargando />}><TutoriaPagina /></Suspense>} />
           <Route path="/notas" element={<Notas />} />

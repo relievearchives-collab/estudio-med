@@ -9,6 +9,9 @@ import { useAjustes, useConteoFragmentos, useFragmentosPorUnidad, useFuentes, us
 import { armarCola, ESTADO, inicioDelDia, racha } from '../tarjetas/fsrs'
 import { temasFlojos } from '../tarjetas/flojos'
 import { hacerBackup } from './Ajustes'
+import { DiaDelPlan } from '../plan/ComponentesPlan'
+import { planDeHoy } from '../plan/planificar'
+import { usePlan } from '../plan/usePlan'
 
 const DIA = 864e5
 
@@ -35,6 +38,7 @@ export default function Hoy() {
   const desde = inicioDelDia(ahora) - 365 * DIA
   const revs = useRevisionesDesde(desde)
   const estadosAtlas = useEstadosAtlas()
+  const plan = usePlan(ahora)
   if (!a) return null
 
   const hoy = inicioDelDia(ahora)
@@ -55,6 +59,7 @@ export default function Hoy() {
     .map((p) => ({ ...p, fecha: a.fechasParciales[p.id], dias: a.fechasParciales[p.id] ? diasHasta(a.fechasParciales[p.id]) : null }))
     .filter((p) => p.dias !== null && p.dias >= 0)
     .sort((x, y) => x.dias! - y.dias!)
+  const deHoy = plan ? planDeHoy(plan.planes, ahora) : null
   const enProceso = fuentes.filter((f) => f.estado !== 'listo')
   const guia = fuentes.find((f) => f.esGuia)
   const necesitaBackup = nFrag > 0 && (!a.ultimoBackup || ahora - a.ultimoBackup > 7 * DIA)
@@ -89,6 +94,19 @@ export default function Hoy() {
           {pendientes > 0
             ? <Link to="/repaso" className="btn-primario">Repasar</Link>
             : <Link to="/tarjetas/generar" className="btn-secundario">Generar tarjetas</Link>}
+        </section>
+      )}
+
+      {/* Plan de estudio: lo que toca hoy */}
+      {plan && deHoy && (
+        <section className="tarjeta space-y-3 p-4">
+          <div className="flex flex-wrap items-baseline justify-between gap-2">
+            <h2 className="font-semibold">Plan de hoy</h2>
+            <span className="text-xs texto-suave">{deHoy.plan.parcial.nombre} · {deHoy.plan.estudiados}/{deHoy.plan.total} temas</span>
+          </div>
+          <DiaDelPlan dia={deHoy.dia} plan={deHoy.plan} temas={plan.temas} estudiados={plan.estudiados} />
+          {deHoy.plan.noAlcanza && deHoy.dia.tipo !== 'parcial' && <p className="flex items-center gap-1 text-xs text-amber-600"><Icono nombre="alerta" className="h-3.5 w-3.5" />Vas justo de tiempo: hasta {deHoy.plan.temasPorDia} temas por día.</p>}
+          <Link to="/plan" className="text-sm text-marca underline dark:text-marca-claro">Ver el plan completo</Link>
         </section>
       )}
 
