@@ -1,11 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useNavigate, useParams, useSearchParams } from 'react-router-dom'
-import { escenaPorId, esRespuestaCorrecta, fichaDePieza, nombrePieza, type EscenaAtlas, type VistaRapida } from '../atlas/datos'
+import { escenaPorId, escenasDelArea, esRespuestaCorrecta, fichaDePieza, nombrePieza, type EscenaAtlas, type VistaRapida } from '../atlas/datos'
 import { FichaAtlas } from '../atlas/FichaAtlas'
 import { NOMBRE_CAPA } from '../atlas/material'
 import { elegirTanda, estadoTrasRespuesta, puntaje } from '../atlas/museo'
 import { recorridoPorId } from '../atlas/recorridos'
 import { VisorAtlas, type EjeCorte, type Estilo, type VisorAtlasRef } from '../atlas/VisorAtlas'
+import { normalizar } from '../busqueda/normalizar'
 import { useApp } from '../componentes/Contexto'
 import { Hoja } from '../componentes/Hoja'
 import { Icono } from '../componentes/Icono'
@@ -32,11 +33,13 @@ export default function AtlasEscena() {
   const pasoActual = recorrido?.pasos[paso]
   const escena = escenaPorId(pasoActual?.escena ?? idEscena)
   if (!escena) return <p className="p-4">Escena no encontrada. <Link className="underline" to="/atlas">Volver al atlas</Link></p>
-  return <PantallaEscena key={(recorrido ? 'recorrido:' : '') + escena.id} escena={escena} recorrido={recorrido ? { r: recorrido, paso, irA: (n: number) => setParams({ paso: String(n) }) } : undefined} modoInicial={(params.get('modo') as Modo) || 'explorar'} />
+  return <PantallaEscena key={(recorrido ? 'recorrido:' : '') + escena.id + (params.get('repaso') ? ':repaso' : '')} escena={escena} recorrido={recorrido ? { r: recorrido, paso, irA: (n: number) => setParams({ paso: String(n) }) } : undefined} modoInicial={(params.get('modo') as Modo) || 'explorar'} repaso={params.get('repaso') === '1'} />
 }
 
-function PantallaEscena({ escena, recorrido, modoInicial }: {
+function PantallaEscena({ escena, recorrido, modoInicial, repaso = false }: {
   escena: EscenaAtlas
+  /** Repaso de lo vencido (FSRS): la tanda trae solo las estructuras que tocan hoy. */
+  repaso?: boolean
   recorrido?: { r: NonNullable<ReturnType<typeof recorridoPorId>>; paso: number; irA: (n: number) => void }
   modoInicial: Modo
 }) {
@@ -100,7 +103,9 @@ function PantallaEscena({ escena, recorrido, modoInicial }: {
   const [feedback, setFeedback] = useState<{ ok: boolean; id: string; tocada?: string } | null>(null)
   const empezarTanda = () => {
     const mapa = new Map((estados ?? []).map((e) => [e.id, e]))
-    const ids = elegirTanda(piezasVisibles.map((p) => p.id), mapa, Date.now(), TANDA)
+    const ahora = Date.now()
+    const vencidas = piezasVisibles.filter((p) => (mapa.get(p.id)?.vence ?? Infinity) <= ahora).map((p) => p.id)
+    const ids = repaso && vencidas.length ? elegirTanda(vencidas, mapa, ahora, 20) : elegirTanda(piezasVisibles.map((p) => p.id), mapa, ahora, TANDA)
     setTanda({ ids, i: 0, resultados: [], inicio: Date.now(), pista: false })
     setRespuesta(''); setFeedback(null); setSeleccion(null)
   }
@@ -110,6 +115,23 @@ function PantallaEscena({ escena, recorrido, modoInicial }: {
     if (modo !== 'explorar') { setDesarmar(0); setCorte(null); setMover(false) }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [modo, estados])
+  // Cambiar las capas de la tanda (ej. "solo urinario") arma una tanda nueva.
+  const capasTanda = [...capasOcultas].sort().join(',')
+  const primeraVez = useRef(true)
+  useEffect(() => {
+    if (primeraVez.current) { primeraVez.current = false; return }
+    if ((modo === 'museo' || modo === 'donde') && estados) empezarTanda()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [capasTanda])
+  // Al terminar un repaso: la próxima escena del área con estructuras vencidas.
+  const siguienteRepaso = useMemo(() => {
+    const ahora = Date.now()
+    const vencidas = new Set((estados ?? []).filter((e) => e.vence <= ahora).map((e) => e.id))
+    return escenasDelArea()
+      .filter((a) => a.escena !== escena.id)
+      .map((a) => ({ id: a.escena, titulo: a.datos.titulo, n: a.datos.piezas.filter((p) => vencidas.has(p.id)).length }))
+      .find((a) => a.n > 0)
+  }, [estados, escena.id])
   const objetivo = tanda && tanda.i < tanda.ids.length ? escena.piezas.find((p) => p.id === tanda.ids[tanda.i]) : undefined
   const responder = async (ok: boolean, extra: { respuesta?: string; tocada?: string } = {}) => {
     if (!tanda || !objetivo || feedback) return
@@ -211,7 +233,15 @@ function PantallaEscena({ escena, recorrido, modoInicial }: {
           {/* Herramientas (modo explorar) */}
           {modo === 'explorar' && !recorrido && (
             <div className="absolute left-2 top-2 max-w-[calc(100%-1rem)] space-y-2">
-              <button className="btn-secundario !px-2.5 !py-1.5 text-xs shadow" onClick={() => setHerramientas((v) => !v)}><Icono nombre="ajustes" className="h-4 w-4" />Herramientas</button>
+              <div className="flex flex-wrap items-center gap-2">
+                <button className="btn-secundario !px-2.5 !py-1.5 text-xs shadow" onClick={() => setHerramientas((v) => !v)}><Icono nombre="ajustes" className="h-4 w-4" />Herramientas</button>
+                <BuscarEstructura nombres={nombres} ocultas={escena.piezas.filter((x) => capasOcultas.has(x.capa)).map((x) => x.id)} alElegir={(id) => {
+                  const capa = escena.piezas.find((x) => x.id === id)?.capa
+                  if (capa && capasOcultas.has(capa)) setCapasOcultas((c) => { const n = new Set(c); n.delete(capa); return n })
+                  setSeleccion(id)
+                  setTimeout(() => visor.current?.centrar(id), 150)
+                }} />
+              </div>
               {herramientas && (
                 <div className="w-72 max-w-full space-y-3 rounded-2xl border p-3 text-xs shadow-lg borde" style={{ background: 'color-mix(in srgb, var(--tarjeta) 92%, transparent)' }}>
                   <div className="flex gap-1">
@@ -297,6 +327,15 @@ function PantallaEscena({ escena, recorrido, modoInicial }: {
           {/* Museo / ¿Dónde está? */}
           {(modo === 'museo' || modo === 'donde') && tanda && (
             <div className="absolute inset-x-2 bottom-2 mx-auto max-w-xl rounded-2xl border p-3 text-sm shadow-lg borde" style={{ background: 'color-mix(in srgb, var(--tarjeta) 95%, transparent)' }}>
+              {capas.length > 1 && !repaso && (
+                <div className="mb-2 flex flex-wrap items-center gap-1 text-[11px]">
+                  <span className="texto-suave">Preguntar sobre:</span>
+                  {capas.map((c) => (
+                    <button key={c} className={capasOcultas.has(c) ? 'chip !px-2 !py-0.5 opacity-50' : 'chip-activo !px-2 !py-0.5'} onClick={() => setCapasOcultas((x) => { const n = new Set(x); if (n.has(c)) n.delete(c); else if (capas.some((k) => k !== c && !n.has(k))) n.add(c); return n })}>{NOMBRE_CAPA[c] ?? c}</button>
+                  ))}
+                </div>
+              )}
+              {repaso && <p className="mb-1 text-[11px] font-semibold uppercase tracking-wide text-cyan-600 dark:text-cyan-300">Repaso de lo que vence hoy</p>}
               {objetivo ? (
                 <>
                   <div className="mb-2 flex items-center gap-2 text-xs texto-suave">
@@ -324,7 +363,7 @@ function PantallaEscena({ escena, recorrido, modoInicial }: {
                   )}
                 </>
               ) : (
-                <ResultadoTanda tanda={tanda} nombres={nombres} alVer={(id) => { setModo('explorar'); setTanda(null); setSeleccion(id); setTimeout(() => visor.current?.centrar(id), 200) }} alOtra={empezarTanda} />
+                <ResultadoTanda tanda={tanda} nombres={nombres} siguiente={repaso ? siguienteRepaso : undefined} alSiguiente={(id) => navegar(`/atlas/${id}?modo=${modo}&repaso=1`)} alVer={(id) => { setModo('explorar'); setTanda(null); setSeleccion(id); setTimeout(() => visor.current?.centrar(id), 200) }} alOtra={empezarTanda} />
               )}
             </div>
           )}
@@ -338,7 +377,9 @@ function PantallaEscena({ escena, recorrido, modoInicial }: {
   )
 }
 
-function ResultadoTanda({ tanda, nombres, alVer, alOtra }: {
+function ResultadoTanda({ tanda, nombres, alVer, alOtra, siguiente, alSiguiente }: {
+  siguiente?: { id: string; titulo: string; n: number }
+  alSiguiente: (id: string) => void
   tanda: { ids: string[]; resultados: { id: string; ok: boolean; respuesta?: string }[]; inicio: number }
   nombres: Record<string, string>
   alVer: (id: string) => void
@@ -364,9 +405,40 @@ function ResultadoTanda({ tanda, nombres, alVer, alOtra }: {
         </div>
       ) : <p className="text-sm text-emerald-600">¡Sin errores!</p>}
       <div className="flex gap-2">
-        <button className="btn-primario" onClick={alOtra}>Otra tanda</button>
+        {siguiente
+          ? <button className="btn-primario" onClick={() => alSiguiente(siguiente.id)}>Seguir: {siguiente.titulo} ({siguiente.n})</button>
+          : <button className="btn-primario" onClick={alOtra}>Otra tanda</button>}
+        {siguiente && <button className="btn-secundario" onClick={alOtra}>Otra tanda acá</button>}
         <Link className="btn-secundario" to="/atlas">Otras escenas</Link>
       </div>
+    </div>
+  )
+}
+
+/** Buscar una estructura por nombre (útil en escenas con muchas piezas o muy finas). */
+function BuscarEstructura({ nombres, ocultas, alElegir }: { nombres: Record<string, string>; ocultas: string[]; alElegir: (id: string) => void }) {
+  const [q, setQ] = useState('')
+  const [abierto, setAbierto] = useState(false)
+  const n = normalizar(q)
+  const resultados = n.length < 2 ? [] : Object.entries(nombres).filter(([, nombre]) => normalizar(nombre).includes(n)).slice(0, 8)
+  return (
+    <div className="relative">
+      <input
+        className="campo !w-44 !py-1.5 text-xs shadow" placeholder="Buscar estructura…" value={q} aria-label="Buscar estructura"
+        onChange={(e) => { setQ(e.target.value); setAbierto(true) }} onFocus={() => setAbierto(true)} onBlur={() => setTimeout(() => setAbierto(false), 150)}
+        onKeyDown={(e) => { if (e.key === 'Enter' && resultados[0]) { alElegir(resultados[0][0]); setQ(''); setAbierto(false) } }}
+      />
+      {abierto && resultados.length > 0 && (
+        <ul className="absolute z-20 mt-1 w-64 overflow-hidden rounded-xl border text-xs shadow-lg borde" style={{ background: 'var(--tarjeta)' }}>
+          {resultados.map(([id, nombre]) => (
+            <li key={id}>
+              <button className="w-full px-3 py-1.5 text-left hover:bg-black/5 dark:hover:bg-white/10" onMouseDown={(e) => e.preventDefault()} onClick={() => { alElegir(id); setQ(''); setAbierto(false) }}>
+                {nombre}{ocultas.includes(id) && <span className="texto-suave"> · capa apagada</span>}
+              </button>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   )
 }

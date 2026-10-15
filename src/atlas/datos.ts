@@ -84,7 +84,7 @@ export function nombrePieza(p: PiezaEscena, f: Ficha = fichas[p.ficha]) {
 /** "Glándula suprarrenal derecha", "Vena renal izquierda"… (concordancia con el sustantivo). */
 function feminizar(nombre: string, lado: string) {
   const primera = normalizar(nombre.split(' ')[0])
-  const femeninos = ['glandula', 'vena', 'arteria', 'costilla', 'vesicula', 'uretra', 'pelvis', 'columna', 'papila', 'piramide', 'corteza', 'medula', 'capsula', 'arteriola', 'rama', 'macula', 'undecima', 'duodecima']
+  const femeninos = ['glandula', 'vena', 'arteria', 'costilla', 'vesicula', 'uretra', 'pelvis', 'columna', 'papila', 'piramide', 'corteza', 'medula', 'capsula', 'arteriola', 'rama', 'macula', 'undecima', 'duodecima', 'cresta', 'tuberosidad', 'fosa']
   return femeninos.includes(primera) ? lado.replace(/o$/, 'a') : lado
 }
 

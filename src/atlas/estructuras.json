@@ -1322,6 +1322,407 @@
       "irrigacion": "",
       "inervacion": "",
       "revisado": false
+    },
+    "uretra-prostatica": {
+      "relaciones": "Rodeada por la próstata; arriba, el cuello vesical y el esfínter interno (liso, involuntario).",
+      "irrigacion": "Arterias vesical inferior y rectal media.",
+      "inervacion": "Plexo prostático (del hipogástrico inferior).",
+      "revisado": false,
+      "nombre": "Uretra prostática",
+      "latin": "Pars prostatica urethrae",
+      "sinonimos": [
+        "uretra prostatica",
+        "porcion prostatica",
+        "prostatica"
+      ],
+      "descripcion": "Primera porción de la uretra masculina (≈3 cm): atraviesa la próstata de arriba abajo. En su pared posterior, la cresta uretral con el colículo seminal (verumontanum), donde desembocan los conductos eyaculadores y el utrículo prostático; a los costados, los conductos prostáticos. La más dilatable."
+    },
+    "uretra-membranosa": {
+      "relaciones": "A los lados, las glándulas bulbouretrales (de Cowper), cuyos conductos desembocan en la uretra esponjosa.",
+      "irrigacion": "Arteria del bulbo del pene y uretral (pudenda interna).",
+      "inervacion": "Nervio pudendo (esfínter externo, S2–S4).",
+      "revisado": false,
+      "nombre": "Uretra membranosa",
+      "latin": "Pars membranacea urethrae",
+      "sinonimos": [
+        "uretra membranosa",
+        "porcion membranosa",
+        "membranosa",
+        "uretra intermedia",
+        "pars intermedia"
+      ],
+      "descripcion": "Porción más corta (≈1–1,5 cm) y la menos dilatable: atraviesa el diafragma urogenital (periné profundo) entre el vértice de la próstata y el bulbo del pene. La rodea el esfínter externo de la uretra (estriado, voluntario). Sitio frecuente de lesión en las fracturas de pelvis y en los cateterismos."
+    },
+    "uretra-esponjosa": {
+      "relaciones": "Rodeada por el cuerpo esponjoso; dorsal a ella, los cuerpos cavernosos.",
+      "irrigacion": "Arterias del bulbo, uretral y dorsal del pene (pudenda interna).",
+      "inervacion": "Nervio pudendo (nervio dorsal del pene).",
+      "revisado": false,
+      "nombre": "Uretra esponjosa",
+      "latin": "Pars spongiosa urethrae",
+      "sinonimos": [
+        "uretra esponjosa",
+        "porcion esponjosa",
+        "esponjosa",
+        "uretra peniana",
+        "uretra cavernosa"
+      ],
+      "descripcion": "Porción más larga (≈15 cm), dentro del cuerpo esponjoso: empieza dilatada en el bulbo (fosa bulbar, donde desembocan las glándulas bulbouretrales) y termina en el glande con otra dilatación, la fosa navicular, antes del meato uretral externo (la parte más estrecha)."
+    },
+    "pared-vesical": {
+      "nombre": "Pared vesical (músculo detrusor)",
+      "latin": "Musculus detrusor vesicae",
+      "sinonimos": [
+        "pared vesical",
+        "detrusor",
+        "musculo detrusor",
+        "pared de la vejiga"
+      ],
+      "descripcion": "Músculo liso en haces entrecruzados (longitudinal externo, circular medio, longitudinal interno) cubierto por dentro por la mucosa con epitelio transicional (urotelio), que forma pliegues cuando la vejiga está vacía (salvo en el trígono).",
+      "relaciones": "Por fuera, la fascia vesical y el espacio perivesical; arriba, el peritoneo cubre la cara superior.",
+      "irrigacion": "Arterias vesicales superiores e inferiores.",
+      "inervacion": "Parasimpático (esplácnicos pélvicos S2–S4): contrae el detrusor durante la micción.",
+      "revisado": false
+    },
+    "trigono-vesical": {
+      "nombre": "Trígono vesical",
+      "latin": "Trigonum vesicae",
+      "sinonimos": [
+        "trigono",
+        "trigono vesical",
+        "trigono de lieutaud"
+      ],
+      "descripcion": "Área triangular lisa de la pared posterior e inferior entre los dos orificios ureterales (ángulos superiores) y el orificio uretral interno (vértice inferior). Su mucosa está adherida al músculo y no forma pliegues; es muy sensible.",
+      "relaciones": "Detrás, en el hombre, las vesículas seminales y las ampollas de los conductos deferentes; en la mujer, la vagina.",
+      "irrigacion": "Arteria vesical inferior.",
+      "inervacion": "Plexo vesical.",
+      "revisado": false
+    },
+    "orificio-ureteral": {
+      "nombre": "Orificio ureteral",
+      "latin": "Ostium ureteris",
+      "sinonimos": [
+        "orificio ureteral",
+        "meato ureteral",
+        "ostium ureteral"
+      ],
+      "descripcion": "Abertura en hendidura por donde desemboca cada uréter, en los ángulos superiores del trígono (a ≈2,5 cm uno del otro con la vejiga vacía). El trayecto oblicuo del uréter por la pared funciona como válvula y evita el reflujo vesicoureteral.",
+      "relaciones": "Unidos por el pliegue interureteral.",
+      "irrigacion": "",
+      "inervacion": "",
+      "lados": {
+        "derecho": {
+          "latin": "Ostium ureteris dextrum"
+        },
+        "izquierdo": {
+          "latin": "Ostium ureteris sinistrum"
+        }
+      },
+      "revisado": false
+    },
+    "pliegue-interureteral": {
+      "nombre": "Pliegue interureteral",
+      "latin": "Plica interureterica",
+      "sinonimos": [
+        "pliegue interureteral",
+        "barra interureteral",
+        "rodete interureteral"
+      ],
+      "descripcion": "Relieve transversal entre los dos orificios ureterales que forma el borde superior del trígono. Referencia para encontrar los orificios en la cistoscopia.",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "orificio-uretral-interno": {
+      "nombre": "Orificio uretral interno",
+      "latin": "Ostium urethrae internum",
+      "sinonimos": [
+        "orificio uretral interno",
+        "meato uretral interno"
+      ],
+      "descripcion": "Abertura de la vejiga hacia la uretra, en el vértice inferior del trígono, en el cuello vesical. En el hombre, detrás puede hacer relieve la úvula vesical (lóbulo medio de la próstata).",
+      "relaciones": "Rodeado por el esfínter interno de la uretra (músculo liso) en el hombre.",
+      "irrigacion": "",
+      "inervacion": "Simpático (T11–L2): cierra el cuello durante la eyaculación.",
+      "revisado": false
+    },
+    "cuello-vesical": {
+      "nombre": "Cuello vesical",
+      "latin": "Cervix vesicae",
+      "sinonimos": [
+        "cuello vesical",
+        "cuello de la vejiga"
+      ],
+      "descripcion": "Parte más baja y fija de la vejiga, donde convergen el fondo y las caras inferolaterales y nace la uretra. En el hombre se apoya sobre la base de la próstata.",
+      "relaciones": "Fijado por los ligamentos puboprostáticos (hombre) o pubovesicales (mujer).",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "ureter-intramural": {
+      "nombre": "Porción intramural del uréter",
+      "latin": "Pars intramuralis ureteris",
+      "sinonimos": [
+        "ureter intramural",
+        "porcion intramural",
+        "ureter"
+      ],
+      "descripcion": "Último tramo del uréter (≈1,5–2 cm) que atraviesa la pared vesical en forma oblicua hasta el orificio ureteral. Es el tercer estrechamiento (unión ureterovesical) y el mecanismo antirreflujo: al llenarse la vejiga, la presión aplasta ese trayecto.",
+      "relaciones": "",
+      "irrigacion": "Arteria vesical inferior.",
+      "inervacion": "",
+      "lados": {
+        "derecho": {
+          "latin": "Pars intramuralis ureteris dextri"
+        },
+        "izquierdo": {
+          "latin": "Pars intramuralis ureteris sinistri"
+        }
+      },
+      "revisado": false
+    },
+    "coliculo-seminal": {
+      "nombre": "Colículo seminal",
+      "latin": "Colliculus seminalis",
+      "sinonimos": [
+        "coliculo seminal",
+        "verumontanum",
+        "veru montanum"
+      ],
+      "descripcion": "Elevación de la cresta uretral en la pared posterior de la uretra prostática. En su centro se abre el utrículo prostático y a sus lados los conductos eyaculadores. Referencia en la cirugía endoscópica de la próstata.",
+      "relaciones": "A los costados, los senos prostáticos con los orificios de los conductos prostáticos.",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "uraco": {
+      "nombre": "Uraco (ligamento umbilical medio)",
+      "latin": "Ligamentum umbilicale medianum",
+      "sinonimos": [
+        "uraco",
+        "ligamento umbilical medio",
+        "ligamento umbilical mediano"
+      ],
+      "descripcion": "Cordón fibroso, resto del uraco fetal (alantoides), que va del vértice de la vejiga al ombligo. Si queda permeable puede dar una fístula o un quiste del uraco.",
+      "relaciones": "Detrás de la pared abdominal anterior, levanta el pliegue umbilical medio del peritoneo.",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "dorsal-ancho": {
+      "nombre": "Músculo dorsal ancho",
+      "latin": "Musculus latissimus dorsi",
+      "sinonimos": [
+        "dorsal ancho",
+        "dorsal mayor",
+        "latissimus dorsi"
+      ],
+      "descripcion": "Músculo ancho y superficial del dorso: de las apófisis espinosas T7–L5 (por la fascia toracolumbar), cresta ilíaca y últimas costillas al surco intertubercular del húmero. Aduce, extiende y rota medialmente el brazo.",
+      "relaciones": "Su borde lateral (anterior) limita por detrás el triángulo lumbar inferior (de Petit); cubre el triángulo lumbar superior.",
+      "irrigacion": "Arteria toracodorsal y ramas de intercostales y lumbares.",
+      "inervacion": "Nervio toracodorsal (C6–C8).",
+      "revisado": false
+    },
+    "oblicuo-interno": {
+      "nombre": "Músculo oblicuo interno del abdomen",
+      "latin": "Musculus obliquus internus abdominis",
+      "sinonimos": [
+        "oblicuo interno",
+        "oblicuo menor"
+      ],
+      "descripcion": "Músculo ancho intermedio: de la fascia toracolumbar, la cresta ilíaca y el ligamento inguinal a las últimas costillas y la línea alba. Forma el piso del triángulo lumbar inferior y el borde lateral del superior.",
+      "relaciones": "Superficial: oblicuo externo. Profundo: transverso del abdomen.",
+      "irrigacion": "Arterias intercostales inferiores, subcostal, epigástricas y circunfleja ilíaca profunda.",
+      "inervacion": "Nervios toracoabdominales T7–T11, subcostal, iliohipogástrico e ilioinguinal.",
+      "revisado": false
+    },
+    "cuadrado-lumbar": {
+      "nombre": "Músculo cuadrado lumbar",
+      "latin": "Musculus quadratus lumborum",
+      "sinonimos": [
+        "cuadrado lumbar",
+        "cuadrado de los lomos"
+      ],
+      "descripcion": "Músculo cuadrilátero de la pared abdominal posterior: de la cresta ilíaca y el ligamento iliolumbar a la 12.ª costilla y las apófisis transversas L1–L4. Inclina el tronco y fija la 12.ª costilla en la inspiración.",
+      "relaciones": "Anterior: riñón, colon y los nervios subcostal, iliohipogástrico e ilioinguinal. Medial: psoas mayor. Posterior: hoja media de la fascia toracolumbar y el erector de la columna.",
+      "irrigacion": "Arterias lumbares e iliolumbar.",
+      "inervacion": "Nervio subcostal y ramos anteriores de L1–L4.",
+      "revisado": false
+    },
+    "aponeurosis-transverso": {
+      "nombre": "Aponeurosis posterior del transverso",
+      "latin": "Aponeurosis musculi transversi abdominis",
+      "sinonimos": [
+        "aponeurosis del transverso",
+        "aponeurosis posterior del transverso",
+        "fascia toracolumbar"
+      ],
+      "descripcion": "Inserción posterior, aponeurótica, del músculo transverso del abdomen en la fascia toracolumbar. Forma el piso del triángulo lumbar superior (de Grynfeltt); detrás de ella están la grasa perirrenal y el riñón.",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "triangulo-petit": {
+      "nombre": "Triángulo lumbar inferior (de Petit)",
+      "latin": "Trigonum lumbale inferius",
+      "sinonimos": [
+        "triangulo de petit",
+        "petit",
+        "triangulo lumbar inferior"
+      ],
+      "descripcion": "Límites: abajo, la cresta ilíaca; adelante (lateral), el borde posterior del oblicuo externo; atrás (medial), el borde lateral del dorsal ancho. Piso: oblicuo interno. Punto débil de la pared: hernias lumbares inferiores.",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "triangulo-grynfeltt": {
+      "nombre": "Triángulo lumbar superior (de Grynfeltt)",
+      "latin": "Trigonum lumbale superius",
+      "sinonimos": [
+        "triangulo de grynfeltt",
+        "grynfeltt",
+        "cuadrilatero de grynfeltt",
+        "triangulo lumbar superior",
+        "grynfelt"
+      ],
+      "descripcion": "Espacio (triángulo o cuadrilátero) por debajo del dorsal ancho. Límites: arriba, la 12.ª costilla y el serrato posterior inferior; medial, el erector de la columna (iliocostal); lateral, el borde posterior del oblicuo interno. Piso: aponeurosis del transverso. Más grande y frecuente que el de Petit como sitio de hernias lumbares; vía de abordaje del riñón.",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "Lo atraviesan el nervio subcostal y la arteria subcostal.",
+      "revisado": false
+    },
+    "cresta-iliaca": {
+      "nombre": "Cresta ilíaca",
+      "latin": "Crista iliaca",
+      "sinonimos": [
+        "cresta iliaca",
+        "cresta del iliaco"
+      ],
+      "descripcion": "Borde superior del ilion, de la espina ilíaca anterosuperior a la posterosuperior. Su punto más alto marca el plano supracrestal (L4). Limita abajo el triángulo de Petit.",
+      "relaciones": "Inserción del dorsal ancho, oblicuos, transverso, cuadrado lumbar y erector de la columna.",
+      "irrigacion": "",
+      "inervacion": "",
+      "lados": {
+        "derecho": {
+          "latin": "Crista iliaca dextra"
+        },
+        "izquierdo": {
+          "latin": "Crista iliaca sinistra"
+        }
+      },
+      "revisado": false
+    },
+    "fosa-isquioanal": {
+      "nombre": "Fosa isquioanal",
+      "latin": "Fossa ischioanalis",
+      "sinonimos": [
+        "fosa isquioanal",
+        "fosa isquiorrectal",
+        "isquiorrectal"
+      ],
+      "descripcion": "Espacio en cuña, lleno de grasa, a cada lado del conducto anal. Límites: medial, el elevador del ano y el esfínter externo del ano; lateral, el obturador interno (con su fascia) y la tuberosidad isquiática; abajo, la piel del periné; vértice arriba, donde el elevador se une a la fascia del obturador. Ambas fosas se comunican por detrás del conducto anal (abscesos en herradura).",
+      "relaciones": "En su pared lateral, el conducto pudendo (de Alcock). La cruzan los vasos y nervios rectales inferiores.",
+      "irrigacion": "Arterias rectales inferiores (de la pudenda interna).",
+      "inervacion": "Nervios rectales inferiores y perineales.",
+      "revisado": false
+    },
+    "elevador-ano": {
+      "nombre": "Músculo elevador del ano",
+      "latin": "Musculus levator ani",
+      "sinonimos": [
+        "elevador del ano",
+        "elevador",
+        "levator ani"
+      ],
+      "descripcion": "Principal músculo del diafragma pélvico, en forma de embudo: pubococcígeo (con el puborrectal) e iliococcígeo, desde el pubis y el arco tendinoso de la fascia del obturador hasta el cóccix, el ligamento anococcígeo y el cuerpo perineal. Sostiene las vísceras pélvicas y ayuda a la continencia.",
+      "relaciones": "Arriba: vísceras pélvicas. Abajo y lateral: fosa isquioanal.",
+      "irrigacion": "Arterias glútea inferior, pudenda interna y vesical inferior.",
+      "inervacion": "Nervio del elevador del ano (S4) y nervio pudendo.",
+      "revisado": false
+    },
+    "obturador-interno": {
+      "nombre": "Músculo obturador interno",
+      "latin": "Musculus obturatorius internus",
+      "sinonimos": [
+        "obturador interno"
+      ],
+      "descripcion": "Músculo de la pared lateral de la pelvis: de la cara interna de la membrana obturatriz y el hueso coxal sale por el foramen ciático menor y se inserta en el trocánter mayor. Rotador lateral del muslo.",
+      "relaciones": "Su fascia da el arco tendinoso del elevador del ano y, abajo, forma el conducto pudendo; es la pared lateral de la fosa isquioanal.",
+      "irrigacion": "Arterias obturatriz y pudenda interna.",
+      "inervacion": "Nervio del obturador interno (L5–S2).",
+      "revisado": false
+    },
+    "tuberosidad-isquiatica": {
+      "nombre": "Tuberosidad isquiática",
+      "latin": "Tuber ischiadicum",
+      "sinonimos": [
+        "tuberosidad isquiatica",
+        "tuber isquiatico",
+        "isquion"
+      ],
+      "descripcion": "Saliente rugoso del isquion sobre el que nos sentamos. Inserta los isquiotibiales y el ligamento sacrotuberoso. Límite lateral inferior de la fosa isquioanal y vértice del triángulo urogenital y anal.",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "conducto-anal": {
+      "nombre": "Conducto anal",
+      "latin": "Canalis analis",
+      "sinonimos": [
+        "conducto anal",
+        "canal anal"
+      ],
+      "descripcion": "Porción final del tubo digestivo (≈4 cm), desde la unión anorrectal (donde el puborrectal forma el ángulo anorrectal) hasta el ano. Rodeado por los esfínteres interno (liso) y externo (estriado). La línea pectínea separa territorios de irrigación, drenaje e inervación distintos.",
+      "relaciones": "A cada lado, las fosas isquioanales. Adelante, el cuerpo perineal (y la uretra membranosa o la vagina).",
+      "irrigacion": "Arterias rectales superior, media e inferior.",
+      "inervacion": "Arriba de la línea pectínea, visceral; abajo, nervio rectal inferior (pudendo): sensible al dolor.",
+      "revisado": false
+    },
+    "conducto-pudendo": {
+      "nombre": "Conducto pudendo (de Alcock)",
+      "latin": "Canalis pudendalis",
+      "sinonimos": [
+        "conducto pudendo",
+        "canal de alcock",
+        "conducto de alcock",
+        "alcock"
+      ],
+      "descripcion": "Desdoblamiento de la fascia del obturador interno en la pared lateral de la fosa isquioanal, por donde corren los vasos pudendos internos y el nervio pudendo hacia el periné.",
+      "relaciones": "Unos 3–4 cm por encima del borde inferior de la tuberosidad isquiática.",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "nervio-pudendo": {
+      "nombre": "Nervio pudendo",
+      "latin": "Nervus pudendus",
+      "sinonimos": [
+        "pudendo",
+        "nervio pudendo",
+        "pudendo interno"
+      ],
+      "descripcion": "Del plexo sacro (S2–S4). Sale de la pelvis por el foramen ciático mayor, rodea la espina ciática y entra al periné por el foramen ciático menor y el conducto pudendo. Ramos: rectal inferior, perineal y dorsal del pene o del clítoris. Motor de los esfínteres externos y sensibilidad del periné (bloqueo pudendo en obstetricia).",
+      "relaciones": "Medial a los vasos pudendos internos en el conducto pudendo.",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "arteria-pudenda-interna": {
+      "nombre": "Arteria pudenda interna",
+      "latin": "Arteria pudenda interna",
+      "sinonimos": [
+        "pudenda interna",
+        "arteria pudenda"
+      ],
+      "descripcion": "Rama de la ilíaca interna. Sigue el mismo trayecto que el nervio pudendo (foramen ciático mayor, espina ciática, foramen ciático menor, conducto pudendo). Da las arterias rectal inferior, perineal y las del pene/clítoris (del bulbo, uretral, profunda y dorsal).",
+      "relaciones": "Acompañada por las venas pudendas internas y el nervio pudendo.",
+      "irrigacion": "Periné, conducto anal y genitales externos.",
+      "inervacion": "",
+      "revisado": false
     }
   }
 }

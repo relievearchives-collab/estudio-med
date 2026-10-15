@@ -384,9 +384,24 @@
           "capa": "urinario"
         },
         {
-          "id": "uretra",
+          "id": "uretra-prostatica",
           "fma": "FMA19667",
-          "ficha": "uretra-masculina",
+          "porcion": "prostatica",
+          "ficha": "uretra-prostatica",
+          "capa": "urinario"
+        },
+        {
+          "id": "uretra-membranosa",
+          "fma": "FMA19667",
+          "porcion": "membranosa",
+          "ficha": "uretra-membranosa",
+          "capa": "urinario"
+        },
+        {
+          "id": "uretra-esponjosa",
+          "fma": "FMA19667",
+          "porcion": "esponjosa",
+          "ficha": "uretra-esponjosa",
           "capa": "urinario"
         },
         {
@@ -460,6 +475,83 @@
           "fma": "FMA16202",
           "ficha": "sacro",
           "capa": "oseo"
+        }
+      ]
+    },
+    {
+      "id": "vejiga-abierta",
+      "titulo": "Vejiga abierta",
+      "tipo": "esquema",
+      "esquema": "vejigaAbierta",
+      "piezas": [
+        {
+          "id": "pared-vesical",
+          "ficha": "pared-vesical",
+          "capa": "urinario"
+        },
+        {
+          "id": "trigono-vesical",
+          "ficha": "trigono-vesical",
+          "capa": "urinario"
+        },
+        {
+          "id": "orificio-ureteral-der",
+          "ficha": "orificio-ureteral",
+          "capa": "urinario",
+          "lado": "derecho"
+        },
+        {
+          "id": "orificio-ureteral-izq",
+          "ficha": "orificio-ureteral",
+          "capa": "urinario",
+          "lado": "izquierdo"
+        },
+        {
+          "id": "pliegue-interureteral",
+          "ficha": "pliegue-interureteral",
+          "capa": "urinario"
+        },
+        {
+          "id": "orificio-uretral-interno",
+          "ficha": "orificio-uretral-interno",
+          "capa": "urinario"
+        },
+        {
+          "id": "cuello-vesical",
+          "ficha": "cuello-vesical",
+          "capa": "urinario"
+        },
+        {
+          "id": "ureter-intramural-der",
+          "ficha": "ureter-intramural",
+          "capa": "urinario",
+          "lado": "derecho"
+        },
+        {
+          "id": "ureter-intramural-izq",
+          "ficha": "ureter-intramural",
+          "capa": "urinario",
+          "lado": "izquierdo"
+        },
+        {
+          "id": "uretra-prostatica-esq",
+          "ficha": "uretra-prostatica",
+          "capa": "urinario"
+        },
+        {
+          "id": "prostata-esq",
+          "ficha": "prostata",
+          "capa": "genital"
+        },
+        {
+          "id": "coliculo-seminal",
+          "ficha": "coliculo-seminal",
+          "capa": "genital"
+        },
+        {
+          "id": "uraco",
+          "ficha": "uraco",
+          "capa": "urinario"
         }
       ]
     },
@@ -677,6 +769,78 @@
       ]
     },
     {
+      "id": "triangulos-lumbares",
+      "titulo": "Triángulos lumbares",
+      "tipo": "esquema",
+      "esquema": "triangulosLumbares",
+      "piezas": [
+        {
+          "id": "dorsal-ancho-esq",
+          "ficha": "dorsal-ancho",
+          "capa": "muscular",
+          "lado": "izquierdo"
+        },
+        {
+          "id": "oblicuo-externo-esq",
+          "ficha": "oblicuo-externo",
+          "capa": "muscular",
+          "lado": "izquierdo"
+        },
+        {
+          "id": "oblicuo-interno-esq",
+          "ficha": "oblicuo-interno",
+          "capa": "muscular",
+          "lado": "izquierdo"
+        },
+        {
+          "id": "serrato-esq",
+          "ficha": "serrato-posterior-inferior",
+          "capa": "muscular",
+          "lado": "izquierdo"
+        },
+        {
+          "id": "iliocostal-esq",
+          "ficha": "iliocostal-lumbar",
+          "capa": "muscular",
+          "lado": "izquierdo"
+        },
+        {
+          "id": "cuadrado-lumbar-esq",
+          "ficha": "cuadrado-lumbar",
+          "capa": "muscular",
+          "lado": "izquierdo"
+        },
+        {
+          "id": "aponeurosis-transverso",
+          "ficha": "aponeurosis-transverso",
+          "capa": "muscular",
+          "lado": "izquierdo"
+        },
+        {
+          "id": "triangulo-petit",
+          "ficha": "triangulo-petit",
+          "capa": "limites"
+        },
+        {
+          "id": "triangulo-grynfeltt",
+          "ficha": "triangulo-grynfeltt",
+          "capa": "limites"
+        },
+        {
+          "id": "cresta-iliaca",
+          "ficha": "cresta-iliaca",
+          "capa": "oseo",
+          "lado": "izquierdo"
+        },
+        {
+          "id": "costilla-12-esq",
+          "ficha": "costilla-12",
+          "capa": "oseo",
+          "lado": "izquierdo"
+        }
+      ]
+    },
+    {
       "id": "perine",
       "titulo": "Periné",
       "tipo": "modelo",
@@ -729,9 +893,24 @@
           "capa": "urinario"
         },
         {
-          "id": "uretra",
+          "id": "uretra-prostatica",
           "fma": "FMA19667",
-          "ficha": "uretra-masculina",
+          "porcion": "prostatica",
+          "ficha": "uretra-prostatica",
+          "capa": "urinario"
+        },
+        {
+          "id": "uretra-membranosa",
+          "fma": "FMA19667",
+          "porcion": "membranosa",
+          "ficha": "uretra-membranosa",
+          "capa": "urinario"
+        },
+        {
+          "id": "uretra-esponjosa",
+          "fma": "FMA19667",
+          "porcion": "esponjosa",
+          "ficha": "uretra-esponjosa",
           "capa": "urinario"
         },
         {
@@ -771,6 +950,65 @@
           "fma": "FMA16202",
           "ficha": "sacro",
           "capa": "oseo"
+        }
+      ]
+    },
+    {
+      "id": "fosa-isquioanal",
+      "titulo": "Fosa isquioanal",
+      "tipo": "esquema",
+      "esquema": "fosaIsquioanal",
+      "piezas": [
+        {
+          "id": "fosa-isquioanal",
+          "ficha": "fosa-isquioanal",
+          "capa": "espacios"
+        },
+        {
+          "id": "elevador-ano",
+          "ficha": "elevador-ano",
+          "capa": "muscular"
+        },
+        {
+          "id": "obturador-interno",
+          "ficha": "obturador-interno",
+          "capa": "muscular"
+        },
+        {
+          "id": "tuberosidad-isquiatica",
+          "ficha": "tuberosidad-isquiatica",
+          "capa": "oseo"
+        },
+        {
+          "id": "conducto-anal",
+          "ficha": "conducto-anal",
+          "capa": "digestivo"
+        },
+        {
+          "id": "esfinter-externo-ano-esq",
+          "ficha": "esfinter-externo-ano",
+          "capa": "muscular"
+        },
+        {
+          "id": "recto-esq",
+          "ficha": "recto",
+          "capa": "digestivo"
+        },
+        {
+          "id": "conducto-pudendo",
+          "ficha": "conducto-pudendo",
+          "capa": "vasculonervioso"
+        },
+        {
+          "id": "nervio-pudendo",
+          "ficha": "nervio-pudendo",
+          "capa": "vasculonervioso"
+        },
+        {
+          "id": "arteria-pudenda-interna",
+          "ficha": "arteria-pudenda-interna",
+          "capa": "vasculonervioso",
+          "tono": "arteria"
         }
       ]
     },

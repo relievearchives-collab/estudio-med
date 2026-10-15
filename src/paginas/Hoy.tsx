@@ -118,7 +118,7 @@ export default function Hoy() {
       )}
 
       {atlasVencidas.length > 0 && escenaAtlas && (
-        <Link to={`/atlas/${escenaAtlas}?modo=museo`} className="tarjeta flex items-center gap-4 p-4">
+        <Link to={`/atlas/${escenaAtlas}?modo=museo&repaso=1`} className="tarjeta flex items-center gap-4 p-4">
           <div className="text-center"><div className="text-3xl font-bold text-cyan-600 dark:text-cyan-300">{atlasVencidas.length}</div><div className="text-xs texto-suave">estructuras</div></div>
           <div className="min-w-0 flex-1"><p className="font-semibold">Atlas: repaso de estructuras</p><p className="text-sm texto-suave">Modo Museo con las que te tocan hoy (las que fallaste vuelven antes).</p></div>
           <Icono nombre="cubo" className="h-6 w-6 text-cyan-600 dark:text-cyan-300" />

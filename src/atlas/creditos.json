@@ -227,7 +227,21 @@
           ]
         },
         {
-          "id": "uretra",
+          "id": "uretra-prostatica",
+          "fma": "FMA19667",
+          "elementos": [
+            "FJ3148"
+          ]
+        },
+        {
+          "id": "uretra-membranosa",
+          "fma": "FMA19667",
+          "elementos": [
+            "FJ3148"
+          ]
+        },
+        {
+          "id": "uretra-esponjosa",
           "fma": "FMA19667",
           "elementos": [
             "FJ3148"
@@ -590,7 +604,21 @@
           ]
         },
         {
-          "id": "uretra",
+          "id": "uretra-prostatica",
+          "fma": "FMA19667",
+          "elementos": [
+            "FJ3148"
+          ]
+        },
+        {
+          "id": "uretra-membranosa",
+          "fma": "FMA19667",
+          "elementos": [
+            "FJ3148"
+          ]
+        },
+        {
+          "id": "uretra-esponjosa",
           "fma": "FMA19667",
           "elementos": [
             "FJ3148"

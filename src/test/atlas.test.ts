@@ -108,3 +108,18 @@ describe('Modo Museo: corrección tolerante', () => {
     expect(esRespuestaCorrecta('renal', pieza('rinones', 'vena-renal-der'))).toBe(false)
   })
 })
+
+describe('estructuras agregadas (uretra, vejiga abierta, triángulos lumbares, fosa isquioanal)', () => {
+  it('se nombran y corrigen bien', () => {
+    expect(nombrePieza(pieza('triangulos-lumbares', 'cresta-iliaca'))).toBe('Cresta ilíaca izquierda')
+    expect(nombrePieza(pieza('vejiga-abierta', 'orificio-ureteral-der'))).toBe('Orificio ureteral derecho')
+    expect(esRespuestaCorrecta('petit', pieza('triangulos-lumbares', 'triangulo-petit'))).toBe(true)
+    expect(esRespuestaCorrecta('triángulo de Grynfeltt', pieza('triangulos-lumbares', 'triangulo-grynfeltt'))).toBe(true)
+    expect(esRespuestaCorrecta('petit', pieza('triangulos-lumbares', 'triangulo-grynfeltt'))).toBe(false)
+    expect(esRespuestaCorrecta('canal de Alcock', pieza('fosa-isquioanal', 'conducto-pudendo'))).toBe(true)
+    expect(esRespuestaCorrecta('fosa isquiorrectal', pieza('fosa-isquioanal', 'fosa-isquioanal'))).toBe(true)
+    expect(esRespuestaCorrecta('uretra membranosa', pieza('vejiga-uretra', 'uretra-membranosa'))).toBe(true)
+    expect(esRespuestaCorrecta('uretra esponjosa', pieza('vejiga-uretra', 'uretra-membranosa'))).toBe(false)
+    expect(esRespuestaCorrecta('verumontanum', pieza('vejiga-abierta', 'coliculo-seminal'))).toBe(true)
+  })
+})

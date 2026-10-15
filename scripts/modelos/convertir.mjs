@@ -92,6 +92,53 @@ async function mallaDePieza(p) {
   return { pos: new Float32Array(pos), idx: new Uint32Array(idx), elementos: fjs }
 }
 
+/**
+ * Uretra masculina en porciones: BodyParts3D la trae como un solo tubo. Se recorre desde el cuello vesical
+ * (vértice más alto) con distancias geodésicas sobre la malla: prostática hasta salir de la próstata,
+ * membranosa los ~1,5 cm siguientes y esponjosa el resto. Devuelve la submalla de la porción pedida.
+ */
+const LARGO_MEMBRANOSA = 0.15 // 15 mm
+const cachePorciones = new Map()
+async function porcionUretra(malla, porcion) {
+  if (!cachePorciones.has(malla)) {
+    const prostata = await mallaDePieza({ fma: 'FMA9600' })
+    const cp = caja(prostata.pos)
+    const n = malla.pos.length / 3
+    // Grafo de aristas y Dijkstra simple (la malla tiene pocos miles de vértices)
+    const vecinos = Array.from({ length: n }, () => [])
+    const d = (a, b) => Math.hypot(malla.pos[a * 3] - malla.pos[b * 3], malla.pos[a * 3 + 1] - malla.pos[b * 3 + 1], malla.pos[a * 3 + 2] - malla.pos[b * 3 + 2])
+    for (let i = 0; i < malla.idx.length; i += 3) {
+      const [a, b, c] = [malla.idx[i], malla.idx[i + 1], malla.idx[i + 2]]
+      vecinos[a].push(b, c); vecinos[b].push(a, c); vecinos[c].push(a, b)
+    }
+    let inicio = 0
+    for (let i = 1; i < n; i++) if (malla.pos[i * 3 + 1] > malla.pos[inicio * 3 + 1]) inicio = i
+    const dist = new Float64Array(n).fill(Infinity)
+    dist[inicio] = 0
+    const hechos = new Uint8Array(n)
+    for (let k = 0; k < n; k++) {
+      let u = -1
+      for (let i = 0; i < n; i++) if (!hechos[i] && (u < 0 || dist[i] < dist[u])) u = i
+      if (u < 0 || dist[u] === Infinity) break
+      hechos[u] = 1
+      for (const v of vecinos[u]) { const nd = dist[u] + d(u, v); if (nd < dist[v]) dist[v] = nd }
+    }
+    const dentro = (i) => [0, 1, 2].every((k) => malla.pos[i * 3 + k] >= cp.min[k] && malla.pos[i * 3 + k] <= cp.max[k])
+    let finProstatica = 0
+    for (let i = 0; i < n; i++) if (dentro(i) && dist[i] < Infinity) finProstatica = Math.max(finProstatica, dist[i])
+    const tipo = (s) => (s <= finProstatica ? 'prostatica' : s <= finProstatica + LARGO_MEMBRANOSA ? 'membranosa' : 'esponjosa')
+    cachePorciones.set(malla, { dist, tipo })
+  }
+  const { dist, tipo } = cachePorciones.get(malla)
+  const idx = []
+  for (let i = 0; i < malla.idx.length; i += 3) {
+    const t = [malla.idx[i], malla.idx[i + 1], malla.idx[i + 2]]
+    const media = (dist[t[0]] + dist[t[1]] + dist[t[2]]) / 3
+    if (tipo(media) === porcion) idx.push(...t)
+  }
+  return { pos: malla.pos.slice(), idx: new Uint32Array(idx), elementos: malla.elementos }
+}
+
 function caja(pos) {
   const min = [Infinity, Infinity, Infinity]
   const max = [-Infinity, -Infinity, -Infinity]
@@ -134,8 +181,14 @@ mkdirSync(salida, { recursive: true })
 for (const escena of escenas.filter((e) => e.tipo === 'modelo' && (!pedidas.length || pedidas.includes(e.id)))) {
   const piezas = []
   const faltan = []
+  const mallasPorFma = new Map()
   for (const p of escena.piezas) {
-    const m = await mallaDePieza(p)
+    let m
+    if (p.porcion) {
+      if (!mallasPorFma.has(p.fma)) mallasPorFma.set(p.fma, await mallaDePieza(p))
+      const entera = mallasPorFma.get(p.fma)
+      m = entera && (await porcionUretra(entera, p.porcion))
+    } else m = await mallaDePieza(p)
     if (m) piezas.push({ ...p, ...m })
     else faltan.push(`${p.id} (${p.fma})`)
   }

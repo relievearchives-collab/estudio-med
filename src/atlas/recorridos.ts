@@ -33,7 +33,9 @@ export const recorridos: Recorrido[] = [
       { escena: 'rinon-interior', pieza: 'pelvis-renal', texto: 'Los cálices mayores confluyen en la pelvis renal, que sale por el hilio.' },
       { escena: 'rinones', pieza: 'ureter-der', texto: 'El uréter lleva la orina por peristaltismo. Fijate en sus 3 estrechamientos: unión pieloureteral, cruce de los vasos ilíacos y unión ureterovesical.', estrechamientos: true },
       { escena: 'vejiga-uretra', pieza: 'vejiga', texto: 'La vejiga almacena la orina; los uréteres entran en forma oblicua por el trígono, lo que evita el reflujo.' },
-      { escena: 'vejiga-uretra', pieza: 'uretra', texto: 'Por la uretra sale al exterior: en el hombre, porciones prostática, membranosa (esfínter externo) y esponjosa.' },
+      { escena: 'vejiga-uretra', pieza: 'uretra-prostatica', texto: 'Sale por la uretra. En el hombre, primero la porción prostática, que atraviesa la próstata (allí desembocan los conductos eyaculadores).' },
+      { escena: 'vejiga-uretra', pieza: 'uretra-membranosa', texto: 'Porción membranosa: la más corta y estrecha, rodeada por el esfínter externo, voluntario.' },
+      { escena: 'vejiga-uretra', pieza: 'uretra-esponjosa', texto: 'Porción esponjosa: dentro del cuerpo esponjoso, hasta el meato uretral externo.' },
     ],
   },
   {

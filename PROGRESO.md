@@ -86,15 +86,24 @@ UP3 → *Hacer tarjetas de la UP3* → *Generar* → revisar y *Guardar* → **H
 - **FSRS por estructura**: cada respuesta actualiza su estado (las falladas vuelven antes). "Hoy" y el índice del atlas muestran las estructuras para repasar.
 - Atlas en el menú, en "Hoy", en cada UP (*… en 3D*) y en cada tema de anatomía (*3D*). Créditos con la atribución por escena (`src/atlas/creditos.json`). Respaldo con el estado del atlas y las fichas editadas. Estadísticas: estructuras practicadas y rompecabezas armados.
 
+### Ajustes posteriores (antes de la Fase 4)
+- **Modo Museo más útil para el laboratorio**: se elige sobre qué capas preguntar ("Preguntar sobre: Urinario · Vascular…"); la estructura del alfiler se dibuja por encima de lo que la tapa, el resto se atenúa más y la cámara se centra en ella.
+- **Repaso de lo vencido** (`?repaso=1`, desde "Hoy" y el índice del atlas): la tanda trae solo las estructuras que tocan hoy y al terminar ofrece *Seguir* con la próxima escena que tenga vencidas.
+- **Buscar estructura** por nombre en cada escena (prende su capa si estaba apagada y abre la ficha).
+- **Uretra masculina en 3 porciones** (prostática, membranosa, esponjosa), separadas por el script sobre el modelo, con fichas propias; el recorrido *Camino de la orina* pasa por las tres.
+- **Esquemas nuevos**: *Vejiga abierta* (trígono, orificios ureterales y uretral interno, pliegue interureteral, cuello, porción intramural del uréter, uretra prostática, colículo seminal, uraco), *Triángulos lumbares* (Petit y Grynfeltt con sus límites y pisos, por capas) y *Fosa isquioanal* (corte coronal: elevador del ano, obturador interno, conducto pudendo con nervio y arteria, conducto anal y esfínter). Ahora son **11 escenas** y 110 fichas.
+- El encuadre inicial tiene en cuenta el ancho de la pantalla (en el celular vertical ya no se corta la escena) y los rótulos de piezas pares no se pisan.
+
 ### Verificado
-- `npm test`: **55 tests** en verde. Nuevos: datos del atlas (cada pieza con ficha, ids consistentes entre escenas, nombres con lado concordado), recorridos válidos, corrección del Modo Museo (tildes, sinónimos, latín, typo, lado equivocado, "renal" no vale para la vena), tanda priorizada por FSRS y efecto de acierto/pista/error, y respaldo con estado del atlas y fichas editadas.
+- `npm test`: **56 tests** (suma la corrección de los nombres nuevos: Petit, Grynfeltt, Alcock, porciones de la uretra, verumontanum). En el navegador: los 3 esquemas nuevos, el filtro de capas (con solo Urinario la tanda es de 5 y todas las respondidas son urinarias), el buscador y el repaso (tanda de 4 vencidas).
+- Antes de los ajustes: `npm test`: **55 tests** en verde. Nuevos: datos del atlas (cada pieza con ficha, ids consistentes entre escenas, nombres con lado concordado), recorridos válidos, corrección del Modo Museo (tildes, sinónimos, latín, typo, lado equivocado, "renal" no vale para la vena), tanda priorizada por FSRS y efecto de acierto/pista/error, y respaldo con estado del atlas y fichas editadas.
 - `npm run build` sin errores; three.js va en un chunk aparte (solo se baja al abrir el atlas) y los `.glb` se guardan para usar sin conexión la primera vez que se abre cada escena.
 - En el navegador (escritorio y celular): las 8 escenas cargan; selección con ficha y fragmentos de la guía (págs. 135, 41, 240 para el riñón); realista + capas + desarmar; Modo Museo (respuesta corregida y estado FSRS guardado); ¿Dónde está? (acierto contado); rompecabezas (pieza encajada); recorrido *Camino de la orina* con los 3 estrechamientos rotulados; *Crear tarjeta* creó una oclusión con la captura y la máscara sobre el uréter.
 
 ### No verificado todavía
 - Rendimiento en un celular de gama media real (en la prueba la app bajó sola la calidad: sin bloom y resolución 1×).
 - **Realidad aumentada y pirámide holográfica**: quedan para la Fase 5 (extras), como dice `docs/ATLAS-3D.md`.
-- Faltan en BodyParts3D y no se modelaron: cuadrado lumbar, transverso y oblicuo interno del abdomen, dorsal ancho, isquiocavernoso, bulboesponjoso, transversos del periné, uretra femenina y órganos genitales femeninos (el modelo es masculino). Los triángulos lumbares (Petit, Grynfeltt), la fosa isquioanal y la vejiga abierta quedan como esquemas pendientes.
+- Faltan en BodyParts3D y no se modelaron: cuadrado lumbar, transverso y oblicuo interno del abdomen, dorsal ancho, isquiocavernoso, bulboesponjoso, transversos del periné, uretra femenina y órganos genitales femeninos (el modelo es masculino). (Los triángulos lumbares, la fosa isquioanal y la vejiga abierta ya están como esquemas.)
 
 ### Cómo probarlo
 Más → **Atlas 3D** → *Riñones y vías urinarias superiores*: tocá un riñón (ficha), abrí *Herramientas* (realista, desarmar, capas, corte), probá *Armar*, *Modo Museo* y *¿Dónde está?*. Recorridos: *Camino de la orina*. Para regenerar los modelos: `modelos-3d/LEEME.md`.

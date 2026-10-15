@@ -236,12 +236,17 @@ const Escena = forwardRef<VisorAtlasRef, PropsVisor & { datos: ReturnType<typeof
       const elegida = p.id === seleccion || p.id === pin
       const colorHolo = destacada ?? (elegida ? HOLO.seleccion : HOLO.base)
       m.holo.uniforms.uColor.value.set(colorHolo)
-      m.holo.uniforms.uOpacidad.value = esRef ? 0.35 : haySel && !elegida && !destacada ? 0.35 : 1
+      // Con alfiler (Modo Museo) lo demás se atenúa más y la señalada se dibuja por encima de lo que la tapa.
+      const atenuada = haySel && !elegida && !destacada
+      const encima = p.id === pin
+      m.holo.uniforms.uOpacidad.value = esRef ? 0.35 : atenuada ? (pin ? 0.18 : 0.35) : 1
+      m.holo.depthTest = !encima
+      m.real.depthTest = !encima
       m.holo.uniforms.uBrillo.value = elegida || destacada ? 1.5 : 1
       m.real.color.set(destacada ?? p.color)
       m.real.emissive.set(elegida ? '#f59e0b' : destacada ? destacada : '#000000')
       m.real.emissiveIntensity = elegida ? 0.45 : destacada ? 0.35 : 0
-      m.real.opacity = esRef ? 0.45 : haySel && !elegida && !destacada ? 0.28 : 1
+      m.real.opacity = esRef ? 0.45 : atenuada ? (pin ? 0.14 : 0.28) : 1
       m.real.depthWrite = m.real.opacity > 0.9
     }
   }, [seleccion, pin, destacadas, piezas, datos.referencias, materiales])
@@ -295,8 +300,11 @@ const Escena = forwardRef<VisorAtlasRef, PropsVisor & { datos: ReturnType<typeof
 
   // Cámara
   const irA = (v: VistaRapida) => {
-    // Con FOV de 40°, una esfera de radio r entra entera a ≈ r / sen(20°) ≈ 2,9 r (en el rompecabezas, con las piezas alrededor, más lejos)
-    const d = radio * (armar ? 4.6 : 2.95)
+    // Que la escena entre a lo alto y a lo ancho (en celular vertical manda el ángulo horizontal)
+    const pc = camera as THREE.PerspectiveCamera
+    const vfov = THREE.MathUtils.degToRad(pc.fov ?? 40)
+    const hfov = 2 * Math.atan(Math.tan(vfov / 2) * (pc.aspect || 1))
+    const d = (radio / Math.sin(Math.min(vfov, hfov) / 2)) * (armar ? 1.55 : 1.0)
     const [x, y, z] = POS_VISTA[v]
     const objetivoCam = controles?.target ?? new THREE.Vector3()
     camera.position.set(objetivoCam.x + x * d, objetivoCam.y + y * d, objetivoCam.z + z * d)
@@ -319,6 +327,14 @@ const Escena = forwardRef<VisorAtlasRef, PropsVisor & { datos: ReturnType<typeof
     irA(armar ? 'anterior' : escena.vista ?? 'anterior')
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [controles, escena.id, radio, !!armar])
+
+  // Modo Museo: la cámara apunta a la estructura señalada (manteniendo el ángulo de vista).
+  useEffect(() => {
+    if (!pin) return
+    const t = setTimeout(() => centrar(pin), 50)
+    return () => clearTimeout(t)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pin, controles])
 
   useImperativeHandle(ref, () => ({
     vista: irA,
@@ -358,7 +374,7 @@ const Escena = forwardRef<VisorAtlasRef, PropsVisor & { datos: ReturnType<typeof
             <mesh
               geometry={p.geometria}
               material={estilo === 'holograma' ? m.holo : m.real}
-              renderOrder={p.id === seleccion ? 2 : 1}
+              renderOrder={p.id === pin ? 10 : p.id === seleccion ? 2 : 1}
               onClick={(e) => { if (e.delta > 6 || arrastre.current?.movio) return; e.stopPropagation(); alSeleccionar(p.id) }}
               onDoubleClick={(e) => { e.stopPropagation(); centrar(p.id) }}
               onPointerDown={(e) => alBajar(e, p)}

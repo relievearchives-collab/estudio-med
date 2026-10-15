@@ -74,5 +74,5 @@ export function materialRealista(color: string) {
 export const NOMBRE_CAPA: Record<string, string> = {
   urinario: 'Urinario', suprarrenal: 'Suprarrenal', vascular: 'Vascular', arterial: 'Arterias', venoso: 'Venas', portal: 'Sistema porta',
   oseo: 'Óseo', muscular: 'Muscular', genital: 'Genital', digestivo: 'Digestivo', parenquima: 'Parénquima', excretor: 'Vía excretora',
-  tubulo: 'Túbulo', somatico: 'Plexo lumbar', autonomo: 'Autónomo',
+  tubulo: 'Túbulo', somatico: 'Plexo lumbar', autonomo: 'Autónomo', limites: 'Triángulos', espacios: 'Espacios', vasculonervioso: 'Vasos y nervios',
 }

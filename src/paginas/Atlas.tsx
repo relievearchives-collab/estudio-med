@@ -23,7 +23,7 @@ export default function Atlas() {
       <Encabezado titulo="Atlas 3D" subtitulo="Girá, desarmá, cortá y autoevaluate. Modelos de BodyParts3D y esquemas propios." />
 
       {vencidas.length > 0 && escenaMasVencida && (
-        <button className="tarjeta flex w-full items-center gap-4 p-4 text-left transition hover:shadow-md" onClick={() => navegar(`/atlas/${escenaMasVencida}?modo=museo`)}>
+        <button className="tarjeta flex w-full items-center gap-4 p-4 text-left transition hover:shadow-md" onClick={() => navegar(`/atlas/${escenaMasVencida}?modo=museo&repaso=1`)}>
           <span className="text-3xl font-bold text-marca dark:text-marca-claro">{vencidas.length}</span>
           <span className="flex-1"><b className="block">Estructuras para repasar</b><span className="text-xs texto-suave">Las que fallaste vuelven más seguido (FSRS). Empezá por el Modo Museo.</span></span>
           <Icono nombre="der" />
