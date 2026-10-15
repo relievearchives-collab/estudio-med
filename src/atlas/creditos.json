@@ -1,0 +1,945 @@
+{
+  "_nota": "Generado por scripts/modelos/convertir.mjs. No editar a mano.",
+  "modelos": {
+    "fuente": "BodyParts3D 4.0",
+    "autor": "The Database Center for Life Science (DBCLS), Japón",
+    "licencia": "CC BY 4.0",
+    "url": "https://dbarchive.biosciencedbc.jp/en/bodyparts3d/",
+    "atribucion": "BodyParts3D, © The Database Center for Life Science licensed under CC Attribution 4.0 International",
+    "cambios": "Unión de elementos por estructura, cambio de ejes y escala, simplificación de mallas y compresión (meshopt)."
+  },
+  "esquemas": {
+    "autor": "Estudio Med (esquemas propios, no a escala)",
+    "escenas": [
+      "Riñón por dentro",
+      "Nefrona",
+      "Nervios de abdomen y pelvis"
+    ]
+  },
+  "escenas": [
+    {
+      "id": "rinones",
+      "titulo": "Riñones y vías urinarias superiores",
+      "piezas": [
+        {
+          "id": "rinon-der",
+          "fma": "FMA7204",
+          "elementos": [
+            "FJ3147"
+          ]
+        },
+        {
+          "id": "rinon-izq",
+          "fma": "FMA7205",
+          "elementos": [
+            "FJ3145"
+          ]
+        },
+        {
+          "id": "ureter-der",
+          "fma": "FMA15571",
+          "elementos": [
+            "FJ3146"
+          ]
+        },
+        {
+          "id": "ureter-izq",
+          "fma": "FMA15572",
+          "elementos": [
+            "FJ3144"
+          ]
+        },
+        {
+          "id": "vejiga",
+          "fma": "FMA15900",
+          "elementos": [
+            "FJ3149"
+          ]
+        },
+        {
+          "id": "suprarrenal-der",
+          "fma": "FMA15629",
+          "elementos": [
+            "FJ3130"
+          ]
+        },
+        {
+          "id": "suprarrenal-izq",
+          "fma": "FMA15630",
+          "elementos": [
+            "FJ3129"
+          ]
+        },
+        {
+          "id": "aorta-abdominal",
+          "fma": "FMA3789",
+          "elementos": [
+            "FJ1932"
+          ]
+        },
+        {
+          "id": "arteria-renal-der",
+          "fma": "FMA14752",
+          "elementos": [
+            "FJ2038"
+          ]
+        },
+        {
+          "id": "arteria-renal-izq",
+          "fma": "FMA14753",
+          "elementos": [
+            "FJ2046"
+          ]
+        },
+        {
+          "id": "iliaca-comun-der",
+          "fma": "FMA14765",
+          "elementos": [
+            "FJ3565"
+          ]
+        },
+        {
+          "id": "iliaca-comun-izq",
+          "fma": "FMA14766",
+          "elementos": [
+            "FJ3464"
+          ]
+        },
+        {
+          "id": "vci",
+          "fma": "FMA10951",
+          "elementos": [
+            "FJ3441",
+            "FJ3659"
+          ]
+        },
+        {
+          "id": "vena-renal-der",
+          "fma": "FMA14335",
+          "elementos": [
+            "FJ3577",
+            "FJ3578"
+          ]
+        },
+        {
+          "id": "vena-renal-izq",
+          "fma": "FMA14336",
+          "elementos": [
+            "FJ3477",
+            "FJ3478"
+          ]
+        },
+        {
+          "id": "psoas-der",
+          "fma": "FMA22342",
+          "elementos": [
+            "FJ1431"
+          ]
+        },
+        {
+          "id": "psoas-izq",
+          "fma": "FMA22343",
+          "elementos": [
+            "FJ1431M"
+          ]
+        },
+        {
+          "id": "t12",
+          "fma": "FMA10081",
+          "elementos": [
+            "FJ3156"
+          ]
+        },
+        {
+          "id": "l1",
+          "fma": "FMA13072",
+          "elementos": [
+            "FJ3157"
+          ]
+        },
+        {
+          "id": "l2",
+          "fma": "FMA13073",
+          "elementos": [
+            "FJ3159"
+          ]
+        },
+        {
+          "id": "l3",
+          "fma": "FMA13074",
+          "elementos": [
+            "FJ3162"
+          ]
+        },
+        {
+          "id": "l4",
+          "fma": "FMA13075",
+          "elementos": [
+            "FJ3165"
+          ]
+        },
+        {
+          "id": "l5",
+          "fma": "FMA13076",
+          "elementos": [
+            "FJ3168"
+          ]
+        },
+        {
+          "id": "costilla-11-der",
+          "fma": "FMA8531",
+          "elementos": [
+            "FJ3331"
+          ]
+        },
+        {
+          "id": "costilla-11-izq",
+          "fma": "FMA8532",
+          "elementos": [
+            "FJ3226"
+          ]
+        },
+        {
+          "id": "costilla-12-der",
+          "fma": "FMA8533",
+          "elementos": [
+            "FJ3332"
+          ]
+        },
+        {
+          "id": "costilla-12-izq",
+          "fma": "FMA8534",
+          "elementos": [
+            "FJ3227"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vejiga-uretra",
+      "titulo": "Vejiga y uretra",
+      "piezas": [
+        {
+          "id": "vejiga",
+          "fma": "FMA15900",
+          "elementos": [
+            "FJ3149"
+          ]
+        },
+        {
+          "id": "uretra",
+          "fma": "FMA19667",
+          "elementos": [
+            "FJ3148"
+          ]
+        },
+        {
+          "id": "ureter-der",
+          "fma": "FMA15571",
+          "elementos": [
+            "FJ3146"
+          ]
+        },
+        {
+          "id": "ureter-izq",
+          "fma": "FMA15572",
+          "elementos": [
+            "FJ3144"
+          ]
+        },
+        {
+          "id": "prostata",
+          "fma": "FMA9600",
+          "elementos": [
+            "FJ3139"
+          ]
+        },
+        {
+          "id": "vesicula-seminal-der",
+          "fma": "FMA19387",
+          "elementos": [
+            "FJ3143"
+          ]
+        },
+        {
+          "id": "vesicula-seminal-izq",
+          "fma": "FMA19388",
+          "elementos": [
+            "FJ3137"
+          ]
+        },
+        {
+          "id": "cuerpo-esponjoso",
+          "fma": "FMA19617",
+          "elementos": [
+            "FJ3133"
+          ]
+        },
+        {
+          "id": "cuerpo-cavernoso",
+          "fma": "FMA19618",
+          "elementos": [
+            "FJ3132"
+          ]
+        },
+        {
+          "id": "recto",
+          "fma": "FMA14544",
+          "elementos": [
+            "FJ2571"
+          ]
+        },
+        {
+          "id": "coxal-der",
+          "fma": "FMA16586",
+          "elementos": [
+            "FJ3152"
+          ]
+        },
+        {
+          "id": "coxal-izq",
+          "fma": "FMA16587",
+          "elementos": [
+            "FJ3288"
+          ]
+        },
+        {
+          "id": "sacro",
+          "fma": "FMA16202",
+          "elementos": [
+            "FJ3393"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fosa-lumbar",
+      "titulo": "Fosa lumbar y retroperitoneo",
+      "piezas": [
+        {
+          "id": "t12",
+          "fma": "FMA10081",
+          "elementos": [
+            "FJ3156"
+          ]
+        },
+        {
+          "id": "l1",
+          "fma": "FMA13072",
+          "elementos": [
+            "FJ3157"
+          ]
+        },
+        {
+          "id": "l2",
+          "fma": "FMA13073",
+          "elementos": [
+            "FJ3159"
+          ]
+        },
+        {
+          "id": "l3",
+          "fma": "FMA13074",
+          "elementos": [
+            "FJ3162"
+          ]
+        },
+        {
+          "id": "l4",
+          "fma": "FMA13075",
+          "elementos": [
+            "FJ3165"
+          ]
+        },
+        {
+          "id": "l5",
+          "fma": "FMA13076",
+          "elementos": [
+            "FJ3168"
+          ]
+        },
+        {
+          "id": "disco-l1",
+          "fma": "FMA16033",
+          "elementos": [
+            "FJ3212"
+          ]
+        },
+        {
+          "id": "disco-l2",
+          "fma": "FMA16034",
+          "elementos": [
+            "FJ3214"
+          ]
+        },
+        {
+          "id": "disco-l3",
+          "fma": "FMA16035",
+          "elementos": [
+            "FJ3215"
+          ]
+        },
+        {
+          "id": "disco-l4",
+          "fma": "FMA16036",
+          "elementos": [
+            "FJ3216"
+          ]
+        },
+        {
+          "id": "disco-l5",
+          "fma": "FMA16037",
+          "elementos": [
+            "FJ3217"
+          ]
+        },
+        {
+          "id": "costilla-11-der",
+          "fma": "FMA8531",
+          "elementos": [
+            "FJ3331"
+          ]
+        },
+        {
+          "id": "costilla-11-izq",
+          "fma": "FMA8532",
+          "elementos": [
+            "FJ3226"
+          ]
+        },
+        {
+          "id": "costilla-12-der",
+          "fma": "FMA8533",
+          "elementos": [
+            "FJ3332"
+          ]
+        },
+        {
+          "id": "costilla-12-izq",
+          "fma": "FMA8534",
+          "elementos": [
+            "FJ3227"
+          ]
+        },
+        {
+          "id": "coxal-der",
+          "fma": "FMA16586",
+          "elementos": [
+            "FJ3152"
+          ]
+        },
+        {
+          "id": "coxal-izq",
+          "fma": "FMA16587",
+          "elementos": [
+            "FJ3288"
+          ]
+        },
+        {
+          "id": "psoas-der",
+          "fma": "FMA22342",
+          "elementos": [
+            "FJ1431"
+          ]
+        },
+        {
+          "id": "psoas-izq",
+          "fma": "FMA22343",
+          "elementos": [
+            "FJ1431M"
+          ]
+        },
+        {
+          "id": "iliaco-der",
+          "fma": "FMA22322",
+          "elementos": [
+            "FJ1422"
+          ]
+        },
+        {
+          "id": "iliaco-izq",
+          "fma": "FMA22323",
+          "elementos": [
+            "FJ1422M"
+          ]
+        },
+        {
+          "id": "iliocostal-der",
+          "fma": "FMA22740",
+          "elementos": [
+            "FJ1527"
+          ]
+        },
+        {
+          "id": "iliocostal-izq",
+          "fma": "FMA22741",
+          "elementos": [
+            "FJ1527M"
+          ]
+        },
+        {
+          "id": "serrato-post-inf-der",
+          "fma": "FMA13405",
+          "elementos": [
+            "FJ1541"
+          ]
+        },
+        {
+          "id": "serrato-post-inf-izq",
+          "fma": "FMA13406",
+          "elementos": [
+            "FJ1541M"
+          ]
+        },
+        {
+          "id": "oblicuo-externo-der",
+          "fma": "FMA13336",
+          "elementos": [
+            "FJ1452"
+          ]
+        },
+        {
+          "id": "oblicuo-externo-izq",
+          "fma": "FMA13337",
+          "elementos": [
+            "FJ1452M"
+          ]
+        },
+        {
+          "id": "diafragma",
+          "fma": "FMA13295",
+          "elementos": [
+            "FJ3131"
+          ]
+        },
+        {
+          "id": "rinon-der",
+          "fma": "FMA7204",
+          "elementos": [
+            "FJ3147"
+          ]
+        },
+        {
+          "id": "rinon-izq",
+          "fma": "FMA7205",
+          "elementos": [
+            "FJ3145"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "perine",
+      "titulo": "Periné",
+      "piezas": [
+        {
+          "id": "coccigeo-der",
+          "fma": "FMA46443",
+          "elementos": [
+            "FJ2547"
+          ]
+        },
+        {
+          "id": "coccigeo-izq",
+          "fma": "FMA46444",
+          "elementos": [
+            "FJ1449M",
+            "FJ2542"
+          ]
+        },
+        {
+          "id": "pubococcigeo",
+          "fma": "FMA19090",
+          "elementos": [
+            "FJ1457M",
+            "FJ2545",
+            "FJ2550"
+          ]
+        },
+        {
+          "id": "iliococcigeo",
+          "fma": "FMA19092",
+          "elementos": [
+            "FJ1453M",
+            "FJ2544",
+            "FJ2549"
+          ]
+        },
+        {
+          "id": "esfinter-externo-ano",
+          "fma": "FMA21930",
+          "elementos": [
+            "FJ1450",
+            "FJ1450M",
+            "FJ2543",
+            "FJ2548"
+          ]
+        },
+        {
+          "id": "recto",
+          "fma": "FMA14544",
+          "elementos": [
+            "FJ2571"
+          ]
+        },
+        {
+          "id": "vejiga",
+          "fma": "FMA15900",
+          "elementos": [
+            "FJ3149"
+          ]
+        },
+        {
+          "id": "uretra",
+          "fma": "FMA19667",
+          "elementos": [
+            "FJ3148"
+          ]
+        },
+        {
+          "id": "prostata",
+          "fma": "FMA9600",
+          "elementos": [
+            "FJ3139"
+          ]
+        },
+        {
+          "id": "cuerpo-esponjoso",
+          "fma": "FMA19617",
+          "elementos": [
+            "FJ3133"
+          ]
+        },
+        {
+          "id": "cuerpo-cavernoso",
+          "fma": "FMA19618",
+          "elementos": [
+            "FJ3132"
+          ]
+        },
+        {
+          "id": "coxal-der",
+          "fma": "FMA16586",
+          "elementos": [
+            "FJ3152"
+          ]
+        },
+        {
+          "id": "coxal-izq",
+          "fma": "FMA16587",
+          "elementos": [
+            "FJ3288"
+          ]
+        },
+        {
+          "id": "sacro",
+          "fma": "FMA16202",
+          "elementos": [
+            "FJ3393"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "vasos",
+      "titulo": "Vasos de abdomen y pelvis",
+      "piezas": [
+        {
+          "id": "aorta-abdominal",
+          "fma": "FMA3789",
+          "elementos": [
+            "FJ1932"
+          ]
+        },
+        {
+          "id": "tronco-celiaco",
+          "fma": "FMA14812",
+          "elementos": [
+            "FJ3421"
+          ]
+        },
+        {
+          "id": "mesenterica-superior",
+          "fma": "FMA14749",
+          "elementos": [
+            "FJ1928",
+            "FJ2011"
+          ]
+        },
+        {
+          "id": "mesenterica-inferior",
+          "fma": "FMA14750",
+          "elementos": [
+            "FJ3442"
+          ]
+        },
+        {
+          "id": "arteria-renal-der",
+          "fma": "FMA14752",
+          "elementos": [
+            "FJ2038"
+          ]
+        },
+        {
+          "id": "arteria-renal-izq",
+          "fma": "FMA14753",
+          "elementos": [
+            "FJ2046"
+          ]
+        },
+        {
+          "id": "arteria-testicular-der",
+          "fma": "FMA14759",
+          "elementos": [
+            "FJ3617"
+          ]
+        },
+        {
+          "id": "arteria-testicular-izq",
+          "fma": "FMA14760",
+          "elementos": [
+            "FJ3532"
+          ]
+        },
+        {
+          "id": "iliaca-comun-der",
+          "fma": "FMA14765",
+          "elementos": [
+            "FJ3565"
+          ]
+        },
+        {
+          "id": "iliaca-comun-izq",
+          "fma": "FMA14766",
+          "elementos": [
+            "FJ3464"
+          ]
+        },
+        {
+          "id": "iliaca-externa-der",
+          "fma": "FMA18806",
+          "elementos": [
+            "FJ3567"
+          ]
+        },
+        {
+          "id": "iliaca-externa-izq",
+          "fma": "FMA18807",
+          "elementos": [
+            "FJ3466"
+          ]
+        },
+        {
+          "id": "iliaca-interna-der",
+          "fma": "FMA18809",
+          "elementos": [
+            "FJ3569"
+          ]
+        },
+        {
+          "id": "iliaca-interna-izq",
+          "fma": "FMA18810",
+          "elementos": [
+            "FJ3468"
+          ]
+        },
+        {
+          "id": "vci",
+          "fma": "FMA10951",
+          "elementos": [
+            "FJ3441",
+            "FJ3659"
+          ]
+        },
+        {
+          "id": "vena-renal-der",
+          "fma": "FMA14335",
+          "elementos": [
+            "FJ3577",
+            "FJ3578"
+          ]
+        },
+        {
+          "id": "vena-renal-izq",
+          "fma": "FMA14336",
+          "elementos": [
+            "FJ3477",
+            "FJ3478"
+          ]
+        },
+        {
+          "id": "vena-testicular-der",
+          "fma": "FMA14341",
+          "elementos": [
+            "FJ3618"
+          ]
+        },
+        {
+          "id": "vena-testicular-izq",
+          "fma": "FMA14345",
+          "elementos": [
+            "FJ3533"
+          ]
+        },
+        {
+          "id": "iliaca-comun-v-der",
+          "fma": "FMA21387",
+          "elementos": [
+            "FJ3566"
+          ]
+        },
+        {
+          "id": "iliaca-comun-v-izq",
+          "fma": "FMA21388",
+          "elementos": [
+            "FJ3465"
+          ]
+        },
+        {
+          "id": "iliaca-externa-v-der",
+          "fma": "FMA18885",
+          "elementos": [
+            "FJ3568"
+          ]
+        },
+        {
+          "id": "iliaca-externa-v-izq",
+          "fma": "FMA18886",
+          "elementos": [
+            "FJ3484",
+            "FJ3522",
+            "FJ3523",
+            "FJ3524"
+          ]
+        },
+        {
+          "id": "iliaca-interna-v-der",
+          "fma": "FMA18887",
+          "elementos": [
+            "FJ3570",
+            "FJ3571",
+            "FJ3572",
+            "FJ3607",
+            "FJ3608",
+            "FJ3609"
+          ]
+        },
+        {
+          "id": "iliaca-interna-v-izq",
+          "fma": "FMA18888",
+          "elementos": [
+            "FJ3469",
+            "FJ3470",
+            "FJ3471"
+          ]
+        },
+        {
+          "id": "vena-porta",
+          "fma": "FMA66645",
+          "elementos": [
+            "FJ1853",
+            "FJ1893",
+            "FJ1913",
+            "FJ1914",
+            "FJ2404",
+            "FJ2405",
+            "FJ3073",
+            "FJ3074",
+            "FJ3082",
+            "FJ3111",
+            "FJ3112",
+            "FJ3113",
+            "FJ3124",
+            "FJ3125",
+            "FJ3126",
+            "FJ3127",
+            "FJ3128",
+            "FJ3400",
+            "FJ3415",
+            "FJ3429",
+            "FJ3438",
+            "FJ3440",
+            "FJ3443",
+            "FJ3495",
+            "FJ3500",
+            "FJ3502",
+            "FJ3543",
+            "FJ3545",
+            "FJ3591",
+            "FJ3595",
+            "FJ3597",
+            "FJ3639",
+            "FJ3641",
+            "FJ3646",
+            "FJ3647",
+            "FJ3655",
+            "FJ3657"
+          ]
+        },
+        {
+          "id": "vena-esplenica",
+          "fma": "FMA14331",
+          "elementos": [
+            "FJ3641"
+          ]
+        },
+        {
+          "id": "vena-mesenterica-superior",
+          "fma": "FMA14332",
+          "elementos": [
+            "FJ3647"
+          ]
+        },
+        {
+          "id": "vena-mesenterica-inferior",
+          "fma": "FMA15391",
+          "elementos": [
+            "FJ3443"
+          ]
+        },
+        {
+          "id": "rinon-der",
+          "fma": "FMA7204",
+          "elementos": [
+            "FJ3147"
+          ]
+        },
+        {
+          "id": "rinon-izq",
+          "fma": "FMA7205",
+          "elementos": [
+            "FJ3145"
+          ]
+        },
+        {
+          "id": "l1",
+          "fma": "FMA13072",
+          "elementos": [
+            "FJ3157"
+          ]
+        },
+        {
+          "id": "l3",
+          "fma": "FMA13074",
+          "elementos": [
+            "FJ3162"
+          ]
+        },
+        {
+          "id": "l5",
+          "fma": "FMA13076",
+          "elementos": [
+            "FJ3168"
+          ]
+        },
+        {
+          "id": "sacro",
+          "fma": "FMA16202",
+          "elementos": [
+            "FJ3393"
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1103 @@
+{
+  "_nota": "Composición de cada escena del atlas. Las piezas de tipo 'modelo' se convierten desde BodyParts3D con scripts/modelos/convertir.mjs (fma = código FMA del concepto). 'ficha' apunta a src/atlas/estructuras.json. El vínculo escena ↔ unidad está en el paquete de contenido.",
+  "escenas": [
+    {
+      "id": "rinones",
+      "titulo": "Riñones y vías urinarias superiores",
+      "tipo": "modelo",
+      "archivo": "atlas/rinones.glb",
+      "capasApagadas": [
+        "oseo",
+        "muscular"
+      ],
+      "piezas": [
+        {
+          "id": "rinon-der",
+          "fma": "FMA7204",
+          "ficha": "rinon",
+          "lado": "derecho",
+          "capa": "urinario"
+        },
+        {
+          "id": "rinon-izq",
+          "fma": "FMA7205",
+          "ficha": "rinon",
+          "lado": "izquierdo",
+          "capa": "urinario"
+        },
+        {
+          "id": "ureter-der",
+          "fma": "FMA15571",
+          "ficha": "ureter",
+          "lado": "derecho",
+          "capa": "urinario"
+        },
+        {
+          "id": "ureter-izq",
+          "fma": "FMA15572",
+          "ficha": "ureter",
+          "lado": "izquierdo",
+          "capa": "urinario"
+        },
+        {
+          "id": "vejiga",
+          "fma": "FMA15900",
+          "ficha": "vejiga",
+          "capa": "urinario"
+        },
+        {
+          "id": "suprarrenal-der",
+          "fma": "FMA15629",
+          "ficha": "suprarrenal",
+          "lado": "derecho",
+          "capa": "suprarrenal"
+        },
+        {
+          "id": "suprarrenal-izq",
+          "fma": "FMA15630",
+          "ficha": "suprarrenal",
+          "lado": "izquierdo",
+          "capa": "suprarrenal"
+        },
+        {
+          "id": "aorta-abdominal",
+          "fma": "FMA3789",
+          "ficha": "aorta-abdominal",
+          "capa": "vascular",
+          "tono": "arteria"
+        },
+        {
+          "id": "arteria-renal-der",
+          "fma": "FMA14752",
+          "ficha": "arteria-renal",
+          "lado": "derecho",
+          "capa": "vascular",
+          "tono": "arteria"
+        },
+        {
+          "id": "arteria-renal-izq",
+          "fma": "FMA14753",
+          "ficha": "arteria-renal",
+          "lado": "izquierdo",
+          "capa": "vascular",
+          "tono": "arteria"
+        },
+        {
+          "id": "iliaca-comun-der",
+          "fma": "FMA14765",
+          "ficha": "arteria-iliaca-comun",
+          "lado": "derecho",
+          "capa": "vascular",
+          "tono": "arteria"
+        },
+        {
+          "id": "iliaca-comun-izq",
+          "fma": "FMA14766",
+          "ficha": "arteria-iliaca-comun",
+          "lado": "izquierdo",
+          "capa": "vascular",
+          "tono": "arteria"
+        },
+        {
+          "id": "vci",
+          "fma": "FMA10951",
+          "ficha": "vena-cava-inferior",
+          "capa": "vascular",
+          "tono": "vena"
+        },
+        {
+          "id": "vena-renal-der",
+          "fma": "FMA14335",
+          "ficha": "vena-renal",
+          "lado": "derecho",
+          "capa": "vascular",
+          "tono": "vena"
+        },
+        {
+          "id": "vena-renal-izq",
+          "fma": "FMA14336",
+          "ficha": "vena-renal",
+          "lado": "izquierdo",
+          "capa": "vascular",
+          "tono": "vena"
+        },
+        {
+          "id": "psoas-der",
+          "fma": "FMA22342",
+          "ficha": "psoas-mayor",
+          "lado": "derecho",
+          "capa": "muscular"
+        },
+        {
+          "id": "psoas-izq",
+          "fma": "FMA22343",
+          "ficha": "psoas-mayor",
+          "lado": "izquierdo",
+          "capa": "muscular"
+        },
+        {
+          "id": "t12",
+          "fma": "FMA10081",
+          "ficha": "vertebra-t12",
+          "capa": "oseo"
+        },
+        {
+          "id": "l1",
+          "fma": "FMA13072",
+          "ficha": "vertebra-l1",
+          "capa": "oseo"
+        },
+        {
+          "id": "l2",
+          "fma": "FMA13073",
+          "ficha": "vertebra-l2",
+          "capa": "oseo"
+        },
+        {
+          "id": "l3",
+          "fma": "FMA13074",
+          "ficha": "vertebra-l3",
+          "capa": "oseo"
+        },
+        {
+          "id": "l4",
+          "fma": "FMA13075",
+          "ficha": "vertebra-l4",
+          "capa": "oseo"
+        },
+        {
+          "id": "l5",
+          "fma": "FMA13076",
+          "ficha": "vertebra-l5",
+          "capa": "oseo"
+        },
+        {
+          "id": "costilla-11-der",
+          "fma": "FMA8531",
+          "ficha": "costilla-11",
+          "lado": "derecho",
+          "capa": "oseo"
+        },
+        {
+          "id": "costilla-11-izq",
+          "fma": "FMA8532",
+          "ficha": "costilla-11",
+          "lado": "izquierdo",
+          "capa": "oseo"
+        },
+        {
+          "id": "costilla-12-der",
+          "fma": "FMA8533",
+          "ficha": "costilla-12",
+          "lado": "derecho",
+          "capa": "oseo"
+        },
+        {
+          "id": "costilla-12-izq",
+          "fma": "FMA8534",
+          "ficha": "costilla-12",
+          "lado": "izquierdo",
+          "capa": "oseo"
+        }
+      ],
+      "estrechamientos": [
+        {
+          "ureter": "ureter-der",
+          "arteria": "iliaca-comun-der",
+          "rinon": "rinon-der"
+        },
+        {
+          "ureter": "ureter-izq",
+          "arteria": "iliaca-comun-izq",
+          "rinon": "rinon-izq"
+        }
+      ]
+    },
+    {
+      "id": "rinon-interior",
+      "titulo": "Riñón por dentro",
+      "tipo": "esquema",
+      "esquema": "rinonInterior",
+      "piezas": [
+        {
+          "id": "capsula-renal",
+          "ficha": "capsula-renal",
+          "capa": "parenquima"
+        },
+        {
+          "id": "corteza-renal",
+          "ficha": "corteza-renal",
+          "capa": "parenquima"
+        },
+        {
+          "id": "medula-renal",
+          "ficha": "medula-renal",
+          "capa": "parenquima"
+        },
+        {
+          "id": "piramide-renal",
+          "ficha": "piramide-renal",
+          "capa": "parenquima"
+        },
+        {
+          "id": "columna-renal",
+          "ficha": "columna-renal",
+          "capa": "parenquima"
+        },
+        {
+          "id": "papila-renal",
+          "ficha": "papila-renal",
+          "capa": "parenquima"
+        },
+        {
+          "id": "caliz-menor",
+          "ficha": "caliz-menor",
+          "capa": "excretor"
+        },
+        {
+          "id": "caliz-mayor",
+          "ficha": "caliz-mayor",
+          "capa": "excretor"
+        },
+        {
+          "id": "pelvis-renal",
+          "ficha": "pelvis-renal",
+          "capa": "excretor"
+        },
+        {
+          "id": "ureter-proximal",
+          "ficha": "ureter",
+          "capa": "excretor"
+        },
+        {
+          "id": "seno-renal",
+          "ficha": "seno-renal",
+          "capa": "parenquima"
+        },
+        {
+          "id": "hilio-renal",
+          "ficha": "hilio-renal",
+          "capa": "parenquima"
+        },
+        {
+          "id": "arteria-renal-esq",
+          "ficha": "arteria-renal",
+          "capa": "vascular",
+          "tono": "arteria"
+        },
+        {
+          "id": "vena-renal-esq",
+          "ficha": "vena-renal",
+          "capa": "vascular",
+          "tono": "vena"
+        }
+      ]
+    },
+    {
+      "id": "nefrona",
+      "titulo": "Nefrona",
+      "tipo": "esquema",
+      "esquema": "nefrona",
+      "piezas": [
+        {
+          "id": "arteriola-aferente",
+          "ficha": "arteriola-aferente",
+          "capa": "vascular",
+          "tono": "arteria"
+        },
+        {
+          "id": "arteriola-eferente",
+          "ficha": "arteriola-eferente",
+          "capa": "vascular",
+          "tono": "arteria"
+        },
+        {
+          "id": "glomerulo",
+          "ficha": "glomerulo",
+          "capa": "vascular",
+          "tono": "arteria"
+        },
+        {
+          "id": "vasos-rectos",
+          "ficha": "vasos-rectos",
+          "capa": "vascular",
+          "tono": "vena"
+        },
+        {
+          "id": "capsula-bowman",
+          "ficha": "capsula-bowman",
+          "capa": "tubulo"
+        },
+        {
+          "id": "tcp",
+          "ficha": "tcp",
+          "capa": "tubulo"
+        },
+        {
+          "id": "asa-descendente-delgada",
+          "ficha": "asa-descendente-delgada",
+          "capa": "tubulo"
+        },
+        {
+          "id": "asa-ascendente-delgada",
+          "ficha": "asa-ascendente-delgada",
+          "capa": "tubulo"
+        },
+        {
+          "id": "asa-ascendente-gruesa",
+          "ficha": "asa-ascendente-gruesa",
+          "capa": "tubulo"
+        },
+        {
+          "id": "tcd",
+          "ficha": "tcd",
+          "capa": "tubulo"
+        },
+        {
+          "id": "macula-densa",
+          "ficha": "macula-densa",
+          "capa": "tubulo"
+        },
+        {
+          "id": "aparato-yuxtaglomerular",
+          "ficha": "aparato-yuxtaglomerular",
+          "capa": "tubulo"
+        },
+        {
+          "id": "tubulo-colector",
+          "ficha": "tubulo-colector",
+          "capa": "tubulo"
+        }
+      ]
+    },
+    {
+      "id": "vejiga-uretra",
+      "titulo": "Vejiga y uretra",
+      "tipo": "modelo",
+      "archivo": "atlas/vejiga-uretra.glb",
+      "capasApagadas": [],
+      "piezas": [
+        {
+          "id": "vejiga",
+          "fma": "FMA15900",
+          "ficha": "vejiga",
+          "capa": "urinario"
+        },
+        {
+          "id": "uretra",
+          "fma": "FMA19667",
+          "ficha": "uretra-masculina",
+          "capa": "urinario"
+        },
+        {
+          "id": "ureter-der",
+          "fma": "FMA15571",
+          "ficha": "ureter",
+          "lado": "derecho",
+          "capa": "urinario"
+        },
+        {
+          "id": "ureter-izq",
+          "fma": "FMA15572",
+          "ficha": "ureter",
+          "lado": "izquierdo",
+          "capa": "urinario"
+        },
+        {
+          "id": "prostata",
+          "fma": "FMA9600",
+          "ficha": "prostata",
+          "capa": "genital"
+        },
+        {
+          "id": "vesicula-seminal-der",
+          "fma": "FMA19387",
+          "ficha": "vesicula-seminal",
+          "lado": "derecho",
+          "capa": "genital"
+        },
+        {
+          "id": "vesicula-seminal-izq",
+          "fma": "FMA19388",
+          "ficha": "vesicula-seminal",
+          "lado": "izquierdo",
+          "capa": "genital"
+        },
+        {
+          "id": "cuerpo-esponjoso",
+          "fma": "FMA19617",
+          "ficha": "cuerpo-esponjoso",
+          "capa": "genital"
+        },
+        {
+          "id": "cuerpo-cavernoso",
+          "fma": "FMA19618",
+          "ficha": "cuerpo-cavernoso",
+          "capa": "genital"
+        },
+        {
+          "id": "recto",
+          "fma": "FMA14544",
+          "ficha": "recto",
+          "capa": "digestivo"
+        },
+        {
+          "id": "coxal-der",
+          "fma": "FMA16586",
+          "ficha": "hueso-coxal",
+          "lado": "derecho",
+          "capa": "oseo"
+        },
+        {
+          "id": "coxal-izq",
+          "fma": "FMA16587",
+          "ficha": "hueso-coxal",
+          "lado": "izquierdo",
+          "capa": "oseo"
+        },
+        {
+          "id": "sacro",
+          "fma": "FMA16202",
+          "ficha": "sacro",
+          "capa": "oseo"
+        }
+      ]
+    },
+    {
+      "id": "fosa-lumbar",
+      "titulo": "Fosa lumbar y retroperitoneo",
+      "tipo": "modelo",
+      "archivo": "atlas/fosa-lumbar.glb",
+      "capasApagadas": [],
+      "vista": "posterior",
+      "piezas": [
+        {
+          "id": "t12",
+          "fma": "FMA10081",
+          "ficha": "vertebra-t12",
+          "capa": "oseo"
+        },
+        {
+          "id": "l1",
+          "fma": "FMA13072",
+          "ficha": "vertebra-l1",
+          "capa": "oseo"
+        },
+        {
+          "id": "l2",
+          "fma": "FMA13073",
+          "ficha": "vertebra-l2",
+          "capa": "oseo"
+        },
+        {
+          "id": "l3",
+          "fma": "FMA13074",
+          "ficha": "vertebra-l3",
+          "capa": "oseo"
+        },
+        {
+          "id": "l4",
+          "fma": "FMA13075",
+          "ficha": "vertebra-l4",
+          "capa": "oseo"
+        },
+        {
+          "id": "l5",
+          "fma": "FMA13076",
+          "ficha": "vertebra-l5",
+          "capa": "oseo"
+        },
+        {
+          "id": "disco-l1",
+          "fma": "FMA16033",
+          "ficha": "disco-intervertebral",
+          "nivel": "L1–L2",
+          "capa": "oseo"
+        },
+        {
+          "id": "disco-l2",
+          "fma": "FMA16034",
+          "ficha": "disco-intervertebral",
+          "nivel": "L2–L3",
+          "capa": "oseo"
+        },
+        {
+          "id": "disco-l3",
+          "fma": "FMA16035",
+          "ficha": "disco-intervertebral",
+          "nivel": "L3–L4",
+          "capa": "oseo"
+        },
+        {
+          "id": "disco-l4",
+          "fma": "FMA16036",
+          "ficha": "disco-intervertebral",
+          "nivel": "L4–L5",
+          "capa": "oseo"
+        },
+        {
+          "id": "disco-l5",
+          "fma": "FMA16037",
+          "ficha": "disco-intervertebral",
+          "nivel": "L5–S1",
+          "capa": "oseo"
+        },
+        {
+          "id": "costilla-11-der",
+          "fma": "FMA8531",
+          "ficha": "costilla-11",
+          "lado": "derecho",
+          "capa": "oseo"
+        },
+        {
+          "id": "costilla-11-izq",
+          "fma": "FMA8532",
+          "ficha": "costilla-11",
+          "lado": "izquierdo",
+          "capa": "oseo"
+        },
+        {
+          "id": "costilla-12-der",
+          "fma": "FMA8533",
+          "ficha": "costilla-12",
+          "lado": "derecho",
+          "capa": "oseo"
+        },
+        {
+          "id": "costilla-12-izq",
+          "fma": "FMA8534",
+          "ficha": "costilla-12",
+          "lado": "izquierdo",
+          "capa": "oseo"
+        },
+        {
+          "id": "coxal-der",
+          "fma": "FMA16586",
+          "ficha": "hueso-coxal",
+          "lado": "derecho",
+          "capa": "oseo"
+        },
+        {
+          "id": "coxal-izq",
+          "fma": "FMA16587",
+          "ficha": "hueso-coxal",
+          "lado": "izquierdo",
+          "capa": "oseo"
+        },
+        {
+          "id": "psoas-der",
+          "fma": "FMA22342",
+          "ficha": "psoas-mayor",
+          "lado": "derecho",
+          "capa": "muscular"
+        },
+        {
+          "id": "psoas-izq",
+          "fma": "FMA22343",
+          "ficha": "psoas-mayor",
+          "lado": "izquierdo",
+          "capa": "muscular"
+        },
+        {
+          "id": "iliaco-der",
+          "fma": "FMA22322",
+          "ficha": "iliaco",
+          "lado": "derecho",
+          "capa": "muscular"
+        },
+        {
+          "id": "iliaco-izq",
+          "fma": "FMA22323",
+          "ficha": "iliaco",
+          "lado": "izquierdo",
+          "capa": "muscular"
+        },
+        {
+          "id": "iliocostal-der",
+          "fma": "FMA22740",
+          "ficha": "iliocostal-lumbar",
+          "lado": "derecho",
+          "capa": "muscular"
+        },
+        {
+          "id": "iliocostal-izq",
+          "fma": "FMA22741",
+          "ficha": "iliocostal-lumbar",
+          "lado": "izquierdo",
+          "capa": "muscular"
+        },
+        {
+          "id": "serrato-post-inf-der",
+          "fma": "FMA13405",
+          "ficha": "serrato-posterior-inferior",
+          "lado": "derecho",
+          "capa": "muscular"
+        },
+        {
+          "id": "serrato-post-inf-izq",
+          "fma": "FMA13406",
+          "ficha": "serrato-posterior-inferior",
+          "lado": "izquierdo",
+          "capa": "muscular"
+        },
+        {
+          "id": "oblicuo-externo-der",
+          "fma": "FMA13336",
+          "ficha": "oblicuo-externo",
+          "lado": "derecho",
+          "capa": "muscular"
+        },
+        {
+          "id": "oblicuo-externo-izq",
+          "fma": "FMA13337",
+          "ficha": "oblicuo-externo",
+          "lado": "izquierdo",
+          "capa": "muscular"
+        },
+        {
+          "id": "diafragma",
+          "fma": "FMA13295",
+          "ficha": "diafragma",
+          "capa": "muscular"
+        },
+        {
+          "id": "rinon-der",
+          "fma": "FMA7204",
+          "ficha": "rinon",
+          "lado": "derecho",
+          "capa": "urinario"
+        },
+        {
+          "id": "rinon-izq",
+          "fma": "FMA7205",
+          "ficha": "rinon",
+          "lado": "izquierdo",
+          "capa": "urinario"
+        }
+      ]
+    },
+    {
+      "id": "perine",
+      "titulo": "Periné",
+      "tipo": "modelo",
+      "archivo": "atlas/perine.glb",
+      "capasApagadas": [],
+      "vista": "inferior",
+      "piezas": [
+        {
+          "id": "coccigeo-der",
+          "fma": "FMA46443",
+          "ficha": "coccigeo",
+          "lado": "derecho",
+          "capa": "muscular"
+        },
+        {
+          "id": "coccigeo-izq",
+          "fma": "FMA46444",
+          "ficha": "coccigeo",
+          "lado": "izquierdo",
+          "capa": "muscular"
+        },
+        {
+          "id": "pubococcigeo",
+          "fma": "FMA19090",
+          "ficha": "pubococcigeo",
+          "capa": "muscular"
+        },
+        {
+          "id": "iliococcigeo",
+          "fma": "FMA19092",
+          "ficha": "iliococcigeo",
+          "capa": "muscular"
+        },
+        {
+          "id": "esfinter-externo-ano",
+          "fma": "FMA21930",
+          "ficha": "esfinter-externo-ano",
+          "capa": "muscular"
+        },
+        {
+          "id": "recto",
+          "fma": "FMA14544",
+          "ficha": "recto",
+          "capa": "digestivo"
+        },
+        {
+          "id": "vejiga",
+          "fma": "FMA15900",
+          "ficha": "vejiga",
+          "capa": "urinario"
+        },
+        {
+          "id": "uretra",
+          "fma": "FMA19667",
+          "ficha": "uretra-masculina",
+          "capa": "urinario"
+        },
+        {
+          "id": "prostata",
+          "fma": "FMA9600",
+          "ficha": "prostata",
+          "capa": "genital"
+        },
+        {
+          "id": "cuerpo-esponjoso",
+          "fma": "FMA19617",
+          "ficha": "cuerpo-esponjoso",
+          "capa": "genital"
+        },
+        {
+          "id": "cuerpo-cavernoso",
+          "fma": "FMA19618",
+          "ficha": "cuerpo-cavernoso",
+          "capa": "genital"
+        },
+        {
+          "id": "coxal-der",
+          "fma": "FMA16586",
+          "ficha": "hueso-coxal",
+          "lado": "derecho",
+          "capa": "oseo"
+        },
+        {
+          "id": "coxal-izq",
+          "fma": "FMA16587",
+          "ficha": "hueso-coxal",
+          "lado": "izquierdo",
+          "capa": "oseo"
+        },
+        {
+          "id": "sacro",
+          "fma": "FMA16202",
+          "ficha": "sacro",
+          "capa": "oseo"
+        }
+      ]
+    },
+    {
+      "id": "vasos",
+      "titulo": "Vasos de abdomen y pelvis",
+      "tipo": "modelo",
+      "archivo": "atlas/vasos.glb",
+      "capasApagadas": [
+        "oseo"
+      ],
+      "piezas": [
+        {
+          "id": "aorta-abdominal",
+          "fma": "FMA3789",
+          "ficha": "aorta-abdominal",
+          "capa": "arterial",
+          "tono": "arteria"
+        },
+        {
+          "id": "tronco-celiaco",
+          "fma": "FMA14812",
+          "ficha": "tronco-celiaco",
+          "capa": "arterial",
+          "tono": "arteria"
+        },
+        {
+          "id": "mesenterica-superior",
+          "fma": "FMA14749",
+          "ficha": "arteria-mesenterica-superior",
+          "capa": "arterial",
+          "tono": "arteria"
+        },
+        {
+          "id": "mesenterica-inferior",
+          "fma": "FMA14750",
+          "ficha": "arteria-mesenterica-inferior",
+          "capa": "arterial",
+          "tono": "arteria"
+        },
+        {
+          "id": "arteria-renal-der",
+          "fma": "FMA14752",
+          "ficha": "arteria-renal",
+          "lado": "derecho",
+          "capa": "arterial",
+          "tono": "arteria"
+        },
+        {
+          "id": "arteria-renal-izq",
+          "fma": "FMA14753",
+          "ficha": "arteria-renal",
+          "lado": "izquierdo",
+          "capa": "arterial",
+          "tono": "arteria"
+        },
+        {
+          "id": "arteria-testicular-der",
+          "fma": "FMA14759",
+          "ficha": "arteria-gonadal",
+          "lado": "derecho",
+          "capa": "arterial",
+          "tono": "arteria"
+        },
+        {
+          "id": "arteria-testicular-izq",
+          "fma": "FMA14760",
+          "ficha": "arteria-gonadal",
+          "lado": "izquierdo",
+          "capa": "arterial",
+          "tono": "arteria"
+        },
+        {
+          "id": "iliaca-comun-der",
+          "fma": "FMA14765",
+          "ficha": "arteria-iliaca-comun",
+          "lado": "derecho",
+          "capa": "arterial",
+          "tono": "arteria"
+        },
+        {
+          "id": "iliaca-comun-izq",
+          "fma": "FMA14766",
+          "ficha": "arteria-iliaca-comun",
+          "lado": "izquierdo",
+          "capa": "arterial",
+          "tono": "arteria"
+        },
+        {
+          "id": "iliaca-externa-der",
+          "fma": "FMA18806",
+          "ficha": "arteria-iliaca-externa",
+          "lado": "derecho",
+          "capa": "arterial",
+          "tono": "arteria"
+        },
+        {
+          "id": "iliaca-externa-izq",
+          "fma": "FMA18807",
+          "ficha": "arteria-iliaca-externa",
+          "lado": "izquierdo",
+          "capa": "arterial",
+          "tono": "arteria"
+        },
+        {
+          "id": "iliaca-interna-der",
+          "fma": "FMA18809",
+          "ficha": "arteria-iliaca-interna",
+          "lado": "derecho",
+          "capa": "arterial",
+          "tono": "arteria"
+        },
+        {
+          "id": "iliaca-interna-izq",
+          "fma": "FMA18810",
+          "ficha": "arteria-iliaca-interna",
+          "lado": "izquierdo",
+          "capa": "arterial",
+          "tono": "arteria"
+        },
+        {
+          "id": "vci",
+          "fma": "FMA10951",
+          "ficha": "vena-cava-inferior",
+          "capa": "venoso",
+          "tono": "vena"
+        },
+        {
+          "id": "vena-renal-der",
+          "fma": "FMA14335",
+          "ficha": "vena-renal",
+          "lado": "derecho",
+          "capa": "venoso",
+          "tono": "vena"
+        },
+        {
+          "id": "vena-renal-izq",
+          "fma": "FMA14336",
+          "ficha": "vena-renal",
+          "lado": "izquierdo",
+          "capa": "venoso",
+          "tono": "vena"
+        },
+        {
+          "id": "vena-testicular-der",
+          "fma": "FMA14341",
+          "ficha": "vena-gonadal",
+          "lado": "derecho",
+          "capa": "venoso",
+          "tono": "vena"
+        },
+        {
+          "id": "vena-testicular-izq",
+          "fma": "FMA14345",
+          "ficha": "vena-gonadal",
+          "lado": "izquierdo",
+          "capa": "venoso",
+          "tono": "vena"
+        },
+        {
+          "id": "iliaca-comun-v-der",
+          "fma": "FMA21387",
+          "ficha": "vena-iliaca-comun",
+          "lado": "derecho",
+          "capa": "venoso",
+          "tono": "vena"
+        },
+        {
+          "id": "iliaca-comun-v-izq",
+          "fma": "FMA21388",
+          "ficha": "vena-iliaca-comun",
+          "lado": "izquierdo",
+          "capa": "venoso",
+          "tono": "vena"
+        },
+        {
+          "id": "iliaca-externa-v-der",
+          "fma": "FMA18885",
+          "ficha": "vena-iliaca-externa",
+          "lado": "derecho",
+          "capa": "venoso",
+          "tono": "vena"
+        },
+        {
+          "id": "iliaca-externa-v-izq",
+          "fma": "FMA18886",
+          "ficha": "vena-iliaca-externa",
+          "lado": "izquierdo",
+          "capa": "venoso",
+          "tono": "vena"
+        },
+        {
+          "id": "iliaca-interna-v-der",
+          "fma": "FMA18887",
+          "ficha": "vena-iliaca-interna",
+          "lado": "derecho",
+          "capa": "venoso",
+          "tono": "vena"
+        },
+        {
+          "id": "iliaca-interna-v-izq",
+          "fma": "FMA18888",
+          "ficha": "vena-iliaca-interna",
+          "lado": "izquierdo",
+          "capa": "venoso",
+          "tono": "vena"
+        },
+        {
+          "id": "vena-porta",
+          "fma": "FMA66645",
+          "ficha": "vena-porta",
+          "capa": "portal",
+          "tono": "porta"
+        },
+        {
+          "id": "vena-esplenica",
+          "fma": "FMA14331",
+          "ficha": "vena-esplenica",
+          "capa": "portal",
+          "tono": "porta"
+        },
+        {
+          "id": "vena-mesenterica-superior",
+          "fma": "FMA14332",
+          "ficha": "vena-mesenterica-superior",
+          "capa": "portal",
+          "tono": "porta"
+        },
+        {
+          "id": "vena-mesenterica-inferior",
+          "fma": "FMA15391",
+          "ficha": "vena-mesenterica-inferior",
+          "capa": "portal",
+          "tono": "porta"
+        },
+        {
+          "id": "rinon-der",
+          "fma": "FMA7204",
+          "ficha": "rinon",
+          "lado": "derecho",
+          "capa": "urinario"
+        },
+        {
+          "id": "rinon-izq",
+          "fma": "FMA7205",
+          "ficha": "rinon",
+          "lado": "izquierdo",
+          "capa": "urinario"
+        },
+        {
+          "id": "l1",
+          "fma": "FMA13072",
+          "ficha": "vertebra-l1",
+          "capa": "oseo"
+        },
+        {
+          "id": "l3",
+          "fma": "FMA13074",
+          "ficha": "vertebra-l3",
+          "capa": "oseo"
+        },
+        {
+          "id": "l5",
+          "fma": "FMA13076",
+          "ficha": "vertebra-l5",
+          "capa": "oseo"
+        },
+        {
+          "id": "sacro",
+          "fma": "FMA16202",
+          "ficha": "sacro",
+          "capa": "oseo"
+        }
+      ]
+    },
+    {
+      "id": "nervios",
+      "titulo": "Nervios de abdomen y pelvis",
+      "tipo": "esquema",
+      "esquema": "plexoLumbar",
+      "piezas": [
+        {
+          "id": "nervio-iliohipogastrico",
+          "ficha": "nervio-iliohipogastrico",
+          "capa": "somatico"
+        },
+        {
+          "id": "nervio-ilioinguinal",
+          "ficha": "nervio-ilioinguinal",
+          "capa": "somatico"
+        },
+        {
+          "id": "nervio-genitofemoral",
+          "ficha": "nervio-genitofemoral",
+          "capa": "somatico"
+        },
+        {
+          "id": "nervio-cutaneo-femoral-lateral",
+          "ficha": "nervio-cutaneo-femoral-lateral",
+          "capa": "somatico"
+        },
+        {
+          "id": "nervio-femoral",
+          "ficha": "nervio-femoral",
+          "capa": "somatico"
+        },
+        {
+          "id": "nervio-obturador",
+          "ficha": "nervio-obturador",
+          "capa": "somatico"
+        },
+        {
+          "id": "tronco-simpatico-lumbar",
+          "ficha": "tronco-simpatico-lumbar",
+          "capa": "autonomo"
+        },
+        {
+          "id": "plexo-celiaco",
+          "ficha": "plexo-celiaco",
+          "capa": "autonomo"
+        },
+        {
+          "id": "plexo-hipogastrico-superior",
+          "ficha": "plexo-hipogastrico-superior",
+          "capa": "autonomo"
+        }
+      ]
+    }
+  ]
+}

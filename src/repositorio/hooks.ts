@@ -1,7 +1,7 @@
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from './db'
 import { leerAjustes, usoIA, type Ajustes } from './index'
-import type { Chat, ContenidoGuia, Fuente, ImagenTarjeta, Nota, Revision, Tarjeta, Tema, UsoIA } from './tipos'
+import type { Chat, ContenidoGuia, EstructuraAtlas, FichaEditada, Fuente, ImagenTarjeta, Nota, Revision, Tarjeta, Tema, UsoIA } from './tipos'
 
 /** Consultas reactivas para la UI (se actualizan solas cuando cambian los datos). */
 
@@ -32,3 +32,9 @@ export const useConteoTarjetas = (): number | undefined => useLiveQuery(() => db
 export const useRevisionesDesde = (desde: number): Revision[] | undefined =>
   useLiveQuery(() => db.revisiones.where('fecha').aboveOrEqual(desde).toArray(), [desde])
 export const useImagenTarjeta = (id?: string): ImagenTarjeta | undefined => useLiveQuery(() => (id ? db.imagenesTarjeta.get(id) : undefined), [id])
+
+// ───────────────────────── Atlas (Fase 3) ─────────────────────────
+
+export const useEstadosAtlas = (): EstructuraAtlas[] | undefined => useLiveQuery(() => db.estructurasAtlas.toArray(), [])
+export const useFichaEditada = (id?: string): FichaEditada | undefined | null =>
+  useLiveQuery(async () => (id ? ((await db.fichasEditadas.get(id)) ?? null) : null), [id])

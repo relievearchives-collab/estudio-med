@@ -2,12 +2,14 @@ import { Encabezado } from '../componentes/Encabezado'
 import { paqueteActivo } from '../contenido'
 import { marca } from '../marca'
 import { MODELO_EMBEDDINGS } from '../procesamiento/constantes'
+import creditos from '../atlas/creditos.json'
 
 const LIBRERIAS = [
   ['React', 'MIT'], ['Vite', 'MIT'], ['Tailwind CSS', 'MIT'], ['React Router', 'MIT'], ['Dexie.js', 'Apache-2.0'],
   ['pdf.js (pdfjs-dist)', 'Apache-2.0'], ['Tesseract.js', 'Apache-2.0'], ['Transformers.js (Hugging Face)', 'Apache-2.0'],
   ['MiniSearch', 'MIT'], ['ts-fsrs', 'MIT'], ['JSZip', 'MIT / GPLv3'], ['marked', 'MIT'], ['DOMPurify', 'Apache-2.0 / MPL-2.0'],
   ['vite-plugin-pwa / Workbox', 'MIT'], ['sql.js (SQLite en WASM, exportación a Anki)', 'MIT'],
+  ['three.js', 'MIT'], ['React Three Fiber / drei / postprocessing', 'MIT'], ['meshoptimizer', 'MIT'], ['glTF Transform (conversión de modelos)', 'MIT'],
 ]
 
 export default function Creditos() {
@@ -20,7 +22,16 @@ export default function Creditos() {
       </section>
       <section className="tarjeta space-y-2 p-4 text-sm">
         <h2 className="font-semibold">Modelos 3D</h2>
-        <p>BodyParts3D, © The Database Center for Life Science (DBCLS), licencia <a className="underline" href="https://creativecommons.org/licenses/by-sa/2.1/jp/" target="_blank" rel="noreferrer">CC BY-SA 2.1 Japón</a>. Las atribuciones por estructura se listan acá cuando se incorpore el atlas 3D (Fase 3).</p>
+        <p>{creditos.modelos.atribucion}. Fuente: <a className="underline" href={creditos.modelos.url} target="_blank" rel="noreferrer">{creditos.modelos.fuente}</a>, {creditos.modelos.autor}. Licencia <a className="underline" href="https://creativecommons.org/licenses/by/4.0/deed.es" target="_blank" rel="noreferrer">{creditos.modelos.licencia}</a>.</p>
+        <p className="texto-suave">Cambios: {creditos.modelos.cambios} Esquemas ({creditos.esquemas.escenas.join(', ')}): {creditos.esquemas.autor}.</p>
+        <details>
+          <summary className="cursor-pointer texto-suave">Estructuras y archivos de origen por escena</summary>
+          <ul className="mt-2 space-y-2 text-xs">
+            {creditos.escenas.map((e) => (
+              <li key={e.id}><b>{e.titulo}</b>: {e.piezas.map((p) => `${p.id} (${p.fma}: ${p.elementos.join(', ')})`).join(' · ')}</li>
+            ))}
+          </ul>
+        </details>
       </section>
       <section className="tarjeta space-y-2 p-4 text-sm">
         <h2 className="font-semibold">Inteligencia artificial</h2>

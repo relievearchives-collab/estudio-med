@@ -6,6 +6,9 @@ import { Icono } from '../componentes/Icono'
 import { Markdown } from '../componentes/Markdown'
 import { colorDisciplina, paqueteActivo, unidadPorId } from '../contenido'
 import { temas as repoTemas } from '../repositorio'
+import escenasAtlas from '../atlas/escenas.json'
+
+const nombreEscena = (id: string) => escenasAtlas.escenas.find((e) => e.id === id)?.titulo ?? id
 import { useContenidoGuia, useFuentes, useTemas } from '../repositorio/hooks'
 
 export default function UnidadPagina() {
@@ -22,6 +25,9 @@ export default function UnidadPagina() {
   const disciplinas = paqueteActivo.disciplinas.filter((d) => temas.some((t) => t.disciplinaId === d.id))
   const verEnGuia = (pagina: number, frase?: string) => guia && abrirVisor({ fuenteId: guia.id, pagina, objetivo: frase ? { frase } : undefined })
   const idx = paqueteActivo.unidades.findIndex((x) => x.id === id)
+  // Escenas del atlas 3D de esta unidad y de cada tema
+  const escenasUP = paqueteActivo.atlas.filter((a) => a.unidadId === id)
+  const escenaDeTema = (temaId: string) => paqueteActivo.atlas.find((a) => a.temaIds.includes(temaId))
 
   return (
     <div className="mx-auto max-w-3xl space-y-4 p-4">
@@ -43,6 +49,9 @@ export default function UnidadPagina() {
           <button className="btn-primario" onClick={() => navegar(`/chat?alcance=unidad&id=${u.id}`)}><Icono nombre="chat" /> Preguntar sobre la {u.sigla}</button>
           <button className="btn-secundario" onClick={() => navegar(`/tarjetas/generar?alcance=unidad&id=${u.id}&n=30`)}><Icono nombre="tarjetas" /> Hacer tarjetas de la {u.sigla}</button>
           <button className="btn-secundario" onClick={() => navegar(`/repaso?unidad=${u.id}`)}>Repasar la {u.sigla}</button>
+          {escenasUP.map((a) => (
+            <button key={a.escena} className="btn-secundario" onClick={() => navegar(`/atlas/${a.escena}`)}><Icono nombre="cubo" /> {nombreEscena(a.escena)} en 3D</button>
+          ))}
         </div>
       </section>
 
@@ -82,6 +91,7 @@ export default function UnidadPagina() {
                         <span className="flex-1">{t.nombre}</span>
                         <button className="text-xs text-marca opacity-70 hover:opacity-100 dark:text-marca-claro" onClick={() => navegar(`/chat?alcance=tema&id=${t.id}`)}>Preguntar</button>
                         <button className="text-xs text-marca opacity-70 hover:opacity-100 dark:text-marca-claro" onClick={() => navegar(`/tarjetas/generar?alcance=tema&id=${t.id}&n=10`)}>Tarjetas</button>
+                        {escenaDeTema(t.id) && <button className="text-xs text-cyan-600 opacity-80 hover:opacity-100 dark:text-cyan-300" onClick={() => navegar(`/atlas/${escenaDeTema(t.id)!.escena}`)}>3D</button>}
                       </>
                     )}
                   </li>

@@ -70,7 +70,35 @@ Abrir http://localhost:5173 → Bienvenida → pegar la clave → importar `mate
 ### Cómo probarlo
 UP3 → *Hacer tarjetas de la UP3* → *Generar* → revisar y *Guardar* → **Hoy** → *Repasar* (espacio, 1–4). En el visor: seleccioná texto → *Crear tarjeta*, o el ícono de imagen → oclusión. **Tarjetas** → *Anki (.apkg)* / *CSV* / *Importar CSV*.
 
-## Fase 3 — Atlas 3D
+## Fase 3 — Atlas 3D ✅ (15/10/2026)
+
+### Hecho
+- **Modelos reales de BodyParts3D 4.0** (CC BY 4.0), bajados del sitio oficial y convertidos con `scripts/modelos/convertir.mjs` (OBJ → un `.glb` por escena, una pieza por estructura con su código FMA, meshopt): riñones y vías urinarias superiores (27 estructuras, 0,3 MB), vejiga y uretra (13), fosa lumbar y retroperitoneo (30), periné (14) y vasos de abdomen y pelvis (35). Todas las piezas pedidas existen en BodyParts3D; cada escena pesa 0,1–0,6 MB.
+- **Esquemas hechos en código** ("Esquema – no a escala"): riñón por dentro (corte coronal: cápsula, corteza, médula, pirámide, columnas, papilas, cálices menores y mayores, pelvis, seno, hilio, vasos), **nefrona** (arteriolas, glomérulo, Bowman, TCP, asa de Henle, TCD, mácula densa, aparato yuxtaglomerular, colector, vasos rectos, con **partículas del filtrado**) y plexo lumbar y autónomo (6 ramos del plexo lumbar, tronco simpático, plexos celíaco e hipogástrico superior).
+- **Holograma ↔ Realista**: shader propio (Fresnel cian, semitransparente, líneas de escaneo, parpadeo, bloom) y colores anatómicos convencionales. Lo elegido brilla y lo demás se atenúa.
+- **Navegar**: rotar, zoom y desplazar (mouse y gestos), doble toque centra, vistas anterior/posterior/lateral/superior/inferior.
+- **Desarmar** 0–100 % animado (en 0 % vuelve exacto), **mover piezas** sueltas y *Reacomodar*, **capas** por escena, **plano de corte** coronal/sagital/transversal con deslizador, **rótulos** todos/ninguno/el elegido.
+- **Ficha** de cada estructura (`src/atlas/estructuras.json`, línea Rouvière): nombre en español y latín, descripción, relaciones (por lado), irrigación, inervación; en la nefrona, qué se reabsorbe y secreta. Aviso "Texto generado, verificá con Rouvière" hasta marcarla revisada o editarla (se guarda en el dispositivo). Muestra los **fragmentos de tus apuntes** que la nombran, con cita clicable. *Preguntarle a mis apuntes* y *Crear tarjeta* (captura la vista y crea una **tarjeta de oclusión** con la máscara sobre la estructura).
+- **Uréter con sus 3 estrechamientos** marcados (calculados del modelo: unión pieloureteral, cruce de los vasos ilíacos, unión ureterovesical).
+- **Recorridos guiados**: *Camino de la orina* (13 pasos, de la nefrona a la uretra) y *Camino de la sangre renal* (10 pasos, de la aorta a la cava), saltando entre escenas.
+- **Armar (rompecabezas)**: las piezas aparecen alrededor, la silueta marca el lugar, encajan con destello; cronómetro, errores y récord personal.
+- **Modo Museo**: alfiler sobre una estructura y hay que escribir el nombre (tolera tildes, sinónimos, latín, artículos y un error de tipeo; el lado es opcional pero no puede estar mal). Tanda de 10 cronometrada, puntaje y lista de falladas. **¿Dónde está?**: se nombra y hay que tocarla.
+- **FSRS por estructura**: cada respuesta actualiza su estado (las falladas vuelven antes). "Hoy" y el índice del atlas muestran las estructuras para repasar.
+- Atlas en el menú, en "Hoy", en cada UP (*… en 3D*) y en cada tema de anatomía (*3D*). Créditos con la atribución por escena (`src/atlas/creditos.json`). Respaldo con el estado del atlas y las fichas editadas. Estadísticas: estructuras practicadas y rompecabezas armados.
+
+### Verificado
+- `npm test`: **55 tests** en verde. Nuevos: datos del atlas (cada pieza con ficha, ids consistentes entre escenas, nombres con lado concordado), recorridos válidos, corrección del Modo Museo (tildes, sinónimos, latín, typo, lado equivocado, "renal" no vale para la vena), tanda priorizada por FSRS y efecto de acierto/pista/error, y respaldo con estado del atlas y fichas editadas.
+- `npm run build` sin errores; three.js va en un chunk aparte (solo se baja al abrir el atlas) y los `.glb` se guardan para usar sin conexión la primera vez que se abre cada escena.
+- En el navegador (escritorio y celular): las 8 escenas cargan; selección con ficha y fragmentos de la guía (págs. 135, 41, 240 para el riñón); realista + capas + desarmar; Modo Museo (respuesta corregida y estado FSRS guardado); ¿Dónde está? (acierto contado); rompecabezas (pieza encajada); recorrido *Camino de la orina* con los 3 estrechamientos rotulados; *Crear tarjeta* creó una oclusión con la captura y la máscara sobre el uréter.
+
+### No verificado todavía
+- Rendimiento en un celular de gama media real (en la prueba la app bajó sola la calidad: sin bloom y resolución 1×).
+- **Realidad aumentada y pirámide holográfica**: quedan para la Fase 5 (extras), como dice `docs/ATLAS-3D.md`.
+- Faltan en BodyParts3D y no se modelaron: cuadrado lumbar, transverso y oblicuo interno del abdomen, dorsal ancho, isquiocavernoso, bulboesponjoso, transversos del periné, uretra femenina y órganos genitales femeninos (el modelo es masculino). Los triángulos lumbares (Petit, Grynfeltt), la fosa isquioanal y la vejiga abierta quedan como esquemas pendientes.
+
+### Cómo probarlo
+Más → **Atlas 3D** → *Riñones y vías urinarias superiores*: tocá un riñón (ficha), abrí *Herramientas* (realista, desarmar, capas, corte), probá *Armar*, *Modo Museo* y *¿Dónde está?*. Recorridos: *Camino de la orina*. Para regenerar los modelos: `modelos-3d/LEEME.md`.
+
 ## Fase 4 — Simuladores y práctica de parcial
 ## Fase 5 — Tutoría ABP y extras
 Al final: `ESCALAR.md`.

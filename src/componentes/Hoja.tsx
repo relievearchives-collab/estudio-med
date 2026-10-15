@@ -5,12 +5,14 @@ import { Icono } from './Icono'
  * Panel deslizable: en celular sube desde abajo (se puede arrastrar para cerrar);
  * en pantallas grandes aparece como panel lateral derecho.
  */
-export function Hoja({ abierta, alCerrar, titulo, children, ancho = 'lg:w-[min(720px,55vw)]' }: {
+export function Hoja({ abierta, alCerrar, titulo, children, ancho = 'lg:w-[min(720px,55vw)]', alto = 'h-[88vh]' }: {
   abierta: boolean
   alCerrar: () => void
   titulo?: ReactNode
   children: ReactNode
   ancho?: string
+  /** Alto en celular (ej. 'h-[55vh]' para dejar ver lo que hay detrás). */
+  alto?: string
 }) {
   const [arrastre, setArrastre] = useState(0)
   const inicio = useRef<number | null>(null)
@@ -27,7 +29,7 @@ export function Hoja({ abierta, alCerrar, titulo, children, ancho = 'lg:w-[min(7
     <div className="fixed inset-0 z-50 flex items-end lg:items-stretch lg:justify-end" role="dialog" aria-modal="true">
       <div className="absolute inset-0 bg-black/40" onClick={alCerrar} />
       <div
-        className={`relative flex h-[88vh] w-full flex-col rounded-t-2xl shadow-2xl lg:h-full lg:max-h-none lg:rounded-none lg:rounded-l-2xl ${ancho}`}
+        className={`relative flex ${alto} w-full flex-col rounded-t-2xl shadow-2xl lg:h-full lg:max-h-none lg:rounded-none lg:rounded-l-2xl ${ancho}`}
         style={{ background: 'var(--tarjeta)', transform: `translateY(${arrastre}px)` }}
       >
         <div

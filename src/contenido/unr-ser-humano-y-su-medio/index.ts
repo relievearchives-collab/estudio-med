@@ -117,6 +117,16 @@ export const paqueteUnrSerHumano: PaqueteContenido = {
       { desde: 244, hasta: 247, unidadId: 'up6', tipo: 'actividad', disciplinaId: 'fisica', descripcion: 'Seminarios: pH y regulación del pH' },
     ],
   },
+  atlas: [
+    { escena: 'rinones', unidadId: 'up3', prioridad: 1, temaIds: ['up3-anatomia-1', 'up3-anatomia-2', 'up3-anatomia-4'] },
+    { escena: 'rinon-interior', unidadId: 'up3', prioridad: 1, temaIds: ['up3-anatomia-1', 'up3-anatomia-3'] },
+    { escena: 'nefrona', unidadId: 'up3', prioridad: 1, temaIds: ['up3-fisiologia-1', 'up4-fisiologia-3', 'up4-fisiologia-6', 'up4-fisiologia-7', 'up4-fisiologia-9', 'up5-fisiologia-4', 'up5-fisiologia-8'] },
+    { escena: 'vejiga-uretra', unidadId: 'up4', prioridad: 2, temaIds: ['up4-anatomia-1', 'up4-anatomia-2', 'up4-anatomia-3'] },
+    { escena: 'fosa-lumbar', unidadId: 'up1', prioridad: 3, temaIds: ['up1-anatomia-1', 'up1-anatomia-2', 'up1-anatomia-3', 'up1-anatomia-4', 'up1-anatomia-5'] },
+    { escena: 'perine', unidadId: 'up2', prioridad: 3, temaIds: ['up2-anatomia-1'] },
+    { escena: 'vasos', unidadId: 'up5', prioridad: 4, temaIds: ['up5-anatomia-1', 'up5-anatomia-2', 'up5-anatomia-3', 'up5-anatomia-4'] },
+    { escena: 'nervios', unidadId: 'up6', prioridad: 4, temaIds: ['up6-anatomia-1', 'up6-anatomia-2', 'up6-anatomia-3', 'up6-anatomia-4'] },
+  ],
   parciales: [
     { id: 'parcial-1', nombre: 'Parcial 1', unidadesSugeridas: ['up1', 'up2', 'up3'] },
     { id: 'parcial-2', nombre: 'Parcial 2', unidadesSugeridas: ['up4', 'up5', 'up6'] },

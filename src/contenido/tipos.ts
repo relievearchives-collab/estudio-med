@@ -46,6 +46,15 @@ export interface RangoGuia {
   descripcion?: string
 }
 
+/** Una escena del atlas 3D (src/atlas/escenas.json) dentro de esta área: a qué unidad y temas corresponde. */
+export interface EscenaAtlasPaquete {
+  escena: string
+  unidadId: string
+  /** 1 = primero (ver docs/ATLAS-3D.md). */
+  prioridad: number
+  temaIds: string[]
+}
+
 export interface Parcial {
   id: string
   nombre: string
@@ -73,6 +82,8 @@ export interface PaqueteContenido {
     huella: string[]
   }
   parciales: Parcial[]
+  /** Escenas del atlas 3D que usa esta área (los modelos y fichas son reutilizables entre áreas). */
+  atlas: EscenaAtlasPaquete[]
   /** Notas de evaluación/regularidad (resumen propio). */
   evaluacion: string[]
   bibliografiaBase: { disciplinaId: string; obligatoria: string[]; ampliatoria: string[] }[]

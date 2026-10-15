@@ -1,8 +1,8 @@
 import 'fake-indexeddb/auto'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { db } from '../repositorio/db'
-import { chats, fragmentos, fuentes, guardarAjuste, imagenesTarjeta, leerAjustes, notas, revisiones, sembrarTemas, tarjetas, temas } from '../repositorio'
-import { calificar } from '../tarjetas/fsrs'
+import { atlas, chats, fichasAtlas, fragmentos, fuentes, guardarAjuste, imagenesTarjeta, leerAjustes, notas, revisiones, sembrarTemas, tarjetas, temas } from '../repositorio'
+import { calificar, estadoNuevo } from '../tarjetas/fsrs'
 import { exportarRespaldo, importarRespaldo } from '../repositorio/respaldo'
 
 async function poblar() {
@@ -30,6 +30,9 @@ async function poblar() {
   await tarjetas.crear([{ tipo: 'cloze', frente: '', dorso: '', cloze: 'La {{c1::mácula densa}} sensa el {{c2::NaCl}}' }])
   const img = await imagenesTarjeta.guardar(new Blob([new Uint8Array([137, 80, 78, 71, 1, 2, 3])], { type: 'image/png' }), 'riñón')
   await tarjetas.crear([{ tipo: 'oclusion', frente: '', dorso: '', imagenId: img.id, mascaras: [{ id: 'm1', x: 0.1, y: 0.1, w: 0.2, h: 0.1, etiqueta: 'Corteza' }] }])
+  // Atlas: una estructura fallada en el Modo Museo y una ficha editada y revisada
+  await atlas.responder('rinon-der', 'rinones', false, calificar(estadoNuevo(t0), 1, t0))
+  await fichasAtlas.guardar('rinon', { descripcion: 'Mi versión revisada' }, true)
   return f.id
 }
 
@@ -47,6 +50,8 @@ describe('exportar / importar todo', () => {
       chats: await chats.todos(),
       tarjetas: await tarjetas.todas(),
       revisiones: await revisiones.todas(),
+      atlas: await atlas.estados(),
+      fichas: await fichasAtlas.todas(),
     }
     const zip = await exportarRespaldo()
 
@@ -80,6 +85,11 @@ describe('exportar / importar todo', () => {
     const im = await imagenesTarjeta.obtener(ocl.imagenId!)
     expect(new Uint8Array(await im!.archivo.arrayBuffer())).toEqual(new Uint8Array([137, 80, 78, 71, 1, 2, 3]))
     expect(im!.mime).toBe('image/png')
+    // Atlas: estado FSRS de las estructuras y fichas editadas
+    expect(antes.atlas).toHaveLength(1)
+    expect(await atlas.estados()).toEqual(antes.atlas)
+    expect(await fichasAtlas.todas()).toEqual(antes.fichas)
+    expect((await fichasAtlas.obtener('rinon'))?.revisado).toBe(true)
     expect((await leerAjustes()).fechasParciales).toEqual({ 'parcial-1': '2026-11-20' })
   })
 

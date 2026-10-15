@@ -6,7 +6,7 @@ import { descargar } from './Ajustes'
 const NOMBRES: Record<string, string> = {
   hoy: 'Hoy', biblioteca: 'Biblioteca', up: 'Unidades', fuente: 'Visor', chat: 'Chat', notas: 'Notas', buscar: 'Búsqueda',
   ajustes: 'Ajustes', estadisticas: 'Estadísticas', creditos: 'Créditos', mas: 'Más', bienvenida: 'Bienvenida',
-  tarjetas: 'Tarjetas', repaso: 'Repaso',
+  tarjetas: 'Tarjetas', repaso: 'Repaso', atlas: 'Atlas 3D',
 }
 
 /** Estadísticas locales de uso, para evaluar la prueba. Nada sale del dispositivo salvo que se exporte. */
@@ -26,7 +26,7 @@ export default function Estadisticas() {
       evs, ia, minutos, porDia: [...porDia.entries()].sort().slice(-14),
       pantallas: [...pantallas.entries()].sort((a, b) => b[1] - a[1]),
       preguntas: contar('chat'), fuentes: contar('fuente'), llamadasIA: ia.reduce((s, x) => s + x.llamadas, 0),
-      tarjetas: contar('repaso'), simuladores: contar('simulador'),
+      tarjetas: contar('repaso'), simuladores: contar('simulador'), museo: contar('museo'), rompecabezas: contar('rompecabezas'),
     }
   }, [])
   if (!datos) return null
@@ -45,6 +45,8 @@ export default function Estadisticas() {
         <Dato n={datos.llamadasIA} t="llamadas a la IA" />
         <Dato n={datos.fuentes} t="fuentes cargadas" />
         <Dato n={datos.tarjetas} t="tarjetas repasadas" />
+        <Dato n={datos.museo} t="estructuras del atlas practicadas" />
+        <Dato n={datos.rompecabezas} t="rompecabezas 3D armados" />
         <Dato n={datos.simuladores} t="simuladores abiertos" />
       </div>
       <section className="tarjeta p-4">

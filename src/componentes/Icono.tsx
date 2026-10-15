@@ -34,6 +34,11 @@ const PATHS: Record<string, string> = {
   imagen: 'M5 4h14a2 2 0 012 2v12a2 2 0 01-2 2H5a2 2 0 01-2-2V6a2 2 0 012-2zM8.5 11a2 2 0 100-4 2 2 0 000 4zM21 15l-5-5L5 20',
   deshacer: 'M9 14L4 9l5-5M4 9h11a5 5 0 010 10h-3',
   fuego: 'M12 22a7 7 0 007-7c0-4-3-6-4-10-2 2-3 4-3 6-1-1-2-2-2-4-2 2-5 5-5 8a7 7 0 007 7z',
+  cubo: 'M12 2l9 5v10l-9 5-9-5V7l9-5zM12 22V12M21 7l-9 5-9-5',
+  capas: 'M12 2l10 5-10 5L2 7l10-5zM2 12l10 5 10-5M2 17l10 5 10-5',
+  tijera: 'M6 9a3 3 0 100-6 3 3 0 000 6zM6 21a3 3 0 100-6 3 3 0 000 6zM20 4L8.1 15.9M14.5 14.5L20 20M8.1 8.1L12 12',
+  ojo: 'M1 12s4-8 11-8 11 8 11 8-4 8-11 8S1 12 1 12zM12 15a3 3 0 100-6 3 3 0 000 6z',
+  mano: 'M18 11V6a2 2 0 00-4 0v5M14 10V4a2 2 0 00-4 0v6M10 10.5V6a2 2 0 00-4 0v8a8 8 0 0016 0v-3a2 2 0 00-4 0',
 }
 
 export function Icono({ nombre, className = 'h-5 w-5', titulo }: { nombre: keyof typeof PATHS | string; className?: string; titulo?: string }) {

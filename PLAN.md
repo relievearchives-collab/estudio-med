@@ -51,7 +51,7 @@ estudio-med/
    ├─ componentes/              UI reutilizable (Hoja, Botón, CitaSup, VisorPDF…)
    ├─ paginas/                  Hoy, Bienvenida, Biblioteca, UP, Fuente, Chat, Notas, Buscar,
    │                            Ajustes, Estadísticas, Créditos
-   ├─ atlas/                    (Fase 3) escenas, estructuras.json, creditos.json
+   ├─ atlas/                    escenas.json, estructuras.json (fichas), creditos.json, esquemas en código, visor 3D
    ├─ simuladores/              (Fase 4) un módulo por simulador + fórmulas testeadas
    └─ test/                     tests de Vitest
 ```
@@ -75,6 +75,8 @@ estudio-med/
 | `tarjetas` | `id`, `vence`, `estado`, `creada`, `unidadId`, `disciplinaId`, `temaId`, `fuenteId`, `fragmentoId`, `imagenId` | tipo (básica/cloze/oclusión), frente, dorso, cloze + clozeN, máscaras + máscara, grupoId, estado FSRS (fechas en ms), suspendida |
 | `revisiones` | `++id`, `tarjetaId`, `fecha` | calificación 1–4, estado previo (para deshacer), intervalo, estabilidad, dificultad, duración |
 | `imagenesTarjeta` | `id` | imagen de las tarjetas de oclusión (va como archivo `imagenes/<id>` en el respaldo) |
+| `estructurasAtlas` | `id`, `vence`, `escena` | estado FSRS por estructura del atlas (Modo Museo / ¿Dónde está?), aciertos, fallos |
+| `fichasEditadas` | `id` | cambios del estudiante a una ficha del atlas y si la marcó como revisada |
 | (Fase 4) `preguntas`, `intentos` | | banco y resultados por UP/disciplina |
 
 Exportar = un `.zip` con `datos.json` (todas las tablas), `fuentes/<id>.<ext>` (los PDFs e imágenes como archivo) y `embeddings.bin` (vectores Float32 concatenados). Importar restaura exactamente lo mismo, incluido el estado FSRS.

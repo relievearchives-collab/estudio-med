@@ -5,7 +5,7 @@ import { Icono } from '../componentes/Icono'
 import { paqueteActivo } from '../contenido'
 import { marca } from '../marca'
 import { useState } from 'react'
-import { useAjustes, useConteoFragmentos, useFragmentosPorUnidad, useFuentes, useRevisionesDesde, useTarjetas, useTemas, useUsoIAHoy } from '../repositorio/hooks'
+import { useAjustes, useConteoFragmentos, useFragmentosPorUnidad, useFuentes, useEstadosAtlas, useRevisionesDesde, useTarjetas, useTemas, useUsoIAHoy } from '../repositorio/hooks'
 import { armarCola, ESTADO, inicioDelDia, racha } from '../tarjetas/fsrs'
 import { temasFlojos } from '../tarjetas/flojos'
 import { hacerBackup } from './Ajustes'
@@ -34,6 +34,7 @@ export default function Hoy() {
   const [ahora] = useState(() => Date.now())
   const desde = inicioDelDia(ahora) - 365 * DIA
   const revs = useRevisionesDesde(desde)
+  const estadosAtlas = useEstadosAtlas()
   if (!a) return null
 
   const hoy = inicioDelDia(ahora)
@@ -43,6 +44,9 @@ export default function Hoy() {
   const hechasHoy = (revs ?? []).filter((r) => r.fecha >= hoy).length
   const diasRacha = racha((revs ?? []).map((r) => r.fecha), ahora)
   const porId = new Map((tarjetas ?? []).map((t) => [t.id, t]))
+  // Estructuras del atlas que vencen hoy (Modo Museo), agrupadas por escena.
+  const atlasVencidas = (estadosAtlas ?? []).filter((e) => e.vence <= ahora)
+  const escenaAtlas = Object.entries(atlasVencidas.reduce<Record<string, number>>((r, e) => ({ ...r, [e.escena]: (r[e.escena] ?? 0) + 1 }), {})).sort((x, y) => y[1] - x[1])[0]?.[0]
   const flojos = temasFlojos((revs ?? []).filter((r) => r.fecha >= ahora - 30 * DIA), porId)
   // Sin datos de repaso todavía: sugerir las UP con material y sin tarjetas.
   const unidadesSinTarjetas = paqueteActivo.unidades.filter((u) => fragsPorUnidad[u.id] && !(tarjetas ?? []).some((t) => t.unidadId === u.id))
@@ -113,6 +117,14 @@ export default function Hoy() {
         </section>
       )}
 
+      {atlasVencidas.length > 0 && escenaAtlas && (
+        <Link to={`/atlas/${escenaAtlas}?modo=museo`} className="tarjeta flex items-center gap-4 p-4">
+          <div className="text-center"><div className="text-3xl font-bold text-cyan-600 dark:text-cyan-300">{atlasVencidas.length}</div><div className="text-xs texto-suave">estructuras</div></div>
+          <div className="min-w-0 flex-1"><p className="font-semibold">Atlas: repaso de estructuras</p><p className="text-sm texto-suave">Modo Museo con las que te tocan hoy (las que fallaste vuelven antes).</p></div>
+          <Icono nombre="cubo" className="h-6 w-6 text-cyan-600 dark:text-cyan-300" />
+        </Link>
+      )}
+
       {/* Cuenta regresiva */}
       {proximos.length > 0 ? (
         <div className="grid gap-3 sm:grid-cols-2">
@@ -160,6 +172,7 @@ export default function Hoy() {
       {/* Práctica activa */}
       <section className="grid grid-cols-2 gap-3 sm:grid-cols-3">
         <Accion a="/repaso" icono="tarjetas" titulo="Repasar tarjetas" texto="FSRS: justo antes de olvidar" />
+        <Accion a="/atlas" icono="cubo" titulo="Atlas 3D" texto="Desarmá, armá y Modo Museo" />
         <Accion a="/chat" icono="chat" titulo="Preguntale a tus fuentes" texto="Respuestas con cita a la página" />
         <Accion a="/biblioteca" icono="biblioteca" titulo="Unidades Problema" texto="Situaciones y temas por UP" />
         <Accion a="/notas" icono="nota" titulo="Notas" texto="Tus resúmenes enlazados" />

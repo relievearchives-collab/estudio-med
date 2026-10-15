@@ -4,7 +4,7 @@ import {
   armarTarjetas, camposComunes, claveEnGrupo, clavesDeBorrador, tarjetaDeClave, type BorradorTarjeta,
 } from '../tarjetas/crear'
 import type {
-  Alcance, Chat, ContenidoGuia, EstadoFSRS, Evento, Fragmento, Fuente, ImagenTarjeta, Nota, Pagina, Resaltado, Tarjeta, Tema, UsoIA,
+  Alcance, Chat, ContenidoGuia, EstadoFSRS, EstructuraAtlas, Evento, FichaEditada, Fragmento, Fuente, ImagenTarjeta, Nota, Pagina, Resaltado, Tarjeta, Tema, UsoIA,
 } from './tipos'
 
 export { nuevoId }
@@ -333,6 +333,40 @@ export const imagenesTarjeta = {
     await db.imagenesTarjeta.bulkDelete(viejas)
   },
 }
+
+// ───────────────────────── Atlas 3D (Fase 3) ─────────────────────────
+
+export const atlas = {
+  estados: () => db.estructurasAtlas.toArray(),
+  estado: (id: string) => db.estructurasAtlas.get(id),
+  /** Estructuras ya practicadas que vencen hasta `hasta` (para "Hoy" y el Modo Museo). */
+  vencidas: (hasta: number) => db.estructurasAtlas.where('vence').belowOrEqual(hasta).toArray(),
+  /**
+   * Guarda una respuesta del Modo Museo o de "¿Dónde está?": estado FSRS nuevo + evento
+   * 'museo' para estadísticas y racha. `nuevo` lo calcula src/tarjetas/fsrs.ts.
+   */
+  async responder(id: string, escena: string, acierto: boolean, nuevo: EstadoFSRS) {
+    const ahora = Date.now()
+    await db.transaction('rw', [db.estructurasAtlas, db.eventos], async () => {
+      const previo = await db.estructurasAtlas.get(id)
+      await db.estructurasAtlas.put({
+        id, escena, fsrs: nuevo, vence: nuevo.due, estado: nuevo.state,
+        aciertos: (previo?.aciertos ?? 0) + (acierto ? 1 : 0), fallos: (previo?.fallos ?? 0) + (acierto ? 0 : 1), ultimo: ahora,
+      })
+      await db.eventos.add({ tipo: 'museo', detalle: `${id}:${acierto ? 'ok' : 'fallo'}`, fecha: ahora })
+    })
+  },
+}
+
+export const fichasAtlas = {
+  todas: () => db.fichasEditadas.toArray(),
+  obtener: (id: string) => db.fichasEditadas.get(id),
+  guardar: (id: string, cambios: Record<string, string>, revisado: boolean) =>
+    db.fichasEditadas.put({ id, cambios, revisado, actualizada: Date.now() } satisfies FichaEditada),
+  restaurar: (id: string) => db.fichasEditadas.delete(id),
+}
+
+export type { EstructuraAtlas }
 
 // ───────────────────────── Borrado total ─────────────────────────
 

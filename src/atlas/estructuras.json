@@ -1,0 +1,1327 @@
+{
+  "_nota": "Fichas breves de cada estructura (línea de Rouvière). Texto generado: todas con revisado=false hasta que el estudiante las revise o edite en la app. 'lados' agrega o reemplaza datos para derecho/izquierdo. Las de los esquemas de nefrona traen además reabsorbe/secreta/simulador.",
+  "fichas": {
+    "rinon": {
+      "nombre": "Riñón",
+      "latin": "Ren",
+      "sinonimos": [
+        "rinon",
+        "ren",
+        "nefros"
+      ],
+      "descripcion": "Órgano par, retroperitoneal, con forma de poroto (≈12 × 6 × 3 cm, 150 g). Borde medial con el hilio, por donde entran y salen arteria y vena renales y la pelvis renal. Rodeado por la cápsula adiposa (grasa perirrenal) y la fascia renal (de Gerota).",
+      "relaciones": "Posteriores: diafragma, cuadrado lumbar, psoas mayor y transverso del abdomen; la 12.ª costilla cruza su cara posterior. Polo superior: glándula suprarrenal.",
+      "irrigacion": "Arteria renal (rama de la aorta abdominal a la altura de L1–L2), con ramas segmentarias terminales. Drena por la vena renal a la vena cava inferior.",
+      "inervacion": "Plexo renal (simpático de los nervios esplácnicos menor e imo, vía plexo celíaco y aorticorrenal); aferencias viscerales T10–L1.",
+      "lados": {
+        "derecho": {
+          "latin": "Ren dexter",
+          "relaciones": "Más bajo que el izquierdo (por el hígado). Anterior: hígado (receso hepatorrenal), porción descendente del duodeno y ángulo cólico derecho. Posteriores: diafragma, cuadrado lumbar, psoas mayor; la 12.ª costilla."
+        },
+        "izquierdo": {
+          "latin": "Ren sinister",
+          "relaciones": "Anterior: estómago, bazo, cola del páncreas, yeyuno y ángulo cólico izquierdo. Posteriores: diafragma, 11.ª y 12.ª costillas, cuadrado lumbar y psoas mayor."
+        }
+      },
+      "revisado": false
+    },
+    "ureter": {
+      "nombre": "Uréter",
+      "latin": "Ureter",
+      "sinonimos": [
+        "ureter"
+      ],
+      "descripcion": "Conducto muscular (≈25–30 cm) que lleva la orina de la pelvis renal a la vejiga por peristaltismo. Porciones abdominal, pélvica e intramural. Tres estrechamientos: unión pieloureteral, cruce de los vasos ilíacos y unión ureterovesical (intramural), sitios típicos de enclavamiento de cálculos.",
+      "relaciones": "Desciende sobre el psoas mayor, cruzado por delante por los vasos gonadales; en el estrecho superior de la pelvis cruza por delante la bifurcación de la ilíaca común o el origen de la ilíaca externa. En el hombre, el conducto deferente lo cruza por encima cerca de la vejiga; en la mujer, la arteria uterina lo cruza por encima ('el agua pasa bajo el puente').",
+      "irrigacion": "Segmentaria: ramas de las arterias renal, gonadal, aorta, ilíaca común e interna y vesicales; drenaje venoso paralelo.",
+      "inervacion": "Plexos renal, aórtico e hipogástrico; el dolor (cólico renal) se refiere a T11–L2: flanco, ingle y genitales.",
+      "lados": {
+        "derecho": {
+          "latin": "Ureter dexter"
+        },
+        "izquierdo": {
+          "latin": "Ureter sinister"
+        }
+      },
+      "revisado": false
+    },
+    "vejiga": {
+      "nombre": "Vejiga urinaria",
+      "latin": "Vesica urinaria",
+      "sinonimos": [
+        "vejiga",
+        "vesica urinaria",
+        "vesica"
+      ],
+      "descripcion": "Reservorio muscular (detrusor) de la orina, subperitoneal, en la pelvis menor detrás del pubis. Vértice, cuerpo, fondo y cuello. En su interior, el trígono vesical, liso, entre los dos orificios ureterales y el orificio uretral interno.",
+      "relaciones": "Anterior: sínfisis del pubis y espacio retropúbico (de Retzius). Posterior: en el hombre, vesículas seminales, ampollas deferentes y recto; en la mujer, útero y vagina. Inferior: próstata (hombre) o diafragma urogenital (mujer).",
+      "irrigacion": "Arterias vesicales superiores (de la umbilical permeable) e inferiores (ilíaca interna); en la mujer, ramas vaginales. Plexo venoso vesical → ilíacas internas.",
+      "inervacion": "Parasimpático (nervios esplácnicos pélvicos S2–S4): contrae el detrusor (micción). Simpático (T11–L2, plexo hipogástrico): relaja el detrusor y contrae el esfínter interno. El esfínter externo es voluntario (nervio pudendo).",
+      "revisado": false
+    },
+    "suprarrenal": {
+      "nombre": "Glándula suprarrenal",
+      "latin": "Glandula suprarenalis",
+      "sinonimos": [
+        "suprarrenal",
+        "adrenal",
+        "glandula adrenal",
+        "capsula suprarrenal"
+      ],
+      "descripcion": "Glándula endocrina par sobre el polo superior de cada riñón, dentro de la fascia renal pero separada de él. Corteza (glomerular: aldosterona; fascicular: cortisol; reticular: andrógenos) y médula (adrenalina y noradrenalina).",
+      "relaciones": "Posterior: diafragma. Medial: pilar del diafragma y ganglio celíaco.",
+      "irrigacion": "Tres arterias: suprarrenal superior (de la frénica inferior), media (de la aorta) e inferior (de la renal). Una vena central: la derecha drena a la vena cava inferior; la izquierda, a la vena renal izquierda.",
+      "inervacion": "Fibras simpáticas preganglionares (esplácnicos) que hacen sinapsis directamente en las células cromafines de la médula.",
+      "lados": {
+        "derecho": {
+          "latin": "Glandula suprarenalis dextra",
+          "relaciones": "Piramidal. Anterior: hígado y vena cava inferior (por detrás de la cual se insinúa). Posterior: diafragma."
+        },
+        "izquierdo": {
+          "latin": "Glandula suprarenalis sinistra",
+          "relaciones": "Semilunar, desciende hacia el hilio renal. Anterior: estómago (bolsa omental), páncreas y vasos esplénicos. Posterior: diafragma."
+        }
+      },
+      "revisado": false
+    },
+    "aorta-abdominal": {
+      "nombre": "Aorta abdominal",
+      "latin": "Pars abdominalis aortae",
+      "sinonimos": [
+        "aorta",
+        "aorta abdominal"
+      ],
+      "descripcion": "Continúa a la aorta torácica al atravesar el hiato aórtico del diafragma (T12) y desciende a la izquierda de la línea media hasta bifurcarse en las ilíacas comunes a la altura de L4.",
+      "relaciones": "Posterior: cuerpos vertebrales lumbares. A su derecha: vena cava inferior. Anterior: plexo celíaco, páncreas, vena renal izquierda (pinza aortomesentérica), tercera porción del duodeno.",
+      "irrigacion": "Ramas viscerales impares (tronco celíaco, mesentéricas superior e inferior), pares (suprarrenales medias, renales, gonadales), parietales (frénicas inferiores, lumbares, sacra media) y terminales (ilíacas comunes).",
+      "inervacion": "Plexo aórtico abdominal (simpático).",
+      "revisado": false
+    },
+    "arteria-renal": {
+      "nombre": "Arteria renal",
+      "latin": "Arteria renalis",
+      "sinonimos": [
+        "arteria renal",
+        "a renal"
+      ],
+      "descripcion": "Rama lateral de la aorta a la altura de L1–L2. Recibe ≈20–25 % del gasto cardíaco. Antes del hilio da la arteria suprarrenal inferior y se divide en ramas segmentarias (terminales, sin anastomosis: infarto en cuña si se ocluyen) → interlobulares → arcuatas → interlobulillares (radiales corticales) → arteriolas aferentes.",
+      "relaciones": "Pasa por detrás de la vena renal en el hilio.",
+      "irrigacion": "Irriga el riñón, la glándula suprarrenal (rama inferior) y la porción proximal del uréter.",
+      "inervacion": "Plexo renal (simpático): vasoconstricción.",
+      "lados": {
+        "derecho": {
+          "latin": "Arteria renalis dextra",
+          "relaciones": "Más larga: pasa por detrás de la vena cava inferior."
+        },
+        "izquierdo": {
+          "latin": "Arteria renalis sinistra",
+          "relaciones": "Más corta; por detrás de la vena renal izquierda."
+        }
+      },
+      "revisado": false
+    },
+    "arteria-iliaca-comun": {
+      "nombre": "Arteria ilíaca común",
+      "latin": "Arteria iliaca communis",
+      "sinonimos": [
+        "iliaca comun",
+        "a iliaca comun",
+        "iliaca primitiva"
+      ],
+      "descripcion": "Rama terminal de la aorta (bifurcación en L4). Se dirige abajo y afuera y frente a la articulación sacroilíaca se divide en ilíacas externa e interna.",
+      "relaciones": "El uréter la cruza por delante cerca de su bifurcación (2.º estrechamiento ureteral). La vena ilíaca común izquierda pasa por detrás de la arteria ilíaca común derecha.",
+      "irrigacion": "A través de sus ramas, pelvis y miembro inferior.",
+      "inervacion": "Plexo simpático periarterial.",
+      "lados": {
+        "derecho": {
+          "latin": "Arteria iliaca communis dextra"
+        },
+        "izquierdo": {
+          "latin": "Arteria iliaca communis sinistra"
+        }
+      },
+      "revisado": false
+    },
+    "arteria-iliaca-externa": {
+      "nombre": "Arteria ilíaca externa",
+      "latin": "Arteria iliaca externa",
+      "sinonimos": [
+        "iliaca externa"
+      ],
+      "descripcion": "Rama de la ilíaca común; sigue el borde medial del psoas hasta pasar por debajo del ligamento inguinal, donde pasa a llamarse arteria femoral. Da las arterias epigástrica inferior y circunfleja ilíaca profunda.",
+      "relaciones": "Medial: vena ilíaca externa. Cruzada por el uréter en su origen, por los vasos gonadales y por el conducto deferente (hombre) o el ligamento redondo (mujer).",
+      "irrigacion": "Pared abdominal inferior y miembro inferior.",
+      "inervacion": "Plexo simpático periarterial.",
+      "lados": {
+        "derecho": {
+          "latin": "Arteria iliaca externa dextra"
+        },
+        "izquierdo": {
+          "latin": "Arteria iliaca externa sinistra"
+        }
+      },
+      "revisado": false
+    },
+    "arteria-iliaca-interna": {
+      "nombre": "Arteria ilíaca interna",
+      "latin": "Arteria iliaca interna",
+      "sinonimos": [
+        "iliaca interna",
+        "hipogastrica",
+        "arteria hipogastrica"
+      ],
+      "descripcion": "Rama de la ilíaca común que desciende a la pelvis menor. Da ramas parietales (iliolumbar, sacras laterales, obturatriz, glúteas, pudenda interna) y viscerales (umbilical → vesicales superiores, vesical inferior, rectal media, uterina en la mujer).",
+      "relaciones": "Anterior: uréter. Posterior: vena ilíaca interna y tronco lumbosacro.",
+      "irrigacion": "Vísceras pélvicas, periné, región glútea y genitales externos.",
+      "inervacion": "Plexo hipogástrico inferior.",
+      "lados": {
+        "derecho": {
+          "latin": "Arteria iliaca interna dextra"
+        },
+        "izquierdo": {
+          "latin": "Arteria iliaca interna sinistra"
+        }
+      },
+      "revisado": false
+    },
+    "vena-cava-inferior": {
+      "nombre": "Vena cava inferior",
+      "latin": "Vena cava inferior",
+      "sinonimos": [
+        "cava inferior",
+        "vci",
+        "cava"
+      ],
+      "descripcion": "Formada por la unión de las venas ilíacas comunes a la altura de L5, asciende a la derecha de la aorta, pasa por el foramen de la vena cava del diafragma (T8) y desemboca en la aurícula derecha.",
+      "relaciones": "Izquierda: aorta abdominal. Anterior: duodeno, cabeza del páncreas, raíz del mesenterio, hígado (área desnuda). Posterior: pilar derecho del diafragma, arteria renal derecha, suprarrenal derecha.",
+      "irrigacion": "Recibe venas lumbares, renales, gonadal derecha, suprarrenal derecha, frénicas inferiores y hepáticas.",
+      "inervacion": "—",
+      "revisado": false
+    },
+    "vena-renal": {
+      "nombre": "Vena renal",
+      "latin": "Vena renalis",
+      "sinonimos": [
+        "v renal"
+      ],
+      "descripcion": "Sale del hilio por delante de la arteria renal y desemboca en la vena cava inferior.",
+      "relaciones": "",
+      "irrigacion": "Drena el riñón.",
+      "inervacion": "—",
+      "lados": {
+        "derecho": {
+          "latin": "Vena renalis dextra",
+          "relaciones": "Corta, directa a la vena cava inferior."
+        },
+        "izquierdo": {
+          "latin": "Vena renalis sinistra",
+          "relaciones": "Larga: cruza por delante de la aorta, debajo de la arteria mesentérica superior (pinza aortomesentérica). Recibe la vena gonadal y la suprarrenal izquierdas."
+        }
+      },
+      "revisado": false
+    },
+    "psoas-mayor": {
+      "nombre": "Músculo psoas mayor",
+      "latin": "Musculus psoas major",
+      "sinonimos": [
+        "psoas",
+        "psoas mayor"
+      ],
+      "descripcion": "Músculo largo de la pared abdominal posterior. Origen: cuerpos, discos y apófisis transversas de T12–L4. Se une al ilíaco (iliopsoas) e inserta en el trocánter menor del fémur. Flexor principal de la cadera.",
+      "relaciones": "Sobre él apoyan el riñón y el uréter; el plexo lumbar se forma en su espesor (el nervio femoral sale por su borde lateral, el obturador por el medial y el genitofemoral atraviesa su cara anterior).",
+      "irrigacion": "Arterias lumbares e iliolumbar.",
+      "inervacion": "Ramos anteriores de L1–L3.",
+      "lados": {
+        "derecho": {
+          "latin": "Musculus psoas major dexter"
+        },
+        "izquierdo": {
+          "latin": "Musculus psoas major sinister"
+        }
+      },
+      "revisado": false
+    },
+    "iliaco": {
+      "nombre": "Músculo ilíaco",
+      "latin": "Musculus iliacus",
+      "sinonimos": [
+        "iliaco"
+      ],
+      "descripcion": "Ocupa la fosa ilíaca. Se une al psoas mayor (iliopsoas) para insertarse en el trocánter menor. Flexor de la cadera.",
+      "relaciones": "Anterior: fascia ilíaca, ciego (derecha) y colon sigmoides (izquierda). El nervio femoral corre entre el ilíaco y el psoas.",
+      "irrigacion": "Arteria iliolumbar y circunfleja ilíaca profunda.",
+      "inervacion": "Nervio femoral (L2–L3).",
+      "revisado": false
+    },
+    "iliocostal-lumbar": {
+      "nombre": "Músculo iliocostal lumbar",
+      "latin": "Musculus iliocostalis lumborum",
+      "sinonimos": [
+        "iliocostal",
+        "iliocostal lumbar",
+        "erector de la columna"
+      ],
+      "descripcion": "Porción lateral del erector de la columna en la región lumbar: de la cresta ilíaca y el sacro a los ángulos de las últimas costillas. Extiende e inclina la columna.",
+      "relaciones": "Medial: longísimo. Anterior: cuadrado lumbar (separados por la hoja media de la fascia toracolumbar). Forma el borde medial del triángulo lumbar superior.",
+      "irrigacion": "Arterias lumbares y subcostales.",
+      "inervacion": "Ramos posteriores de los nervios espinales.",
+      "revisado": false
+    },
+    "serrato-posterior-inferior": {
+      "nombre": "Músculo serrato posterior inferior",
+      "latin": "Musculus serratus posterior inferior",
+      "sinonimos": [
+        "serrato posterior inferior",
+        "serrato menor posterior inferior"
+      ],
+      "descripcion": "Lámina delgada que va de las apófisis espinosas T11–L2 a las últimas 4 costillas. Desciende las costillas. Su borde inferior limita por arriba el triángulo lumbar superior.",
+      "relaciones": "Cubierto por el dorsal ancho; cubre el erector de la columna.",
+      "irrigacion": "Arterias intercostales posteriores y lumbares.",
+      "inervacion": "Nervios intercostales T9–T12.",
+      "revisado": false
+    },
+    "oblicuo-externo": {
+      "nombre": "Músculo oblicuo externo del abdomen",
+      "latin": "Musculus obliquus externus abdominis",
+      "sinonimos": [
+        "oblicuo externo",
+        "oblicuo mayor"
+      ],
+      "descripcion": "El más superficial de los músculos anchos del abdomen: de las 8 últimas costillas a la cresta ilíaca, la línea alba y el ligamento inguinal. Su borde posterior libre limita por delante el triángulo lumbar inferior (de Petit).",
+      "relaciones": "Profundo: oblicuo interno. El dorsal ancho limita el triángulo de Petit por detrás.",
+      "irrigacion": "Arterias intercostales inferiores, subcostal y circunfleja ilíaca profunda.",
+      "inervacion": "Nervios toracoabdominales T7–T11, subcostal (T12).",
+      "revisado": false
+    },
+    "diafragma": {
+      "nombre": "Diafragma",
+      "latin": "Diaphragma",
+      "sinonimos": [
+        "diafragma"
+      ],
+      "descripcion": "Tabique musculotendinoso entre tórax y abdomen; principal músculo inspiratorio. Porciones esternal, costal y lumbar (pilares y ligamentos arqueados). Hiatos: vena cava (T8), esofágico (T10), aórtico (T12).",
+      "relaciones": "Su porción lumbar está por detrás de riñones y suprarrenales; los ligamentos arqueados medial y lateral pasan sobre el psoas y el cuadrado lumbar.",
+      "irrigacion": "Arterias frénicas superiores e inferiores, musculofrénicas y pericardiofrénicas.",
+      "inervacion": "Nervio frénico (C3–C5), motor; sensitiva periférica por intercostales.",
+      "revisado": false
+    },
+    "vertebra-t12": {
+      "nombre": "Duodécima vértebra torácica (T12)",
+      "latin": "Vertebra thoracica XII",
+      "sinonimos": [
+        "t12",
+        "d12",
+        "duodecima toracica",
+        "duodecima dorsal"
+      ],
+      "descripcion": "Última vértebra torácica, de transición hacia las lumbares: articula con la 12.ª costilla por una sola carilla en el cuerpo. A su altura el hiato aórtico y el origen del tronco celíaco.",
+      "relaciones": "Polo superior del riñón izquierdo y glándulas suprarrenales a su nivel.",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "vertebra-l1": {
+      "nombre": "Primera vértebra lumbar (L1)",
+      "latin": "Vertebra lumbalis I",
+      "sinonimos": [
+        "l1",
+        "primera lumbar"
+      ],
+      "descripcion": "Cuerpo grande, reniforme, sin carillas costales. A su altura: hilio renal, origen de la arteria mesentérica superior y de las renales (L1–L2); el cono medular termina en L1–L2.",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "vertebra-l2": {
+      "nombre": "Segunda vértebra lumbar (L2)",
+      "latin": "Vertebra lumbalis II",
+      "sinonimos": [
+        "l2",
+        "segunda lumbar"
+      ],
+      "descripcion": "Vértebra lumbar típica. A su altura, el hilio del riñón derecho y la cisterna del quilo.",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "vertebra-l3": {
+      "nombre": "Tercera vértebra lumbar (L3)",
+      "latin": "Vertebra lumbalis III",
+      "sinonimos": [
+        "l3",
+        "tercera lumbar"
+      ],
+      "descripcion": "Vértebra lumbar típica, con las apófisis transversas más largas. A su altura nace la arteria mesentérica inferior y está el polo inferior del riñón derecho.",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "vertebra-l4": {
+      "nombre": "Cuarta vértebra lumbar (L4)",
+      "latin": "Vertebra lumbalis IV",
+      "sinonimos": [
+        "l4",
+        "cuarta lumbar"
+      ],
+      "descripcion": "A su altura: bifurcación de la aorta y el plano supracrestal (línea entre los puntos más altos de las crestas ilíacas, referencia de la punción lumbar L3–L4 / L4–L5).",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "vertebra-l5": {
+      "nombre": "Quinta vértebra lumbar (L5)",
+      "latin": "Vertebra lumbalis V",
+      "sinonimos": [
+        "l5",
+        "quinta lumbar"
+      ],
+      "descripcion": "Cuerpo más alto adelante que atrás (forma cuneiforme) que contribuye al ángulo lumbosacro (promontorio). A su altura se forma la vena cava inferior.",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "disco-intervertebral": {
+      "nombre": "Disco intervertebral",
+      "latin": "Discus intervertebralis",
+      "sinonimos": [
+        "disco",
+        "disco intervertebral"
+      ],
+      "descripcion": "Fibrocartílago entre dos cuerpos vertebrales: anillo fibroso periférico y núcleo pulposo central. Los lumbares son los más gruesos; las hernias suelen ser posterolaterales (L4–L5, L5–S1).",
+      "relaciones": "Posterior: ligamento longitudinal posterior y canal vertebral. Anterior: ligamento longitudinal anterior.",
+      "irrigacion": "Avascular en el adulto (nutrición por difusión).",
+      "inervacion": "Anillo fibroso externo: nervio sinuvertebral.",
+      "revisado": false
+    },
+    "costilla-11": {
+      "nombre": "Undécima costilla",
+      "latin": "Costa XI",
+      "sinonimos": [
+        "costilla 11",
+        "undecima costilla",
+        "11 costilla",
+        "costilla flotante"
+      ],
+      "descripcion": "Costilla flotante: su extremo anterior no se une al esternón. Articula con T11 por una sola carilla.",
+      "relaciones": "Cruza la cara posterior del riñón izquierdo (polo superior).",
+      "irrigacion": "",
+      "inervacion": "",
+      "lados": {
+        "derecho": {
+          "latin": "Costa XI dextra"
+        },
+        "izquierdo": {
+          "latin": "Costa XI sinistra"
+        }
+      },
+      "revisado": false
+    },
+    "costilla-12": {
+      "nombre": "Duodécima costilla",
+      "latin": "Costa XII",
+      "sinonimos": [
+        "costilla 12",
+        "duodecima costilla",
+        "12 costilla",
+        "costilla flotante"
+      ],
+      "descripcion": "Última costilla, flotante y corta. Referencia del abordaje quirúrgico lumbar del riñón; la pleura desciende por debajo de su extremo medial (riesgo de neumotórax).",
+      "relaciones": "Cruza la cara posterior de ambos riñones. Limita por arriba el triángulo lumbar superior (de Grynfeltt).",
+      "irrigacion": "",
+      "inervacion": "",
+      "lados": {
+        "derecho": {
+          "latin": "Costa XII dextra"
+        },
+        "izquierdo": {
+          "latin": "Costa XII sinistra"
+        }
+      },
+      "revisado": false
+    },
+    "hueso-coxal": {
+      "nombre": "Hueso coxal",
+      "latin": "Os coxae",
+      "sinonimos": [
+        "coxal",
+        "hueso iliaco",
+        "os coxae",
+        "hueso de la cadera"
+      ],
+      "descripcion": "Formado por ilion, isquion y pubis, fusionados en el acetábulo. Con el sacro forma la pelvis. Da inserción a los músculos del suelo pélvico (arco tendinoso del elevador del ano) y del periné.",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "lados": {
+        "derecho": {
+          "latin": "Os coxae dextrum"
+        },
+        "izquierdo": {
+          "latin": "Os coxae sinistrum"
+        }
+      },
+      "revisado": false
+    },
+    "sacro": {
+      "nombre": "Sacro",
+      "latin": "Os sacrum",
+      "sinonimos": [
+        "sacro",
+        "hueso sacro"
+      ],
+      "descripcion": "Cinco vértebras sacras fusionadas. Su borde anterosuperior es el promontorio. Por los forámenes sacros anteriores salen los ramos anteriores de S1–S4 (plexo sacro y esplácnicos pélvicos).",
+      "relaciones": "Anterior: recto. Lateral: articulaciones sacroilíacas.",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "uretra-masculina": {
+      "nombre": "Uretra masculina",
+      "latin": "Urethra masculina",
+      "sinonimos": [
+        "uretra",
+        "uretra masculina"
+      ],
+      "descripcion": "Conducto de ≈18–20 cm del orificio uretral interno al meato. Porciones: prostática (recibe los conductos eyaculadores y prostáticos), membranosa (la más corta y estrecha, rodeada por el esfínter externo) y esponjosa (dentro del cuerpo esponjoso, con la fosa navicular). La uretra femenina, de ≈4 cm, no está en el modelo.",
+      "relaciones": "Prostática: dentro de la próstata. Membranosa: atraviesa el diafragma urogenital. Esponjosa: en el cuerpo esponjoso del pene.",
+      "irrigacion": "Ramas de la pudenda interna (arteria del bulbo, uretral) y vesical inferior.",
+      "inervacion": "Nervio pudendo (esfínter externo, sensibilidad); plexo prostático.",
+      "revisado": false
+    },
+    "prostata": {
+      "nombre": "Próstata",
+      "latin": "Prostata",
+      "sinonimos": [
+        "prostata"
+      ],
+      "descripcion": "Glándula fibromuscular bajo la vejiga, atravesada por la uretra prostática y los conductos eyaculadores. Zonas periférica (origen frecuente del cáncer, palpable por tacto rectal), central y de transición (hiperplasia benigna).",
+      "relaciones": "Superior: cuello vesical. Posterior: ampolla rectal (fascia rectoprostática de Denonvilliers). Anterior: sínfisis del pubis y plexo venoso prostático.",
+      "irrigacion": "Arterias vesical inferior, rectal media y pudenda interna; plexo venoso prostático → ilíaca interna (y plexo vertebral).",
+      "inervacion": "Plexo prostático (del hipogástrico inferior).",
+      "revisado": false
+    },
+    "vesicula-seminal": {
+      "nombre": "Vesícula seminal",
+      "latin": "Glandula vesiculosa",
+      "sinonimos": [
+        "vesicula seminal",
+        "glandula seminal",
+        "glandula vesiculosa"
+      ],
+      "descripcion": "Glándula tubular enrollada, detrás de la vejiga. Su conducto se une a la ampolla del conducto deferente para formar el conducto eyaculador. Aporta la mayor parte del volumen del semen (fructosa).",
+      "relaciones": "Anterior: fondo vesical. Posterior: recto. Medial: ampolla del conducto deferente.",
+      "irrigacion": "Arterias vesical inferior y rectal media.",
+      "inervacion": "Plexo hipogástrico inferior.",
+      "lados": {
+        "derecho": {
+          "latin": "Glandula vesiculosa dextra"
+        },
+        "izquierdo": {
+          "latin": "Glandula vesiculosa sinistra"
+        }
+      },
+      "revisado": false
+    },
+    "cuerpo-esponjoso": {
+      "nombre": "Cuerpo esponjoso del pene",
+      "latin": "Corpus spongiosum penis",
+      "sinonimos": [
+        "cuerpo esponjoso",
+        "esponjoso"
+      ],
+      "descripcion": "Cuerpo eréctil impar, ventral, que contiene la uretra esponjosa. Empieza atrás en el bulbo del pene (cubierto por el músculo bulboesponjoso) y termina adelante en el glande.",
+      "relaciones": "Dorsal: cuerpos cavernosos.",
+      "irrigacion": "Arteria del bulbo del pene (pudenda interna).",
+      "inervacion": "Nervio pudendo (sensitivo) y nervios cavernosos (parasimpático: erección).",
+      "revisado": false
+    },
+    "cuerpo-cavernoso": {
+      "nombre": "Cuerpo cavernoso del pene",
+      "latin": "Corpus cavernosum penis",
+      "sinonimos": [
+        "cuerpo cavernoso",
+        "cavernoso",
+        "cuerpos cavernosos"
+      ],
+      "descripcion": "Par de cilindros eréctiles dorsales, rodeados por la túnica albugínea. Atrás se separan en los pilares, fijos a las ramas isquiopubianas y cubiertos por los isquiocavernosos.",
+      "relaciones": "Ventral: cuerpo esponjoso.",
+      "irrigacion": "Arterias profundas del pene (pudenda interna).",
+      "inervacion": "Nervios cavernosos (parasimpático S2–S4).",
+      "revisado": false
+    },
+    "recto": {
+      "nombre": "Recto",
+      "latin": "Rectum",
+      "sinonimos": [
+        "recto"
+      ],
+      "descripcion": "Porción final del intestino grueso, desde la unión rectosigmoidea (S3) hasta el conducto anal, siguiendo la curvatura del sacro. Ampolla rectal.",
+      "relaciones": "Anterior: en el hombre, vejiga, vesículas seminales y próstata; en la mujer, útero y vagina (fondo de saco rectouterino de Douglas). Posterior: sacro y cóccix.",
+      "irrigacion": "Arterias rectal superior (de la mesentérica inferior), media (ilíaca interna) e inferior (pudenda interna). Anastomosis portocava en el plexo venoso rectal.",
+      "inervacion": "Plexo hipogástrico inferior (simpático y parasimpático S2–S4).",
+      "revisado": false
+    },
+    "coccigeo": {
+      "nombre": "Músculo coccígeo",
+      "latin": "Musculus coccygeus",
+      "sinonimos": [
+        "coccigeo",
+        "isquiococcigeo"
+      ],
+      "descripcion": "Músculo del diafragma pélvico, por detrás del elevador del ano: de la espina ciática al borde del sacro y el cóccix. Sostiene las vísceras pélvicas.",
+      "relaciones": "Anterior: elevador del ano (iliococcígeo). Posterior: ligamento sacroespinoso, con el que se confunde.",
+      "irrigacion": "Arterias glútea inferior y pudenda interna.",
+      "inervacion": "Ramos de S4–S5.",
+      "lados": {
+        "derecho": {
+          "latin": "Musculus coccygeus dexter"
+        },
+        "izquierdo": {
+          "latin": "Musculus coccygeus sinister"
+        }
+      },
+      "revisado": false
+    },
+    "pubococcigeo": {
+      "nombre": "Músculo pubococcígeo",
+      "latin": "Musculus pubococcygeus",
+      "sinonimos": [
+        "pubococcigeo",
+        "elevador del ano"
+      ],
+      "descripcion": "Porción anterior y medial del elevador del ano: del pubis al cóccix y al ligamento anococcígeo. Sus fibras mediales forman el puborrectal, que rodea la unión anorrectal (ángulo anorrectal, continencia).",
+      "relaciones": "Medial: hiato urogenital (uretra, vagina) y recto.",
+      "irrigacion": "Arterias pudenda interna y vesical inferior.",
+      "inervacion": "Nervio del elevador del ano (S4) y pudendo.",
+      "revisado": false
+    },
+    "iliococcigeo": {
+      "nombre": "Músculo iliococcígeo",
+      "latin": "Musculus iliococcygeus",
+      "sinonimos": [
+        "iliococcigeo",
+        "elevador del ano"
+      ],
+      "descripcion": "Porción posterolateral, delgada, del elevador del ano: del arco tendinoso (fascia del obturador interno) y la espina ciática al cóccix y rafe anococcígeo.",
+      "relaciones": "Inferior: fosa isquioanal. Posterior: coccígeo.",
+      "irrigacion": "Arteria pudenda interna.",
+      "inervacion": "Nervio del elevador del ano (S4).",
+      "revisado": false
+    },
+    "esfinter-externo-ano": {
+      "nombre": "Músculo esfínter externo del ano",
+      "latin": "Musculus sphincter ani externus",
+      "sinonimos": [
+        "esfinter externo del ano",
+        "esfinter anal externo",
+        "esfinter externo"
+      ],
+      "descripcion": "Músculo estriado voluntario que rodea el conducto anal (porciones subcutánea, superficial y profunda). Con el puborrectal mantiene la continencia.",
+      "relaciones": "Anterior: cuerpo perineal. Posterior: ligamento anococcígeo. Lateral: fosas isquioanales.",
+      "irrigacion": "Arterias rectales inferiores.",
+      "inervacion": "Nervio rectal inferior (del pudendo, S2–S4).",
+      "revisado": false
+    },
+    "tronco-celiaco": {
+      "nombre": "Tronco celíaco",
+      "latin": "Truncus coeliacus",
+      "sinonimos": [
+        "tronco celiaco",
+        "celiaco"
+      ],
+      "descripcion": "Primera rama visceral impar de la aorta abdominal (T12). Corto: se trifurca en arterias gástrica izquierda, esplénica y hepática común. Irriga el intestino anterior (esófago abdominal a la 2.ª porción del duodeno), hígado, páncreas y bazo.",
+      "relaciones": "Rodeado por el plexo y los ganglios celíacos. Superior: lóbulo caudado. Inferior: páncreas.",
+      "irrigacion": "",
+      "inervacion": "Plexo celíaco.",
+      "revisado": false
+    },
+    "arteria-mesenterica-superior": {
+      "nombre": "Arteria mesentérica superior",
+      "latin": "Arteria mesenterica superior",
+      "sinonimos": [
+        "mesenterica superior",
+        "ams"
+      ],
+      "descripcion": "Nace de la aorta a la altura de L1. Pasa por detrás del cuello del páncreas y por delante de la vena renal izquierda y la 3.ª porción del duodeno. Irriga el intestino medio: desde la 2.ª porción del duodeno hasta los 2/3 proximales del colon transverso.",
+      "relaciones": "A su derecha: vena mesentérica superior.",
+      "irrigacion": "",
+      "inervacion": "Plexo mesentérico superior.",
+      "revisado": false
+    },
+    "arteria-mesenterica-inferior": {
+      "nombre": "Arteria mesentérica inferior",
+      "latin": "Arteria mesenterica inferior",
+      "sinonimos": [
+        "mesenterica inferior",
+        "ami"
+      ],
+      "descripcion": "Nace de la aorta a la altura de L3. Irriga el intestino posterior: tercio distal del colon transverso, colon descendente, sigmoides y recto superior (arteria rectal superior).",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "Plexo mesentérico inferior.",
+      "revisado": false
+    },
+    "arteria-gonadal": {
+      "nombre": "Arteria testicular",
+      "latin": "Arteria testicularis",
+      "sinonimos": [
+        "testicular",
+        "gonadal",
+        "arteria gonadal",
+        "espermatica"
+      ],
+      "descripcion": "Rama larga y fina de la aorta (L2). Desciende sobre el psoas, cruza por delante del uréter y entra al cordón espermático por el anillo inguinal profundo. En la mujer, arteria ovárica, por el ligamento suspensorio del ovario.",
+      "relaciones": "Cruza el uréter por delante.",
+      "irrigacion": "Testículo/ovario y porción del uréter.",
+      "inervacion": "",
+      "lados": {
+        "derecho": {
+          "latin": "Arteria testicularis dextra"
+        },
+        "izquierdo": {
+          "latin": "Arteria testicularis sinistra"
+        }
+      },
+      "revisado": false
+    },
+    "vena-gonadal": {
+      "nombre": "Vena testicular",
+      "latin": "Vena testicularis",
+      "sinonimos": [
+        "testicular",
+        "gonadal",
+        "vena gonadal",
+        "espermatica"
+      ],
+      "descripcion": "Nace del plexo pampiniforme del cordón espermático (en la mujer, vena ovárica).",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "lados": {
+        "derecho": {
+          "latin": "Vena testicularis dextra",
+          "relaciones": "Desemboca en la vena cava inferior, en ángulo agudo."
+        },
+        "izquierdo": {
+          "latin": "Vena testicularis sinistra",
+          "relaciones": "Desemboca en ángulo recto en la vena renal izquierda: por eso el varicocele es más frecuente a la izquierda."
+        }
+      },
+      "revisado": false
+    },
+    "vena-iliaca-comun": {
+      "nombre": "Vena ilíaca común",
+      "latin": "Vena iliaca communis",
+      "sinonimos": [
+        "iliaca comun"
+      ],
+      "descripcion": "Formada por las venas ilíacas externa e interna; ambas se unen a la altura de L5 para formar la vena cava inferior. La izquierda pasa por detrás de la arteria ilíaca común derecha (puede comprimirse: síndrome de May-Thurner).",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "lados": {
+        "derecho": {
+          "latin": "Vena iliaca communis dextra"
+        },
+        "izquierdo": {
+          "latin": "Vena iliaca communis sinistra"
+        }
+      },
+      "revisado": false
+    },
+    "vena-iliaca-externa": {
+      "nombre": "Vena ilíaca externa",
+      "latin": "Vena iliaca externa",
+      "sinonimos": [
+        "iliaca externa"
+      ],
+      "descripcion": "Continuación de la vena femoral por encima del ligamento inguinal; acompaña medialmente a la arteria homónima.",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "lados": {
+        "derecho": {
+          "latin": "Vena iliaca externa dextra"
+        },
+        "izquierdo": {
+          "latin": "Vena iliaca externa sinistra"
+        }
+      },
+      "revisado": false
+    },
+    "vena-iliaca-interna": {
+      "nombre": "Vena ilíaca interna",
+      "latin": "Vena iliaca interna",
+      "sinonimos": [
+        "iliaca interna",
+        "hipogastrica"
+      ],
+      "descripcion": "Recibe los plexos venosos de las vísceras pélvicas (vesical, prostático, rectal, uterino) y las venas parietales de la pelvis.",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "lados": {
+        "derecho": {
+          "latin": "Vena iliaca interna dextra"
+        },
+        "izquierdo": {
+          "latin": "Vena iliaca interna sinistra"
+        }
+      },
+      "revisado": false
+    },
+    "vena-porta": {
+      "nombre": "Vena porta hepática",
+      "latin": "Vena portae hepatis",
+      "sinonimos": [
+        "porta",
+        "vena porta"
+      ],
+      "descripcion": "Formada detrás del cuello del páncreas por la unión de las venas mesentérica superior y esplénica. Asciende en el ligamento hepatoduodenal y lleva al hígado la sangre de estómago, intestino, bazo y páncreas (≈75 % del flujo hepático).",
+      "relaciones": "En el ligamento hepatoduodenal: posterior al colédoco y a la arteria hepática propia.",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "vena-esplenica": {
+      "nombre": "Vena esplénica",
+      "latin": "Vena splenica",
+      "sinonimos": [
+        "esplenica",
+        "lienal",
+        "vena lienal"
+      ],
+      "descripcion": "Sale del hilio del bazo y corre por detrás del páncreas hasta unirse a la mesentérica superior (formando la porta). Suele recibir la mesentérica inferior.",
+      "relaciones": "Anterior: páncreas.",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "vena-mesenterica-superior": {
+      "nombre": "Vena mesentérica superior",
+      "latin": "Vena mesenterica superior",
+      "sinonimos": [
+        "mesenterica superior",
+        "vms"
+      ],
+      "descripcion": "Drena el intestino delgado, ciego, colon ascendente y transverso. Corre a la derecha de la arteria homónima.",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "vena-mesenterica-inferior": {
+      "nombre": "Vena mesentérica inferior",
+      "latin": "Vena mesenterica inferior",
+      "sinonimos": [
+        "mesenterica inferior",
+        "vmi"
+      ],
+      "descripcion": "Drena colon descendente, sigmoides y recto superior. Suele desembocar en la vena esplénica.",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "capsula-renal": {
+      "nombre": "Cápsula fibrosa del riñón",
+      "latin": "Capsula fibrosa renis",
+      "sinonimos": [
+        "capsula renal",
+        "capsula fibrosa",
+        "capsula"
+      ],
+      "descripcion": "Membrana delgada y resistente que envuelve el parénquima y se refleja en el hilio hacia el seno renal. En un riñón sano se despega con facilidad.",
+      "relaciones": "Por fuera: cápsula adiposa (grasa perirrenal) y fascia renal.",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "corteza-renal": {
+      "nombre": "Corteza renal",
+      "latin": "Cortex renalis",
+      "sinonimos": [
+        "corteza",
+        "cortex renalis"
+      ],
+      "descripcion": "Capa externa, granulosa: contiene los corpúsculos renales (glomérulos) y los túbulos contorneados. Se prolonga entre las pirámides formando las columnas renales.",
+      "relaciones": "",
+      "irrigacion": "Arterias interlobulillares (radiales corticales) → arteriolas aferentes. Recibe ≈90 % del flujo renal.",
+      "inervacion": "",
+      "revisado": false
+    },
+    "medula-renal": {
+      "nombre": "Médula renal",
+      "latin": "Medulla renalis",
+      "sinonimos": [
+        "medula",
+        "medula renal"
+      ],
+      "descripcion": "Capa interna, estriada, formada por 8–18 pirámides. Contiene las asas de Henle, los túbulos colectores y los vasos rectos; allí se genera el gradiente osmótico que permite concentrar la orina.",
+      "relaciones": "",
+      "irrigacion": "Vasos rectos (de las arteriolas eferentes yuxtamedulares): flujo bajo, que preserva el gradiente.",
+      "inervacion": "",
+      "revisado": false
+    },
+    "piramide-renal": {
+      "nombre": "Pirámide renal",
+      "latin": "Pyramis renalis",
+      "sinonimos": [
+        "piramide",
+        "piramide de malpighi",
+        "piramides renales"
+      ],
+      "descripcion": "Masa cónica de médula con la base hacia la corteza y el vértice (papila) hacia el seno. Cada pirámide con su corteza forma un lóbulo renal.",
+      "relaciones": "Entre pirámides: columnas renales.",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "columna-renal": {
+      "nombre": "Columna renal",
+      "latin": "Columna renalis",
+      "sinonimos": [
+        "columna de bertin",
+        "columnas renales",
+        "columna"
+      ],
+      "descripcion": "Prolongación de la corteza entre dos pirámides, hasta el seno renal. Por ellas suben las arterias interlobulares.",
+      "relaciones": "",
+      "irrigacion": "Arterias interlobulares.",
+      "inervacion": "",
+      "revisado": false
+    },
+    "papila-renal": {
+      "nombre": "Papila renal",
+      "latin": "Papilla renalis",
+      "sinonimos": [
+        "papila",
+        "papilas renales"
+      ],
+      "descripcion": "Vértice de la pirámide; tiene el área cribosa, donde desembocan los conductos papilares (de Bellini) y vierten la orina en un cáliz menor.",
+      "relaciones": "Encajada en un cáliz menor.",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "caliz-menor": {
+      "nombre": "Cáliz menor",
+      "latin": "Calix renalis minor",
+      "sinonimos": [
+        "caliz menor",
+        "calices menores",
+        "caliz"
+      ],
+      "descripcion": "Cavidad en copa que recibe una o varias papilas (7–14 por riñón). Primer segmento de la vía excretora; varios se unen en un cáliz mayor.",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "caliz-mayor": {
+      "nombre": "Cáliz mayor",
+      "latin": "Calix renalis major",
+      "sinonimos": [
+        "caliz mayor",
+        "calices mayores"
+      ],
+      "descripcion": "Unión de varios cálices menores; habitualmente dos o tres (superior, medio, inferior), que confluyen en la pelvis renal.",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "pelvis-renal": {
+      "nombre": "Pelvis renal",
+      "latin": "Pelvis renalis",
+      "sinonimos": [
+        "pelvis",
+        "pelvis renal",
+        "bacinete"
+      ],
+      "descripcion": "Embudo formado por la unión de los cálices mayores; sale por el hilio y se continúa con el uréter en la unión pieloureteral (1.er estrechamiento).",
+      "relaciones": "En el hilio, posterior a los vasos renales.",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "seno-renal": {
+      "nombre": "Seno renal",
+      "latin": "Sinus renalis",
+      "sinonimos": [
+        "seno",
+        "seno renal"
+      ],
+      "descripcion": "Cavidad central del riñón, abierta por el hilio. Contiene cálices, pelvis, ramas de los vasos renales, nervios y grasa.",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "hilio-renal": {
+      "nombre": "Hilio renal",
+      "latin": "Hilum renale",
+      "sinonimos": [
+        "hilio",
+        "hilio renal"
+      ],
+      "descripcion": "Hendidura del borde medial por donde pasan, de adelante atrás: vena renal, arteria renal y pelvis renal (V-A-P).",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "arteriola-aferente": {
+      "nombre": "Arteriola aferente",
+      "latin": "Arteriola glomerularis afferens",
+      "sinonimos": [
+        "aferente",
+        "arteriola aferente"
+      ],
+      "descripcion": "Lleva sangre al glomérulo desde una arteria interlobulillar. Su tono regula la presión glomerular (autorregulación miogénica y retroalimentación tubuloglomerular). En su pared, las células yuxtaglomerulares (granulares) secretan renina.",
+      "reabsorbe": "",
+      "secreta": "Renina (células yuxtaglomerulares).",
+      "fisiologia": "Constricción de la aferente → baja la presión capilar glomerular y la TFG; dilatación → la sube.",
+      "simulador": "clearance-tfg",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "Simpática (vasoconstricción).",
+      "revisado": false
+    },
+    "arteriola-eferente": {
+      "nombre": "Arteriola eferente",
+      "latin": "Arteriola glomerularis efferens",
+      "sinonimos": [
+        "eferente",
+        "arteriola eferente"
+      ],
+      "descripcion": "Sale del glomérulo y forma los capilares peritubulares (nefronas corticales) o los vasos rectos (yuxtamedulares): dos lechos capilares en serie.",
+      "reabsorbe": "",
+      "secreta": "",
+      "fisiologia": "Su constricción (angiotensina II) sube la presión glomerular y la fracción de filtración; baja el flujo plasmático renal.",
+      "simulador": "clearance-tfg",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "glomerulo": {
+      "nombre": "Glomérulo",
+      "latin": "Glomerulus",
+      "sinonimos": [
+        "glomerulo",
+        "ovillo capilar"
+      ],
+      "descripcion": "Ovillo de capilares fenestrados entre las arteriolas aferente y eferente. Con la cápsula de Bowman forma el corpúsculo renal (de Malpighi). Barrera de filtración: endotelio fenestrado, membrana basal (carga negativa) y podocitos.",
+      "reabsorbe": "",
+      "secreta": "",
+      "fisiologia": "Filtra ≈120 ml/min (180 L/día) de plasma sin proteínas. La TFG depende de las fuerzas de Starling (presión capilar glomerular, presión en Bowman, presión oncótica) y del coeficiente de filtración (Kf).",
+      "simulador": "clearance-tfg",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "capsula-bowman": {
+      "nombre": "Cápsula de Bowman",
+      "latin": "Capsula glomerularis",
+      "sinonimos": [
+        "bowman",
+        "capsula de bowman",
+        "capsula glomerular"
+      ],
+      "descripcion": "Copa de doble hoja que rodea al glomérulo: hoja visceral (podocitos) y parietal; entre ambas, el espacio urinario que recibe el filtrado y se continúa con el TCP en el polo urinario.",
+      "reabsorbe": "",
+      "secreta": "",
+      "fisiologia": "Su presión hidrostática se opone a la filtración; sube si hay obstrucción urinaria.",
+      "simulador": "clearance-tfg",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "tcp": {
+      "nombre": "Túbulo contorneado proximal",
+      "latin": "Tubulus contortus proximalis",
+      "sinonimos": [
+        "tcp",
+        "tubulo proximal",
+        "proximal",
+        "tubulo contorneado proximal"
+      ],
+      "descripcion": "Primer segmento del túbulo, en la corteza. Epitelio cúbico con ribete en cepillo y muchas mitocondrias.",
+      "reabsorbe": "≈65 % del Na⁺ y del agua (isoosmótico), 100 % de glucosa y aminoácidos (con transporte máximo, Tm), ≈80 % del HCO₃⁻, fosfato, K⁺ y urea.",
+      "secreta": "H⁺ (intercambiador Na⁺/H⁺), ácidos y bases orgánicos (PAH, fármacos), amonio.",
+      "fisiologia": "Si la glucosa filtrada supera el Tm aparece glucosuria. El clearance de PAH estima el flujo plasmático renal.",
+      "simulador": "tm-pah",
+      "relaciones": "",
+      "irrigacion": "Capilares peritubulares.",
+      "inervacion": "",
+      "revisado": false
+    },
+    "asa-descendente-delgada": {
+      "nombre": "Rama descendente delgada del asa de Henle",
+      "latin": "Pars descendens tenuis ansae nephroni",
+      "sinonimos": [
+        "descendente delgada",
+        "asa descendente",
+        "rama descendente"
+      ],
+      "descripcion": "Baja hacia la médula; epitelio plano.",
+      "reabsorbe": "Agua (≈15 %, por acuaporinas 1); poco permeable a solutos.",
+      "secreta": "",
+      "fisiologia": "El líquido se concentra a medida que baja hacia la médula hipertónica (en las nefronas yuxtamedulares llega a ≈1200 mOsm/kg).",
+      "simulador": "contracorriente",
+      "relaciones": "",
+      "irrigacion": "Vasos rectos.",
+      "inervacion": "",
+      "revisado": false
+    },
+    "asa-ascendente-delgada": {
+      "nombre": "Rama ascendente delgada del asa de Henle",
+      "latin": "Pars ascendens tenuis ansae nephroni",
+      "sinonimos": [
+        "ascendente delgada"
+      ],
+      "descripcion": "Sube desde la curva del asa en la médula interna (solo en nefronas yuxtamedulares). Epitelio plano.",
+      "reabsorbe": "NaCl en forma pasiva.",
+      "secreta": "",
+      "fisiologia": "Impermeable al agua: el líquido empieza a diluirse.",
+      "simulador": "contracorriente",
+      "relaciones": "",
+      "irrigacion": "Vasos rectos.",
+      "inervacion": "",
+      "revisado": false
+    },
+    "asa-ascendente-gruesa": {
+      "nombre": "Rama ascendente gruesa del asa de Henle",
+      "latin": "Pars ascendens crassa ansae nephroni",
+      "sinonimos": [
+        "ascendente gruesa",
+        "segmento dilutor",
+        "rama gruesa"
+      ],
+      "descripcion": "Segmento grueso que sube a la corteza y vuelve al propio glomérulo (mácula densa).",
+      "reabsorbe": "≈25 % del Na⁺ filtrado por el cotransportador Na⁺-K⁺-2Cl⁻ (NKCC2); Ca²⁺ y Mg²⁺ por vía paracelular.",
+      "secreta": "",
+      "fisiologia": "Impermeable al agua: es el 'segmento dilutor' (sale con ≈100 mOsm/kg) y el motor del multiplicador por contracorriente. Blanco de los diuréticos de asa (furosemida).",
+      "simulador": "contracorriente",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "tcd": {
+      "nombre": "Túbulo contorneado distal",
+      "latin": "Tubulus contortus distalis",
+      "sinonimos": [
+        "tcd",
+        "tubulo distal",
+        "distal",
+        "tubulo contorneado distal"
+      ],
+      "descripcion": "En la corteza, entre la mácula densa y el túbulo colector (vía el túbulo conector).",
+      "reabsorbe": "≈5 % del Na⁺ por el cotransportador Na⁺-Cl⁻ (NCC); Ca²⁺ regulado por la PTH.",
+      "secreta": "",
+      "fisiologia": "Poco permeable al agua: sigue diluyendo. Blanco de las tiazidas (que además reducen la calciuria).",
+      "simulador": "adh-sraa",
+      "relaciones": "",
+      "irrigacion": "Capilares peritubulares.",
+      "inervacion": "",
+      "revisado": false
+    },
+    "macula-densa": {
+      "nombre": "Mácula densa",
+      "latin": "Macula densa",
+      "sinonimos": [
+        "macula densa"
+      ],
+      "descripcion": "Grupo de células altas de la pared del túbulo distal en contacto con el polo vascular de su propio glomérulo.",
+      "reabsorbe": "",
+      "secreta": "",
+      "fisiologia": "Sensa el NaCl que llega: si aumenta, contrae la arteriola aferente (retroalimentación tubuloglomerular) y frena la renina; si disminuye, estimula la liberación de renina.",
+      "simulador": "adh-sraa",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "aparato-yuxtaglomerular": {
+      "nombre": "Aparato yuxtaglomerular",
+      "latin": "Complexus juxtaglomerularis",
+      "sinonimos": [
+        "aparato yuxtaglomerular",
+        "yuxtaglomerular",
+        "complejo yuxtaglomerular"
+      ],
+      "descripcion": "Mácula densa + células yuxtaglomerulares (granulares, en la arteriola aferente) + células mesangiales extraglomerulares (de Lacis).",
+      "reabsorbe": "",
+      "secreta": "Renina, que inicia el sistema renina-angiotensina-aldosterona.",
+      "fisiologia": "Estímulos de renina: baja presión de perfusión (barorreceptor de la aferente), poco NaCl en la mácula densa y estímulo simpático (β1).",
+      "simulador": "adh-sraa",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "Simpática (β1).",
+      "revisado": false
+    },
+    "tubulo-colector": {
+      "nombre": "Túbulo colector",
+      "latin": "Tubulus renalis colligens",
+      "sinonimos": [
+        "colector",
+        "tubulo colector",
+        "conducto colector"
+      ],
+      "descripcion": "Recibe varias nefronas y baja por la médula hasta los conductos papilares. Células principales e intercaladas.",
+      "reabsorbe": "Na⁺ (ENaC, aldosterona), agua (acuaporina 2, ADH) y urea en la médula interna (ADH).",
+      "secreta": "K⁺ (células principales, aldosterona); H⁺ (intercaladas tipo A) o HCO₃⁻ (tipo B).",
+      "fisiologia": "Ajuste fino: decide la concentración final de la orina (de ≈50 a ≈1200 mOsm/kg) según la ADH, y el balance de Na⁺, K⁺ y ácido-base.",
+      "simulador": "adh-sraa",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "vasos-rectos": {
+      "nombre": "Vasos rectos",
+      "latin": "Vasa recta",
+      "sinonimos": [
+        "vasos rectos",
+        "vasa recta"
+      ],
+      "descripcion": "Capilares largos en horquilla que salen de las arteriolas eferentes de las nefronas yuxtamedulares y acompañan a las asas de Henle en la médula.",
+      "reabsorbe": "",
+      "secreta": "",
+      "fisiologia": "Intercambio por contracorriente: llevan nutrientes a la médula sin lavar el gradiente osmótico, gracias a su flujo bajo y a su forma en U.",
+      "simulador": "contracorriente",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "nervio-iliohipogastrico": {
+      "nombre": "Nervio iliohipogástrico",
+      "latin": "Nervus iliohypogastricus",
+      "sinonimos": [
+        "iliohipogastrico",
+        "abdominogenital mayor"
+      ],
+      "descripcion": "Del plexo lumbar (T12–L1). Sale por el borde lateral del psoas, cruza por delante del cuadrado lumbar (detrás del riñón) y corre entre transverso y oblicuo interno. Inerva músculos anchos del abdomen y la piel suprapúbica y glútea lateral.",
+      "relaciones": "Posterior al riñón.",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "nervio-ilioinguinal": {
+      "nombre": "Nervio ilioinguinal",
+      "latin": "Nervus ilioinguinalis",
+      "sinonimos": [
+        "ilioinguinal",
+        "abdominogenital menor"
+      ],
+      "descripcion": "Del plexo lumbar (L1). Paralelo y por debajo del iliohipogástrico; recorre el conducto inguinal. Sensibilidad de la raíz del pene/escroto o labio mayor y cara medial del muslo.",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "nervio-genitofemoral": {
+      "nombre": "Nervio genitofemoral",
+      "latin": "Nervus genitofemoralis",
+      "sinonimos": [
+        "genitofemoral"
+      ],
+      "descripcion": "Del plexo lumbar (L1–L2). Perfora la cara anterior del psoas y desciende sobre él. Rama genital (cremáster, escroto/labio mayor) y femoral (piel del triángulo femoral). Reflejo cremasteriano.",
+      "relaciones": "Cruzado por el uréter.",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "nervio-cutaneo-femoral-lateral": {
+      "nombre": "Nervio cutáneo femoral lateral",
+      "latin": "Nervus cutaneus femoris lateralis",
+      "sinonimos": [
+        "cutaneo femoral lateral",
+        "femorocutaneo"
+      ],
+      "descripcion": "Del plexo lumbar (L2–L3). Sale por el borde lateral del psoas, cruza el ilíaco y pasa bajo el ligamento inguinal cerca de la espina ilíaca anterosuperior. Piel de la cara lateral del muslo (meralgia parestésica si se comprime).",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "nervio-femoral": {
+      "nombre": "Nervio femoral",
+      "latin": "Nervus femoralis",
+      "sinonimos": [
+        "femoral",
+        "crural",
+        "nervio crural"
+      ],
+      "descripcion": "El ramo más grande del plexo lumbar (L2–L4). Desciende entre psoas e ilíaco y pasa bajo el ligamento inguinal, lateral a la arteria femoral. Motor del iliopsoas y del cuádriceps (reflejo rotuliano); sensitivo de la cara anterior del muslo y medial de la pierna (safeno).",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "nervio-obturador": {
+      "nombre": "Nervio obturador",
+      "latin": "Nervus obturatorius",
+      "sinonimos": [
+        "obturador",
+        "obturatriz"
+      ],
+      "descripcion": "Del plexo lumbar (L2–L4). Sale por el borde medial del psoas, recorre la pared lateral de la pelvis y sale por el conducto obturador. Motor de los aductores del muslo; piel de la cara medial del muslo.",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "tronco-simpatico-lumbar": {
+      "nombre": "Tronco simpático lumbar",
+      "latin": "Truncus sympathicus, pars lumbalis",
+      "sinonimos": [
+        "cadena simpatica",
+        "tronco simpatico",
+        "simpatico lumbar"
+      ],
+      "descripcion": "Cadena de 4–5 ganglios a los costados de los cuerpos vertebrales lumbares, sobre el borde medial del psoas. Da los nervios esplácnicos lumbares a los plexos aórtico e hipogástrico; continúa en la pelvis como tronco simpático sacro.",
+      "relaciones": "Derecha: detrás de la vena cava inferior. Izquierda: junto a la aorta.",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "plexo-celiaco": {
+      "nombre": "Plexo celíaco",
+      "latin": "Plexus coeliacus",
+      "sinonimos": [
+        "plexo celiaco",
+        "plexo solar",
+        "ganglio celiaco"
+      ],
+      "descripcion": "Red nerviosa autónoma alrededor del tronco celíaco, con los ganglios celíacos. Recibe los nervios esplácnicos mayor y menor (simpático) y fibras vagales (parasimpático). Se continúa con los plexos aorticorrenal, renal y mesentérico superior.",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    },
+    "plexo-hipogastrico-superior": {
+      "nombre": "Plexo hipogástrico superior",
+      "latin": "Plexus hypogastricus superior",
+      "sinonimos": [
+        "hipogastrico superior",
+        "nervio presacro"
+      ],
+      "descripcion": "Continuación del plexo aórtico por debajo de la bifurcación aórtica, delante de L5 y el promontorio. Se divide en los nervios hipogástricos derecho e izquierdo hacia los plexos hipogástricos inferiores (pélvicos), que reciben además los esplácnicos pélvicos (parasimpático S2–S4).",
+      "relaciones": "",
+      "irrigacion": "",
+      "inervacion": "",
+      "revisado": false
+    }
+  }
+}

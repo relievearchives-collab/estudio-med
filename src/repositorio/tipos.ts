@@ -245,6 +245,30 @@ export interface Revision {
   duracion?: number
 }
 
+// ───────────────────────── Fase 3: atlas 3D ─────────────────────────
+
+/** Estado de repaso de una estructura del atlas (Modo Museo / ¿Dónde está?), con FSRS. */
+export interface EstructuraAtlas {
+  /** id de la pieza (el mismo en todas las escenas donde aparece). */
+  id: string
+  escena: string
+  fsrs: EstadoFSRS
+  vence: number
+  estado: number
+  aciertos: number
+  fallos: number
+  ultimo?: number
+}
+
+/** Cambios del estudiante a una ficha del atlas (texto propio o "revisado"). */
+export interface FichaEditada {
+  /** id de la ficha (src/atlas/estructuras.json) */
+  id: string
+  cambios: Record<string, string>
+  revisado: boolean
+  actualizada: number
+}
+
 export interface ImagenTarjeta {
   id: string
   archivo: Blob

@@ -35,6 +35,8 @@ export default defineConfig({
         navigateFallback: 'index.html',
         runtimeCaching: [
           { urlPattern: /\.wasm$/, handler: 'CacheFirst', options: { cacheName: 'wasm', expiration: { maxEntries: 6 } } },
+          // Modelos del atlas 3D: se guardan la primera vez que se abre cada escena.
+          { urlPattern: /\/atlas\/.*\.glb$/, handler: 'CacheFirst', options: { cacheName: 'atlas', expiration: { maxEntries: 20 } } },
           { urlPattern: /^https:\/\/cdn\.jsdelivr\.net\/npm\/tesseract/, handler: 'CacheFirst', options: { cacheName: 'ocr', expiration: { maxEntries: 20 } } },
           { urlPattern: /^https:\/\/tessdata\.projectnaptha\.com\//, handler: 'CacheFirst', options: { cacheName: 'ocr-idiomas', expiration: { maxEntries: 5 } } },
         ],

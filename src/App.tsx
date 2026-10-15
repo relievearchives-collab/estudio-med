@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { lazy, Suspense, useEffect, useRef } from 'react'
 import { HashRouter, Navigate, NavLink, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import { ProveedorApp } from './componentes/Contexto'
 import { Icono } from './componentes/Icono'
@@ -21,6 +21,10 @@ import Repaso from './paginas/Repaso'
 import Tarjetas from './paginas/Tarjetas'
 import UnidadPagina from './paginas/UnidadPagina'
 
+// El atlas usa three.js (pesado): se carga recién al abrirlo.
+const Atlas = lazy(() => import('./paginas/Atlas'))
+const AtlasEscena = lazy(() => import('./paginas/AtlasEscena'))
+
 const NAV = [
   { a: '/', nombre: 'Hoy', icono: 'hoy' },
   { a: '/biblioteca', nombre: 'Biblioteca', icono: 'biblioteca' },
@@ -30,6 +34,7 @@ const NAV = [
 ]
 const NAV_EXTRA = [
   { a: '/buscar', nombre: 'Buscar', icono: 'buscar' },
+  { a: '/atlas', nombre: 'Atlas 3D', icono: 'cubo' },
   { a: '/estadisticas', nombre: 'Mis estadísticas', icono: 'grafico' },
   { a: '/ajustes', nombre: 'Ajustes', icono: 'ajustes' },
   { a: '/creditos', nombre: 'Créditos', icono: 'info' },
@@ -92,6 +97,9 @@ function Marco() {
           <Route path="/tarjetas" element={<Tarjetas />} />
           <Route path="/tarjetas/generar" element={<GenerarTarjetas />} />
           <Route path="/repaso" element={<Repaso />} />
+          <Route path="/atlas" element={<Suspense fallback={<Cargando />}><Atlas /></Suspense>} />
+          <Route path="/atlas/recorrido/:id" element={<Suspense fallback={<Cargando />}><AtlasEscena /></Suspense>} />
+          <Route path="/atlas/:escena" element={<Suspense fallback={<Cargando />}><AtlasEscena /></Suspense>} />
           <Route path="/notas" element={<Notas />} />
           <Route path="/notas/:id" element={<Notas />} />
           <Route path="/buscar" element={<Buscar />} />
@@ -113,6 +121,10 @@ function Marco() {
       </nav>
     </div>
   )
+}
+
+function Cargando() {
+  return <p className="p-6 text-sm texto-suave">Cargando…</p>
 }
 
 export default function App() {
