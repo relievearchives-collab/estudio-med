@@ -247,7 +247,7 @@ function RespuestaIA({ m, chat, pregunta, reintentar }: { m: MensajeChat; chat: 
       )}
       <div className="flex flex-wrap gap-2">
         <button className="btn-secundario !py-1.5 text-xs" onClick={guardarNota}><Icono nombre="nota" className="h-4 w-4" />Guardar como nota</button>
-        <button className="btn-secundario !py-1.5 text-xs" disabled title="Llega en la Fase 2 (tarjetas con FSRS)"><Icono nombre="estrella" className="h-4 w-4" />Hacer tarjetas</button>
+        <button className="btn-secundario !py-1.5 text-xs" disabled={!m.fragmentoIds?.length} onClick={() => navegar(`/tarjetas/generar?origen=chat&chat=${chat.id}&m=${m.id}`)}><Icono nombre="tarjetas" className="h-4 w-4" />Hacer tarjetas</button>
         <button className="btn-secundario !py-1.5 text-xs" disabled title="Llega en la Fase 4 (preguntas tipo parcial)"><Icono nombre="check" className="h-4 w-4" />Hacer preguntas</button>
         {hayLectura && <button className="btn-fantasma !py-1.5 text-xs" onClick={() => leerEnVozAlta(m.texto)} onDoubleClick={callarVoz}><Icono nombre="parlante" className="h-4 w-4" />Escuchar</button>}
       </div>

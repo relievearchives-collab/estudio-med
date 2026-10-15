@@ -119,6 +119,7 @@ function VistaFuentes() {
               <EstadoFuente f={f} />
             </div>
             <div className="flex shrink-0 gap-1">
+              {f.estado === 'listo' && <Link className="btn-fantasma !p-2" aria-label="Hacer tarjetas de esta fuente" title="Hacer tarjetas de esta fuente" to={`/tarjetas/generar?alcance=fuentes&id=${f.id}&n=20`}><Icono nombre="tarjetas" className="h-4 w-4" /></Link>}
               <button className="btn-fantasma !p-2" aria-label="Renombrar" onClick={() => { const n = prompt('Nuevo nombre', f.nombre); if (n?.trim()) repoFuentes.renombrar(f.id, n.trim()) }}><Icono nombre="lapiz" className="h-4 w-4" /></button>
               <button className="btn-fantasma !p-2" aria-label="Borrar" onClick={async () => {
                 if (!confirm(`¿Borrar "${f.nombre}" y todos sus fragmentos y resaltados?`)) return

@@ -34,11 +34,35 @@ npm run dev
 Abrir http://localhost:5173 → Bienvenida → pegar la clave → importar `material-de-estudio/programa/guia-el-ser-humano-y-su-medio-unr.pdf` → esperar "Listo" → Preguntar.
 
 ### Pendiente menor
-- Los botones *Hacer tarjetas* y *Hacer preguntas* del chat están visibles pero deshabilitados hasta las fases 2 y 4.
+- El botón *Hacer preguntas* del chat está visible pero deshabilitado hasta la Fase 4.
 - La disciplina de un fragmento que mezcla dos secciones toma el último título de la página (ej. la pág. 43 queda en Salud Mental aunque empieza con bibliografía de Fisiología).
 
-## Fase 2 — Retención (siguiente)
-Tarjetas básica / cloze / oclusión generadas con IA por lotes y editables; repaso con FSRS (`ts-fsrs`); pantalla "Hoy" con la cola del día, temas flojos y racha; exportar `.apkg` y CSV; importar CSV.
+## Fase 2 — Retención ✅ (15/10/2026)
+
+### Hecho
+- **Tarjetas** básica, cloze (cada hueco es una tarjeta) y **oclusión de imagen** (máscaras dibujadas a mano sobre una foto o sobre una página de la guía capturada desde el visor). Todas editables, suspendibles y borrables; enlazadas al fragmento, la fuente y la página de origen.
+- **Generación con IA por lotes** (Flash-Lite, JSON con esquema, una idea por tarjeta, prompt en `src/ia/prompts/tarjetas.ts`) desde:
+  - una **UP, disciplina, tema o fuente** ("Hacer tarjetas de la UP3": 30 tarjetas en 2 llamadas);
+  - una **selección del visor** (*Crear tarjeta* en la barra de selección);
+  - una **respuesta del chat** (*Hacer tarjetas*, usa solo los fragmentos citados).
+  **Vista previa** para aceptar, editar o descartar cada una, con "✓ Respaldo verificado" (la frase de respaldo está textual en el fragmento) que abre la página.
+- **Repaso FSRS** (`ts-fsrs`): Otra vez / Difícil / Bien / Fácil con el **próximo intervalo en cada botón**, teclas 1–4, espacio para revelar, *Deshacer* (Ctrl+Z), *Ver en la fuente*, *Editar*, *Suspender*. Repaso filtrado por UP o tema. Retención objetivo y nuevas por día en **Ajustes**.
+- **"Hoy"**: primero la cola del día (vencidas + nuevas + en aprendizaje), **racha**, **temas flojos** (o, sin datos todavía, UP con material sin tarjetas), cuenta regresiva y el resto.
+- **Exportar a Anki `.apkg`** (SQLite armado en el navegador con sql.js; mazo por UP; las oclusiones van con su imagen) y **CSV**; **importar CSV** (con o sin encabezado, `,` `;` o tab).
+- Tarjetas en la **búsqueda unificada**, en el **respaldo .zip** (estado FSRS, historial e imágenes) y evento `repaso` en **Mis estadísticas**.
+- Botones nuevos: *Hacer tarjetas* / *Repasar* en cada UP, *Tarjetas* por tema y por fuente (Biblioteca); *Tarjetas* en la navegación.
+
+### Verificado
+- `npm test`: **46 tests** en verde. Nuevos: scheduling (orden de intervalos, crecimiento, lapsos, efecto de la retención, preview = calificar), cola del día y tope de nuevas, racha, temas flojos, cloze, editar un cloze sin perder FSRS, responder/deshacer, generación con IA simulada (lotes, validación, verificación de la frase, chat), CSV ida y vuelta, `.apkg` abierto con sql.js, y **respaldo con estado FSRS + historial + imagen de oclusión**.
+- `npm run build` sin errores.
+- En el navegador, con la **guía real** importada: "Hacer tarjetas de la UP3" → 2 llamadas al modelo de lotes → 30 propuestas, 27 con respaldo verificado; descartar/desmarcar y guardar; repaso con teclado (25 nuevas por el tope, intervalos 1 min / 6 min / 10 min / 8 d) y deshacer; selección en la pág. 42 → *Crear tarjeta*; captura de la pág. 24 → oclusión con 3 máscaras → repaso con la máscara destapada; chat → *Hacer tarjetas*; búsqueda; `.apkg` real en el navegador (153 ms, mazo "UP3"); respaldo de 12,3 MB exportado e importado con tarjetas, historial e imagen idénticos. Sin errores en consola.
+
+### No verificado todavía
+- **Gemini real:** igual que en la Fase 1, sin clave: la IA se probó con `generateContent` simulado. La calidad de las tarjetas depende del modelo real; revisar la vista previa la primera vez.
+- Importar el `.apkg` en Anki escritorio / AnkiDroid (se verificó la estructura del SQLite, no la importación en Anki).
+
+### Cómo probarlo
+UP3 → *Hacer tarjetas de la UP3* → *Generar* → revisar y *Guardar* → **Hoy** → *Repasar* (espacio, 1–4). En el visor: seleccioná texto → *Crear tarjeta*, o el ícono de imagen → oclusión. **Tarjetas** → *Anki (.apkg)* / *CSV* / *Importar CSV*.
 
 ## Fase 3 — Atlas 3D
 ## Fase 4 — Simuladores y práctica de parcial

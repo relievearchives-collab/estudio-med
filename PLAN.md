@@ -72,7 +72,9 @@ estudio-med/
 | `usoIA` | `fecha` | llamadas del día, tokens |
 | `cacheIA` | `hash` | respuesta, fecha |
 | `eventos` | `++id`, `tipo`, `fecha` | detalle, duración (estadísticas locales) |
-| (Fase 2) `tarjetas`, `revisiones` | | tipo, frente, dorso, cloze, oclusión, estado FSRS, fragmentoId |
+| `tarjetas` | `id`, `vence`, `estado`, `creada`, `unidadId`, `disciplinaId`, `temaId`, `fuenteId`, `fragmentoId`, `imagenId` | tipo (básica/cloze/oclusión), frente, dorso, cloze + clozeN, máscaras + máscara, grupoId, estado FSRS (fechas en ms), suspendida |
+| `revisiones` | `++id`, `tarjetaId`, `fecha` | calificación 1–4, estado previo (para deshacer), intervalo, estabilidad, dificultad, duración |
+| `imagenesTarjeta` | `id` | imagen de las tarjetas de oclusión (va como archivo `imagenes/<id>` en el respaldo) |
 | (Fase 4) `preguntas`, `intentos` | | banco y resultados por UP/disciplina |
 
 Exportar = un `.zip` con `datos.json` (todas las tablas), `fuentes/<id>.<ext>` (los PDFs e imágenes como archivo) y `embeddings.bin` (vectores Float32 concatenados). Importar restaura exactamente lo mismo, incluido el estado FSRS.

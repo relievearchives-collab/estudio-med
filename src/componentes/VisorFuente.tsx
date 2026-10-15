@@ -29,6 +29,9 @@ export interface ObjetivoVisor {
 export interface AccionesSeleccion {
   alPreguntar?: (texto: string, ubicacion: { fuenteId: string; pagina: number }) => void
   alCrearNota?: (texto: string, ubicacion: { fuenteId: string; pagina: number }) => void
+  alCrearTarjeta?: (texto: string, ubicacion: { fuenteId: string; pagina: number }) => void
+  /** Imagen de la página (o la foto) para armar una tarjeta de oclusión. */
+  alOclusion?: (imagen: Blob, ubicacion: { fuenteId: string; pagina: number }) => void
 }
 
 const COLORES: Record<Resaltado['color'], string> = {
@@ -51,6 +54,7 @@ export function VisorFuente({ fuenteId, pagina: paginaInicial, objetivo, accione
   useEffect(() => setPagina(paginaInicial), [paginaInicial, fuenteId])
   const objetivoActivo = pagina === paginaInicial ? objetivo : undefined
   const resaltadosPagina = useLiveQuery(() => repoResaltados.dePagina(fuenteId, pagina), [fuenteId, pagina]) ?? []
+  const area = useRef<HTMLDivElement>(null)
 
   if (fuente === undefined) return <div className="p-6 text-sm texto-suave">Cargando…</div>
   if (!fuente) return <div className="p-6 text-sm">La fuente ya no existe.</div>
@@ -70,6 +74,12 @@ export function VisorFuente({ fuenteId, pagina: paginaInicial, objetivo, accione
         </label>
         <button className="btn-fantasma !px-2" disabled={pagina >= total} onClick={() => setPagina((p) => p + 1)} aria-label="Página siguiente"><Icono nombre="der" /></button>
         <div className="flex-1" />
+        {acciones?.alOclusion && fuente.archivo && (
+          <button className="btn-fantasma !px-2" title="Tarjeta de oclusión con esta página" aria-label="Oclusión de imagen" onClick={() => {
+            if (fuente.tipo === 'imagen') return acciones.alOclusion!(fuente.archivo!, { fuenteId, pagina })
+            area.current?.querySelector('canvas')?.toBlob((b) => b && acciones.alOclusion!(b, { fuenteId, pagina }), 'image/png')
+          }}><Icono nombre="imagen" /></button>
+        )}
         {fuente.tipo === 'pdf' && (
           <>
             <button className="btn-fantasma !px-2" onClick={() => setZoom((z) => Math.max(0.6, z - 0.2))} aria-label="Alejar"><Icono nombre="zoomMenos" /></button>
@@ -77,7 +87,7 @@ export function VisorFuente({ fuenteId, pagina: paginaInicial, objetivo, accione
           </>
         )}
       </div>
-      <div className="min-h-0 flex-1 overflow-auto p-2">
+      <div ref={area} className="min-h-0 flex-1 overflow-auto p-2">
         {fuente.tipo === 'pdf' && fuente.archivo
           ? <PaginaPdf fuente={fuente} pagina={pagina} zoom={zoom} objetivo={objetivoActivo} resaltados={resaltadosPagina} acciones={acciones} />
           : <PaginaTexto fuente={fuente} pagina={pagina} objetivo={objetivoActivo} resaltados={resaltadosPagina} acciones={acciones} />}
@@ -244,6 +254,7 @@ function PaginaPdf({ fuente, pagina, zoom, objetivo, resaltados, acciones }: {
             }}
             alPreguntar={acciones?.alPreguntar ? () => { acciones.alPreguntar!(seleccion.datos!.texto, { fuenteId: fuente.id, pagina }); seleccion.limpiar() } : undefined}
             alCrearNota={acciones?.alCrearNota ? () => { acciones.alCrearNota!(seleccion.datos!.texto, { fuenteId: fuente.id, pagina }); seleccion.limpiar() } : undefined}
+            alCrearTarjeta={acciones?.alCrearTarjeta ? () => { acciones.alCrearTarjeta!(seleccion.datos!.texto, { fuenteId: fuente.id, pagina }); seleccion.limpiar() } : undefined}
           />
         )}
       </div>
@@ -286,16 +297,18 @@ function useSeleccion(capa: React.RefObject<HTMLDivElement | null>, texto?: Text
   return { datos, limpiar: () => { setDatos(null); window.getSelection()?.removeAllRanges() } }
 }
 
-function BarraSeleccion({ pos, alCerrar, alResaltar, alPreguntar, alCrearNota }: {
+function BarraSeleccion({ pos, alCerrar, alResaltar, alPreguntar, alCrearNota, alCrearTarjeta }: {
   pos: { x: number; y: number }
   alCerrar: () => void
   alResaltar: (c: Resaltado['color']) => void
   alPreguntar?: () => void
   alCrearNota?: () => void
+  alCrearTarjeta?: () => void
 }) {
   return (
     <div className="absolute z-20 flex flex-wrap items-center gap-1 rounded-xl border p-1 text-xs shadow-lg borde" style={{ left: Math.max(0, pos.x - 20), top: pos.y, background: 'var(--tarjeta)', color: 'var(--texto)' }}>
       {alPreguntar && <button className="btn-fantasma !px-2 !py-1" onClick={alPreguntar}><Icono nombre="chat" className="h-4 w-4" />Preguntar</button>}
+      {alCrearTarjeta && <button className="btn-fantasma !px-2 !py-1" onClick={alCrearTarjeta}><Icono nombre="tarjetas" className="h-4 w-4" />Crear tarjeta</button>}
       {alCrearNota && <button className="btn-fantasma !px-2 !py-1" onClick={alCrearNota}><Icono nombre="nota" className="h-4 w-4" />Crear nota</button>}
       {(Object.keys(COLORES) as Resaltado['color'][]).map((c) => (
         <button key={c} className="h-6 w-6 rounded-full border borde" style={{ background: COLORES[c] }} onClick={() => alResaltar(c)} aria-label={`Resaltar en ${c}`} title={`Resaltar (${c})`} />
@@ -367,6 +380,7 @@ function PaginaTexto({ fuente, pagina, objetivo, resaltados, acciones }: {
       {sel && acciones && (
         <div className="mt-2 flex gap-2">
           {acciones.alPreguntar && <button className="btn-secundario" onClick={() => { acciones.alPreguntar!(sel, { fuenteId: fuente.id, pagina }); setSel('') }}>Preguntar</button>}
+          {acciones.alCrearTarjeta && <button className="btn-secundario" onClick={() => { acciones.alCrearTarjeta!(sel, { fuenteId: fuente.id, pagina }); setSel('') }}>Crear tarjeta</button>}
           {acciones.alCrearNota && <button className="btn-secundario" onClick={() => { acciones.alCrearNota!(sel, { fuenteId: fuente.id, pagina }); setSel('') }}>Crear nota</button>}
         </div>
       )}

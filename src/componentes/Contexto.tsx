@@ -1,9 +1,9 @@
 import { createContext, lazy, Suspense, useCallback, useContext, useEffect, useState, type ReactNode } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useFuente } from '../repositorio/hooks'
-import { notas } from '../repositorio'
+import { accionesVisor } from './accionesVisor'
 import { Hoja } from './Hoja'
-import type { ObjetivoVisor } from './VisorFuente'
+import type { AccionesSeleccion, ObjetivoVisor } from './VisorFuente'
 
 // pdf.js pesa: el visor se carga recién cuando se abre una cita.
 const VisorFuente = lazy(() => import('./VisorFuente').then((m) => ({ default: m.VisorFuente })))
@@ -36,16 +36,7 @@ export function ProveedorApp({ children }: { children: ReactNode }) {
     <Ctx.Provider value={{ abrirVisor: setVisor, avisar }}>
       {children}
       {visor && (
-        <HojaVisor
-          pedido={visor}
-          alCerrar={() => setVisor(null)}
-          alPreguntar={(texto) => { setVisor(null); navegar(`/chat?q=${encodeURIComponent(`Explicame este pasaje: "${texto.slice(0, 600)}"`)}`) }}
-          alCrearNota={async (texto, u) => {
-            const n = await notas.crear({ titulo: texto.slice(0, 60), markdown: `> ${texto}\n\n(pág. ${u.pagina})\n\n`, origen: 'visor' })
-            setVisor(null)
-            navegar(`/notas/${n.id}`)
-          }}
-        />
+        <HojaVisor pedido={visor} alCerrar={() => setVisor(null)} acciones={accionesVisor(navegar, () => setVisor(null))} />
       )}
       <div className="pointer-events-none fixed inset-x-0 bottom-20 z-[60] flex flex-col items-center gap-2 px-4 lg:bottom-6">
         {avisos.map((a) => (
@@ -58,17 +49,12 @@ export function ProveedorApp({ children }: { children: ReactNode }) {
   )
 }
 
-function HojaVisor({ pedido, alCerrar, alPreguntar, alCrearNota }: {
-  pedido: PedidoVisor
-  alCerrar: () => void
-  alPreguntar: (t: string) => void
-  alCrearNota: (t: string, u: { pagina: number }) => void
-}) {
+function HojaVisor({ pedido, alCerrar, acciones }: { pedido: PedidoVisor; alCerrar: () => void; acciones: AccionesSeleccion }) {
   const fuente = useFuente(pedido.fuenteId)
   return (
     <Hoja abierta alCerrar={alCerrar} titulo={<>{fuente?.nombre ?? 'Fuente'} <span className="font-normal texto-suave">· pág. {pedido.pagina}</span></>}>
       <Suspense fallback={<p className="p-6 text-sm texto-suave">Abriendo…</p>}>
-        <VisorFuente fuenteId={pedido.fuenteId} pagina={pedido.pagina} objetivo={pedido.objetivo} acciones={{ alPreguntar, alCrearNota }} />
+        <VisorFuente fuenteId={pedido.fuenteId} pagina={pedido.pagina} objetivo={pedido.objetivo} acciones={acciones} />
       </Suspense>
     </Hoja>
   )

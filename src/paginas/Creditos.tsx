@@ -7,7 +7,7 @@ const LIBRERIAS = [
   ['React', 'MIT'], ['Vite', 'MIT'], ['Tailwind CSS', 'MIT'], ['React Router', 'MIT'], ['Dexie.js', 'Apache-2.0'],
   ['pdf.js (pdfjs-dist)', 'Apache-2.0'], ['Tesseract.js', 'Apache-2.0'], ['Transformers.js (Hugging Face)', 'Apache-2.0'],
   ['MiniSearch', 'MIT'], ['ts-fsrs', 'MIT'], ['JSZip', 'MIT / GPLv3'], ['marked', 'MIT'], ['DOMPurify', 'Apache-2.0 / MPL-2.0'],
-  ['vite-plugin-pwa / Workbox', 'MIT'],
+  ['vite-plugin-pwa / Workbox', 'MIT'], ['sql.js (SQLite en WASM, exportación a Anki)', 'MIT'],
 ]
 
 export default function Creditos() {

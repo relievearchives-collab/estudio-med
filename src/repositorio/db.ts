@@ -1,6 +1,6 @@
 import Dexie, { type EntityTable } from 'dexie'
 import type {
-  Ajuste, CacheIA, Chat, ContenidoGuia, Evento, Fragmento, Fuente, Nota, Pagina, Resaltado, Tema, UsoIA,
+  Ajuste, CacheIA, Chat, ContenidoGuia, Evento, Fragmento, Fuente, ImagenTarjeta, Nota, Pagina, Resaltado, Revision, Tarjeta, Tema, UsoIA,
 } from './tipos'
 
 /**
@@ -20,6 +20,9 @@ export class BaseEstudio extends Dexie {
   usoIA!: EntityTable<UsoIA, 'fecha'>
   cacheIA!: EntityTable<CacheIA, 'hash'>
   eventos!: EntityTable<Evento, 'id'>
+  tarjetas!: EntityTable<Tarjeta, 'id'>
+  revisiones!: EntityTable<Revision, 'id'>
+  imagenesTarjeta!: EntityTable<ImagenTarjeta, 'id'>
 
   constructor(nombre = 'estudio-med') {
     super(nombre)
@@ -37,6 +40,12 @@ export class BaseEstudio extends Dexie {
       cacheIA: 'hash, fecha',
       eventos: '++id, tipo, fecha',
     })
+    // Fase 2: tarjetas con estado FSRS, log de repasos e imágenes de oclusión.
+    this.version(2).stores({
+      tarjetas: 'id, vence, estado, creada, unidadId, disciplinaId, temaId, fuenteId, fragmentoId, imagenId',
+      revisiones: '++id, tarjetaId, fecha',
+      imagenesTarjeta: 'id',
+    })
   }
 }
 
@@ -45,6 +54,7 @@ export const db = new BaseEstudio()
 /** Tablas que se exportan en el respaldo (todas menos la caché de IA). */
 export const TABLAS_RESPALDO = [
   'ajustes', 'temas', 'contenidoGuia', 'fuentes', 'paginas', 'fragmentos', 'chats', 'notas', 'resaltados', 'usoIA', 'eventos',
+  'tarjetas', 'revisiones', 'imagenesTarjeta',
 ] as const
 export type TablaRespaldo = (typeof TABLAS_RESPALDO)[number]
 

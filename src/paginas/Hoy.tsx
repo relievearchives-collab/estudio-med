@@ -4,7 +4,10 @@ import { EstadoFuente } from '../componentes/EstadoFuente'
 import { Icono } from '../componentes/Icono'
 import { paqueteActivo } from '../contenido'
 import { marca } from '../marca'
-import { useAjustes, useConteoFragmentos, useFuentes, useUsoIAHoy } from '../repositorio/hooks'
+import { useMemo } from 'react'
+import { useAjustes, useConteoFragmentos, useFragmentosPorUnidad, useFuentes, useRevisionesDesde, useTarjetas, useTemas, useUsoIAHoy } from '../repositorio/hooks'
+import { armarCola, ESTADO, inicioDelDia, racha } from '../tarjetas/fsrs'
+import { temasFlojos } from '../tarjetas/flojos'
 import { hacerBackup } from './Ajustes'
 
 const DIA = 864e5
@@ -23,7 +26,25 @@ export default function Hoy() {
   const uso = useUsoIAHoy()
   const navegar = useNavigate()
   const { avisar } = useApp()
+  const tarjetas = useTarjetas()
+  const temas = useTemas() ?? []
+  const fragsPorUnidad = useFragmentosPorUnidad() ?? {}
+  // Un año de repasos alcanza para la racha; los temas flojos miran los últimos 30 días.
+  const desde = useMemo(() => inicioDelDia() - 365 * DIA, [])
+  const revs = useRevisionesDesde(desde)
   if (!a) return null
+
+  const ahora = Date.now()
+  const hoy = inicioDelDia(ahora)
+  const nuevasHoy = (revs ?? []).filter((r) => r.fecha >= hoy && r.antes.state === ESTADO.nueva).length
+  const cola = armarCola(tarjetas ?? [], ahora, a.nuevasPorDia, nuevasHoy)
+  const pendientes = cola.vencidas.length + cola.nuevas.length + cola.enEspera.length
+  const hechasHoy = (revs ?? []).filter((r) => r.fecha >= hoy).length
+  const diasRacha = racha((revs ?? []).map((r) => r.fecha), ahora)
+  const porId = new Map((tarjetas ?? []).map((t) => [t.id, t]))
+  const flojos = temasFlojos((revs ?? []).filter((r) => r.fecha >= ahora - 30 * DIA), porId)
+  // Sin datos de repaso todavía: sugerir las UP con material y sin tarjetas.
+  const unidadesSinTarjetas = paqueteActivo.unidades.filter((u) => fragsPorUnidad[u.id] && !(tarjetas ?? []).some((t) => t.unidadId === u.id))
 
   const proximos = paqueteActivo.parciales
     .map((p) => ({ ...p, fecha: a.fechasParciales[p.id], dias: a.fechasParciales[p.id] ? diasHasta(a.fechasParciales[p.id]) : null }))
@@ -43,6 +64,53 @@ export default function Hoy() {
         <button className="btn-fantasma !p-2" onClick={() => navegar('/buscar')} aria-label="Buscar"><Icono nombre="buscar" /></button>
       </header>
       <h1 className="hidden text-2xl font-bold lg:block">{saludo}</h1>
+
+      {/* Repasos del día: lo primero */}
+      {tarjetas && (
+        <section className="tarjeta flex flex-wrap items-center gap-4 p-4">
+          <div className="text-center">
+            <div className="text-3xl font-bold text-marca dark:text-marca-claro">{pendientes}</div>
+            <div className="text-xs texto-suave">para hoy</div>
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="font-semibold">{pendientes ? 'Repasos del día' : tarjetas.length ? 'Repasos al día' : 'Repetición espaciada'}</p>
+            <p className="text-sm texto-suave">
+              {tarjetas.length
+                ? `${cola.vencidas.length + cola.enEspera.length} para repasar · ${cola.nuevas.length} nuevas${hechasHoy ? ` · ya hiciste ${hechasHoy}` : ''}`
+                : 'Generá tarjetas de una UP y repasalas con FSRS.'}
+            </p>
+            {diasRacha > 0 && <p className="mt-1 flex items-center gap-1 text-sm font-medium text-amber-600"><Icono nombre="fuego" className="h-4 w-4" />Racha de {diasRacha} {diasRacha === 1 ? 'día' : 'días'}</p>}
+          </div>
+          {pendientes > 0
+            ? <Link to="/repaso" className="btn-primario">Repasar</Link>
+            : <Link to="/tarjetas/generar" className="btn-secundario">Generar tarjetas</Link>}
+        </section>
+      )}
+
+      {(flojos.length > 0 || unidadesSinTarjetas.length > 0) && (
+        <section className="tarjeta p-4">
+          <h2 className="mb-2 text-sm font-semibold">{flojos.length ? 'Temas flojos (últimos 30 días)' : 'Sugerencias'}</h2>
+          <ul className="space-y-2 text-sm">
+            {flojos.map((f) => {
+              const t = temas.find((x) => x.id === f.temaId)
+              return (
+                <li key={f.temaId} className="flex flex-wrap items-center gap-2">
+                  <span className="min-w-0 flex-1"><b>{t?.nombre ?? 'Tema'}</b> <span className="texto-suave">· {Math.round(f.tasa * 100)} % de olvidos en {f.repasos} repasos</span></span>
+                  <Link className="btn-fantasma !py-1 text-xs" to={`/repaso?tema=${f.temaId}`}>Repasar</Link>
+                  <Link className="btn-fantasma !py-1 text-xs" to={`/chat?alcance=tema&id=${f.temaId}`}>Preguntar</Link>
+                  <Link className="btn-fantasma !py-1 text-xs" to={`/tarjetas/generar?alcance=tema&id=${f.temaId}&n=10`}>Más tarjetas</Link>
+                </li>
+              )
+            })}
+            {!flojos.length && unidadesSinTarjetas.slice(0, 3).map((u) => (
+              <li key={u.id} className="flex items-center gap-2">
+                <span className="flex-1"><b>{u.sigla}</b> <span className="texto-suave">tiene material y todavía no tiene tarjetas</span></span>
+                <Link className="btn-fantasma !py-1 text-xs" to={`/tarjetas/generar?alcance=unidad&id=${u.id}&n=30`}>Hacer 30 tarjetas</Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {/* Cuenta regresiva */}
       {proximos.length > 0 ? (
@@ -90,6 +158,7 @@ export default function Hoy() {
 
       {/* Práctica activa */}
       <section className="grid grid-cols-2 gap-3 sm:grid-cols-3">
+        <Accion a="/repaso" icono="tarjetas" titulo="Repasar tarjetas" texto="FSRS: justo antes de olvidar" />
         <Accion a="/chat" icono="chat" titulo="Preguntale a tus fuentes" texto="Respuestas con cita a la página" />
         <Accion a="/biblioteca" icono="biblioteca" titulo="Unidades Problema" texto="Situaciones y temas por UP" />
         <Accion a="/notas" icono="nota" titulo="Notas" texto="Tus resúmenes enlazados" />
@@ -108,7 +177,7 @@ export default function Hoy() {
       </section>
 
       <p className="text-center text-xs texto-suave">
-        {nFrag} fragmentos indexados · {uso?.llamadas ?? 0} llamadas a la IA hoy
+        {nFrag} fragmentos indexados · {tarjetas?.length ?? 0} tarjetas · {uso?.llamadas ?? 0} llamadas a la IA hoy
       </p>
     </div>
   )

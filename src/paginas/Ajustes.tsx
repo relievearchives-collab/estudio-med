@@ -102,6 +102,21 @@ export default function Ajustes() {
         </details>
       </Seccion>
 
+      <Seccion titulo="Tarjetas">
+        <div className="grid gap-3 sm:grid-cols-2">
+          <label className="text-sm">
+            <span className="mb-1 block font-medium">Retención objetivo: {Math.round(a.retencion * 100)} %</span>
+            <input type="range" min={0.7} max={0.97} step={0.01} className="w-full accent-[var(--color-marca)]" value={a.retencion} onChange={(e) => guardarAjuste('retencion', Number(e.target.value))} />
+            <span className="block text-xs texto-suave">Probabilidad de recordar cada tarjeta cuando vuelve. Más alta = repasos más seguidos. Recomendado: 90 %.</span>
+          </label>
+          <label className="text-sm">
+            <span className="mb-1 block font-medium">Tarjetas nuevas por día</span>
+            <input type="number" min={0} max={500} className="campo" defaultValue={a.nuevasPorDia} onBlur={(e) => guardarAjuste('nuevasPorDia', Math.max(0, Math.min(500, Math.round(Number(e.target.value)) || 0)))} />
+            <span className="block text-xs texto-suave">Cuántas tarjetas sin ver entran a la cola cada día (por defecto 25).</span>
+          </label>
+        </div>
+      </Seccion>
+
       <Seccion titulo="Parciales">
         <FechasParciales ajustes={a} />
       </Seccion>
@@ -125,7 +140,7 @@ export default function Ajustes() {
               const r = await importarRespaldo(f)
               invalidarIndice()
               await sembrarTemas()
-              avisar(`Respaldo importado: ${r.fuentes} fuentes, ${r.fragmentos} fragmentos, ${r.notas} notas`, 'ok')
+              avisar(`Respaldo importado: ${r.fuentes} fuentes, ${r.fragmentos} fragmentos, ${r.notas} notas, ${r.tarjetas} tarjetas`, 'ok')
             } catch (e) { avisar((e as Error).message, 'error') }
             setOcupado('')
           }}>{ocupado === 'importar' ? 'Importando…' : 'Importar respaldo'}</BotonArchivo>

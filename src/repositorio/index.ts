@@ -1,7 +1,10 @@
 import { paqueteActivo } from '../contenido'
 import { db, nuevoId } from './db'
+import {
+  armarTarjetas, camposComunes, claveEnGrupo, clavesDeBorrador, tarjetaDeClave, type BorradorTarjeta,
+} from '../tarjetas/crear'
 import type {
-  Alcance, Chat, ContenidoGuia, Evento, Fragmento, Fuente, Nota, Pagina, Resaltado, Tema, UsoIA,
+  Alcance, Chat, ContenidoGuia, EstadoFSRS, Evento, Fragmento, Fuente, ImagenTarjeta, Nota, Pagina, Resaltado, Tarjeta, Tema, UsoIA,
 } from './tipos'
 
 export { nuevoId }
@@ -133,8 +136,18 @@ export const fragmentos = {
   },
   guardarEmbeddings: (lista: { id: string; embedding: Float32Array }[]) =>
     db.fragmentos.bulkUpdate(lista.map((l) => ({ key: l.id, changes: { embedding: l.embedding } }))),
-  actualizarVarios: (lista: ({ id: string } & Partial<Fragmento>)[]) =>
-    db.fragmentos.bulkUpdate(lista.map(({ id, ...changes }) => ({ key: id, changes }))),
+  /** Actualiza fragmentos; si cambian unidad/disciplina/tema, se completan en sus tarjetas que no los tengan. */
+  async actualizarVarios(lista: ({ id: string } & Partial<Fragmento>)[]) {
+    await db.fragmentos.bulkUpdate(lista.map(({ id, ...changes }) => ({ key: id, changes })))
+    const porFragmento = new Map(lista.map((c) => [c.id, c]))
+    await db.tarjetas.where('fragmentoId').anyOf([...porFragmento.keys()]).modify((t) => {
+      const c = porFragmento.get(t.fragmentoId!)!
+      if (t.temaId) return
+      if (c.temaId) t.temaId = c.temaId
+      if (c.unidadId && !t.unidadId) t.unidadId = c.unidadId
+      if (c.disciplinaId && !t.disciplinaId) t.disciplinaId = c.disciplinaId
+    })
+  },
   /** Fragmentos dentro de un alcance de estudio. */
   async enAlcance(a: Alcance): Promise<Fragmento[]> {
     switch (a.tipo) {
@@ -226,6 +239,99 @@ export const eventos = {
   registrar: (tipo: string, detalle?: string, duracion?: number) =>
     db.eventos.add({ tipo, detalle, duracion, fecha: Date.now() } as Evento),
   todos: () => db.eventos.toArray(),
+}
+
+// ───────────────────────── Tarjetas (Fase 2) ─────────────────────────
+
+export const tarjetas = {
+  todas: () => db.tarjetas.toArray(),
+  contar: () => db.tarjetas.count(),
+  obtener: (id: string) => db.tarjetas.get(id),
+  deGrupo: (t: Tarjeta) => (t.grupoId ? db.tarjetas.filter((x) => x.grupoId === t.grupoId).toArray() : Promise.resolve([t])),
+  deFragmento: (fragmentoId: string) => db.tarjetas.where('fragmentoId').equals(fragmentoId).toArray(),
+  async crear(borradores: BorradorTarjeta[]) {
+    const nuevas = borradores.flatMap((b) => armarTarjetas(b))
+    await db.tarjetas.bulkAdd(nuevas)
+    return nuevas
+  },
+  /** Agrega tarjetas ya armadas (importar CSV). */
+  agregar: (ts: Tarjeta[]) => db.tarjetas.bulkAdd(ts),
+  /**
+   * Guarda la edición de una tarjeta y sus hermanas: los campos comunes se copian a todo el grupo;
+   * si aparece un hueco/máscara nuevo se crea su tarjeta y si se quitó uno se borra (conservando el FSRS del resto).
+   */
+  async editar(t: Tarjeta, b: BorradorTarjeta) {
+    const grupo = await tarjetas.deGrupo(t)
+    const claves = clavesDeBorrador(b)
+    const existentes = new Map(grupo.map((x) => [claveEnGrupo(x), x]))
+    const grupoId = t.grupoId ?? (claves.length > 1 ? nuevoId('g-') : undefined)
+    const ahora = Date.now()
+    await db.transaction('rw', db.tarjetas, async () => {
+      for (const [clave, x] of existentes) if (!claves.includes(clave)) await db.tarjetas.delete(x.id)
+      for (const clave of claves) {
+        const x = existentes.get(clave)
+        if (x) await db.tarjetas.put({ ...x, ...camposComunes(b), grupoId, actualizada: ahora })
+        else await db.tarjetas.add(tarjetaDeClave(b, clave, grupoId, ahora))
+      }
+    })
+  },
+  suspender: (id: string, suspendida: boolean) => db.tarjetas.update(id, { suspendida }),
+  /** Borra la tarjeta y todas sus hermanas (la "nota" entera), con su historial. */
+  async borrar(t: Tarjeta) {
+    const grupo = await tarjetas.deGrupo(t)
+    const ids = grupo.map((x) => x.id)
+    await db.transaction('rw', [db.tarjetas, db.revisiones, db.imagenesTarjeta], async () => {
+      await db.tarjetas.bulkDelete(ids)
+      await db.revisiones.where('tarjetaId').anyOf(ids).delete()
+      if (t.imagenId && !(await db.tarjetas.where('imagenId').equals(t.imagenId).count())) await db.imagenesTarjeta.delete(t.imagenId)
+    })
+  },
+  /** Guarda una respuesta del repaso: estado FSRS nuevo + log + evento para estadísticas. */
+  async responder(t: Tarjeta, calificacion: number, nuevo: EstadoFSRS, duracion?: number) {
+    const ahora = Date.now()
+    await db.transaction('rw', [db.tarjetas, db.revisiones, db.eventos], async () => {
+      await db.tarjetas.update(t.id, { fsrs: nuevo, vence: nuevo.due, estado: nuevo.state, actualizada: ahora })
+      await db.revisiones.add({
+        tarjetaId: t.id, fecha: ahora, calificacion, antes: t.fsrs, intervalo: nuevo.scheduled_days,
+        estabilidad: nuevo.stability, dificultad: nuevo.difficulty, duracion,
+      })
+      await db.eventos.add({ tipo: 'repaso', detalle: String(calificacion), fecha: ahora, duracion: duracion ? Math.round(duracion / 1000) : undefined })
+    })
+  },
+  /** Deshace el último repaso: vuelve la tarjeta al estado anterior. Devuelve la tarjeta. */
+  async deshacerUltimo(): Promise<Tarjeta | undefined> {
+    const r = await db.revisiones.orderBy('id').last()
+    if (!r) return undefined
+    const t = await db.tarjetas.get(r.tarjetaId)
+    await db.transaction('rw', [db.tarjetas, db.revisiones, db.eventos], async () => {
+      if (t) await db.tarjetas.update(t.id, { fsrs: r.antes, vence: r.antes.due, estado: r.antes.state })
+      await db.revisiones.delete(r.id!)
+      const ev = await db.eventos.where('tipo').equals('repaso').last()
+      if (ev?.id !== undefined) await db.eventos.delete(ev.id)
+    })
+    return t ? { ...t, fsrs: r.antes, vence: r.antes.due, estado: r.antes.state } : undefined
+  },
+}
+
+export const revisiones = {
+  todas: () => db.revisiones.toArray(),
+  desde: (fecha: number) => db.revisiones.where('fecha').aboveOrEqual(fecha).toArray(),
+}
+
+export const imagenesTarjeta = {
+  async guardar(archivo: Blob, nombre?: string) {
+    const img: ImagenTarjeta = { id: nuevoId('img-'), archivo, mime: archivo.type || 'image/png', nombre, creada: Date.now() }
+    await db.imagenesTarjeta.add(img)
+    return img
+  },
+  obtener: (id: string) => db.imagenesTarjeta.get(id),
+  todas: () => db.imagenesTarjeta.toArray(),
+  /** Borra imágenes que no quedaron usadas por ninguna tarjeta (ej. se canceló una oclusión) y tienen más de un día. */
+  async limpiarHuerfanas() {
+    const usadas = new Set(await db.tarjetas.orderBy('imagenId').uniqueKeys())
+    const viejas = await db.imagenesTarjeta.filter((i) => !usadas.has(i.id) && Date.now() - i.creada > 864e5).primaryKeys()
+    await db.imagenesTarjeta.bulkDelete(viejas)
+  },
 }
 
 // ───────────────────────── Borrado total ─────────────────────────

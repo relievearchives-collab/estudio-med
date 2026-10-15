@@ -1,7 +1,7 @@
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from './db'
 import { leerAjustes, usoIA, type Ajustes } from './index'
-import type { Chat, ContenidoGuia, Fuente, Nota, Tema, UsoIA } from './tipos'
+import type { Chat, ContenidoGuia, Fuente, ImagenTarjeta, Nota, Revision, Tarjeta, Tema, UsoIA } from './tipos'
 
 /** Consultas reactivas para la UI (se actualizan solas cuando cambian los datos). */
 
@@ -23,3 +23,12 @@ export const useFragmentosPorUnidad = (): Record<string, number> | undefined =>
     await db.fragmentos.each((f) => { if (f.unidadId) r[f.unidadId] = (r[f.unidadId] ?? 0) + 1 })
     return r
   }, [])
+
+// ───────────────────────── Tarjetas (Fase 2) ─────────────────────────
+
+export const useTarjetas = (): Tarjeta[] | undefined => useLiveQuery(() => db.tarjetas.orderBy('creada').reverse().toArray(), [])
+export const useConteoTarjetas = (): number | undefined => useLiveQuery(() => db.tarjetas.count(), [])
+/** Repasos desde una fecha (ms), para la cola del día, la racha y los temas flojos. */
+export const useRevisionesDesde = (desde: number): Revision[] | undefined =>
+  useLiveQuery(() => db.revisiones.where('fecha').aboveOrEqual(desde).toArray(), [desde])
+export const useImagenTarjeta = (id?: string): ImagenTarjeta | undefined => useLiveQuery(() => (id ? db.imagenesTarjeta.get(id) : undefined), [id])

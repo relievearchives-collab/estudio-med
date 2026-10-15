@@ -16,12 +16,16 @@ import FuentePagina from './paginas/FuentePagina'
 import Hoy from './paginas/Hoy'
 import Mas from './paginas/Mas'
 import Notas from './paginas/Notas'
+import GenerarTarjetas from './paginas/GenerarTarjetas'
+import Repaso from './paginas/Repaso'
+import Tarjetas from './paginas/Tarjetas'
 import UnidadPagina from './paginas/UnidadPagina'
 
 const NAV = [
   { a: '/', nombre: 'Hoy', icono: 'hoy' },
   { a: '/biblioteca', nombre: 'Biblioteca', icono: 'biblioteca' },
   { a: '/chat', nombre: 'Preguntar', icono: 'chat' },
+  { a: '/tarjetas', nombre: 'Tarjetas', icono: 'tarjetas' },
   { a: '/notas', nombre: 'Notas', icono: 'nota' },
 ]
 const NAV_EXTRA = [
@@ -85,6 +89,9 @@ function Marco() {
           <Route path="/fuente/:id" element={<FuentePagina />} />
           <Route path="/chat" element={<Chat />} />
           <Route path="/chat/:id" element={<Chat />} />
+          <Route path="/tarjetas" element={<Tarjetas />} />
+          <Route path="/tarjetas/generar" element={<GenerarTarjetas />} />
+          <Route path="/repaso" element={<Repaso />} />
           <Route path="/notas" element={<Notas />} />
           <Route path="/notas/:id" element={<Notas />} />
           <Route path="/buscar" element={<Buscar />} />

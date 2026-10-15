@@ -1,7 +1,7 @@
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { Encabezado } from '../componentes/Encabezado'
 import { lazy, Suspense } from 'react'
-import { notas } from '../repositorio'
+import { accionesVisor } from '../componentes/accionesVisor'
 import { useFuente } from '../repositorio/hooks'
 
 const VisorFuente = lazy(() => import('../componentes/VisorFuente').then((m) => ({ default: m.VisorFuente })))
@@ -20,10 +20,7 @@ export default function FuentePagina() {
         <Suspense fallback={<p className="p-6 text-sm texto-suave">Abriendo…</p>}>
         <VisorFuente
           fuenteId={id} pagina={pagina} objetivo={frase ? { frase } : undefined}
-          acciones={{
-            alPreguntar: (t) => navegar(`/chat?q=${encodeURIComponent(`Explicame este pasaje: "${t.slice(0, 600)}"`)}`),
-            alCrearNota: async (t, u) => { const n = await notas.crear({ titulo: t.slice(0, 60), markdown: `> ${t}\n\n(${f?.nombre}, pág. ${u.pagina})\n\n`, origen: 'visor' }); navegar(`/notas/${n.id}`) },
-          }}
+          acciones={accionesVisor(navegar)}
         />
         </Suspense>
       </div>

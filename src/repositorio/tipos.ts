@@ -161,3 +161,94 @@ export interface Ajuste {
   clave: string
   valor: unknown
 }
+
+// ───────────────────────── Fase 2: tarjetas ─────────────────────────
+
+export type TipoTarjeta = 'basica' | 'cloze' | 'oclusion'
+
+/**
+ * Estado FSRS de una tarjeta (mismos campos que `Card` de ts-fsrs) con las fechas
+ * en milisegundos: así sobrevive intacto al respaldo JSON.
+ */
+export interface EstadoFSRS {
+  due: number
+  stability: number
+  difficulty: number
+  elapsed_days: number
+  scheduled_days: number
+  learning_steps: number
+  reps: number
+  lapses: number
+  /** 0 nueva · 1 aprendiendo · 2 repaso · 3 reaprendiendo */
+  state: number
+  last_review?: number
+}
+
+/** Rectángulo de oclusión, en proporciones de la imagen (0..1). */
+export interface Mascara {
+  id: string
+  x: number
+  y: number
+  w: number
+  h: number
+  /** Lo que hay debajo (lo que hay que recordar). */
+  etiqueta: string
+}
+
+export interface Tarjeta {
+  id: string
+  tipo: TipoTarjeta
+  /** Básica: pregunta. Oclusión: consigna opcional. */
+  frente: string
+  /** Básica: respuesta. Cloze/oclusión: dato extra opcional que se muestra al revelar. */
+  dorso: string
+  /** Cloze: texto con {{c1::respuesta}} o {{c1::respuesta::pista}}. */
+  cloze?: string
+  /** Cloze: número de hueco que pregunta esta tarjeta (c1, c2…). */
+  clozeN?: number
+  /** Oclusión: imagen compartida y todas sus máscaras; `mascara` es la que pregunta esta tarjeta. */
+  imagenId?: string
+  mascaras?: Mascara[]
+  mascara?: string
+  /** Tarjetas hermanas (mismo cloze con varios huecos o misma imagen). */
+  grupoId?: string
+  fragmentoId?: string
+  fuenteId?: string
+  pagina?: number
+  unidadId?: string
+  disciplinaId?: string
+  temaId?: string
+  etiquetas: string[]
+  origen: 'ia' | 'manual' | 'csv'
+  /** Copias indexadas de fsrs.due y fsrs.state, para armar la cola. */
+  vence: number
+  estado: number
+  fsrs: EstadoFSRS
+  suspendida?: boolean
+  creada: number
+  actualizada: number
+}
+
+export interface Revision {
+  id?: number
+  tarjetaId: string
+  fecha: number
+  /** 1 Otra vez · 2 Difícil · 3 Bien · 4 Fácil */
+  calificacion: number
+  /** Estado previo (para deshacer). */
+  antes: EstadoFSRS
+  /** Días hasta el próximo repaso que quedó programado. */
+  intervalo: number
+  estabilidad: number
+  dificultad: number
+  /** ms que tardó en responder */
+  duracion?: number
+}
+
+export interface ImagenTarjeta {
+  id: string
+  archivo: Blob
+  mime: string
+  nombre?: string
+  creada: number
+}

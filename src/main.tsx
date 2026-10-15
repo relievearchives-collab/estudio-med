@@ -4,10 +4,11 @@ import App from './App.tsx'
 import './index.css'
 import { aplicarMarca } from './marca'
 import { reanudarProcesamiento } from './procesamiento/cola'
-import { sembrarTemas } from './repositorio'
+import { imagenesTarjeta, sembrarTemas } from './repositorio'
 
 aplicarMarca()
 sembrarTemas().then(() => reanudarProcesamiento()).catch((e) => console.error(e))
+imagenesTarjeta.limpiarHuerfanas().catch(() => {})
 // Pedir almacenamiento persistente: evita que el navegador borre la base si falta espacio.
 navigator.storage?.persist?.().catch(() => {})
 

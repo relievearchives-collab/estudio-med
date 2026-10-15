@@ -6,6 +6,7 @@ import { descargar } from './Ajustes'
 const NOMBRES: Record<string, string> = {
   hoy: 'Hoy', biblioteca: 'Biblioteca', up: 'Unidades', fuente: 'Visor', chat: 'Chat', notas: 'Notas', buscar: 'Búsqueda',
   ajustes: 'Ajustes', estadisticas: 'Estadísticas', creditos: 'Créditos', mas: 'Más', bienvenida: 'Bienvenida',
+  tarjetas: 'Tarjetas', repaso: 'Repaso',
 }
 
 /** Estadísticas locales de uso, para evaluar la prueba. Nada sale del dispositivo salvo que se exporte. */

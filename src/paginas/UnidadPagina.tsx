@@ -41,6 +41,8 @@ export default function UnidadPagina() {
           : <p className="leading-relaxed">{u.resumenSituacion} <span className="block pt-2 text-xs texto-suave">(Resumen. Importá la guía para ver el texto oficial.)</span></p>}
         <div className="mt-3 flex flex-wrap gap-2">
           <button className="btn-primario" onClick={() => navegar(`/chat?alcance=unidad&id=${u.id}`)}><Icono nombre="chat" /> Preguntar sobre la {u.sigla}</button>
+          <button className="btn-secundario" onClick={() => navegar(`/tarjetas/generar?alcance=unidad&id=${u.id}&n=30`)}><Icono nombre="tarjetas" /> Hacer tarjetas de la {u.sigla}</button>
+          <button className="btn-secundario" onClick={() => navegar(`/repaso?unidad=${u.id}`)}>Repasar la {u.sigla}</button>
         </div>
       </section>
 
@@ -79,6 +81,7 @@ export default function UnidadPagina() {
                       <>
                         <span className="flex-1">{t.nombre}</span>
                         <button className="text-xs text-marca opacity-70 hover:opacity-100 dark:text-marca-claro" onClick={() => navegar(`/chat?alcance=tema&id=${t.id}`)}>Preguntar</button>
+                        <button className="text-xs text-marca opacity-70 hover:opacity-100 dark:text-marca-claro" onClick={() => navegar(`/tarjetas/generar?alcance=tema&id=${t.id}&n=10`)}>Tarjetas</button>
                       </>
                     )}
                   </li>
