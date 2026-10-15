@@ -18,6 +18,7 @@ export function FilaTema({ tema, estudiado }: { tema: Tema; estudiado: boolean }
         {tema.nombre} <span className="text-xs texto-suave">· {unidadPorId(tema.unidadId)?.sigla} · {nombreDisciplina(tema.disciplinaId)}</span>
       </span>
       <Link className="btn-fantasma !p-1.5" to={`/chat?alcance=tema&id=${tema.id}`} aria-label={`Preguntar sobre ${tema.nombre}`}><Icono nombre="chat" className="h-4 w-4" /></Link>
+      <Link className="btn-fantasma !p-1.5" to={`/resumen/${tema.id}`} aria-label={`Escuchar un resumen de ${tema.nombre}`}><Icono nombre="parlante" className="h-4 w-4" /></Link>
       <Link className="btn-fantasma !p-1.5" to={`/tarjetas/generar?alcance=tema&id=${tema.id}&n=10`} aria-label={`Tarjetas de ${tema.nombre}`}><Icono nombre="tarjetas" className="h-4 w-4" /></Link>
     </li>
   )

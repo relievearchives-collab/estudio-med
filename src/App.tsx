@@ -29,6 +29,7 @@ const PracticaSesion = lazy(() => import('./paginas/Practica').then((m) => ({ de
 const PracticaSimulacro = lazy(() => import('./paginas/Practica').then((m) => ({ default: m.PracticaSimulacro })))
 const PracticaBanco = lazy(() => import('./paginas/Practica').then((m) => ({ default: m.PracticaBanco })))
 const PracticaMapa = lazy(() => import('./paginas/Practica').then((m) => ({ default: m.PracticaMapa })))
+const Resumen = lazy(() => import('./paginas/Resumen'))
 const Plan = lazy(() => import('./paginas/Plan'))
 const TutoriaIndice = lazy(() => import('./paginas/Tutoria').then((m) => ({ default: m.TutoriaIndice })))
 const TutoriaPagina = lazy(() => import('./paginas/Tutoria').then((m) => ({ default: m.TutoriaPagina })))
@@ -121,6 +122,7 @@ function Marco() {
           <Route path="/practica/simulacro" element={<Suspense fallback={<Cargando />}><PracticaSimulacro /></Suspense>} />
           <Route path="/practica/banco" element={<Suspense fallback={<Cargando />}><PracticaBanco /></Suspense>} />
           <Route path="/practica/mapa" element={<Suspense fallback={<Cargando />}><PracticaMapa /></Suspense>} />
+          <Route path="/resumen/:temaId" element={<Suspense fallback={<Cargando />}><Resumen /></Suspense>} />
           <Route path="/plan" element={<Suspense fallback={<Cargando />}><Plan /></Suspense>} />
           <Route path="/tutoria" element={<Suspense fallback={<Cargando />}><TutoriaIndice /></Suspense>} />
           <Route path="/tutoria/:id" element={<Suspense fallback={<Cargando />}><TutoriaPagina /></Suspense>} />

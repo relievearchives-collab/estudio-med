@@ -174,4 +174,18 @@ Abrí una UP → *Tutoría ABP* (o Más → *Tutoría ABP*). Necesita la clave d
 ### Cómo probarlo
 Ajustes → fechas de los parciales; después mirá *Plan de hoy* en Hoy o Más → **Plan de estudio**.
 
+### Bloque 3: Escuchar el resumen de un tema ✅ (15/10/2026)
+- **Resumen para escuchar** de cualquier tema: mismo flujo que el chat (fragmentos del tema —completados con los de la UP si hay pocos—, IA con frase textual, citas verificadas), pedido en oraciones completas, sin tablas ni abreviaturas, en orden lógico.
+- **Lector por partes** con la voz del navegador (es-AR si está): *Escuchar / Pausa / Seguir / Detener*, velocidad 0,8–1,5×, la parte que suena se resalta y con el parlante de cada parte se escucha desde ahí. Los símbolos se leen en palabras (≈, →, ±, ↑, "mL/min" → "mL por min"); lo que está fuera de tus fuentes no se lee.
+- La primera versión queda en la caché (reabrirla no gasta cuota); *Otra versión* pide una nueva. *Guardar como nota* con fuente y página de cada cita.
+- Accesos: *Escuchar* en cada tema de la UP y el parlante en cada tema del plan de estudio.
+
+### Verificado
+- `npm test`: **117 tests**. Nuevos: texto para la voz, prompt del resumen con los fragmentos del tema y caché, citas verificadas, Markdown de la nota, "otra versión" sin caché, completar con la UP, aviso sin material, una sola llamada con dos aperturas simultáneas.
+- `npm run build` y lint sin errores ni avisos nuevos.
+- En el navegador con la guía real, IA y voz simuladas: resumen de "Nefrón: relación estructura-función" con citas a las págs. 42 y 240; lectura de las 3 partes en orden con resaltado, salto a la parte 3 a 1,5×; guardado como nota con las páginas. Abrir la pantalla hace una sola llamada (antes el doble montaje de desarrollo hacía dos). Vista de celular sin desbordes.
+
+### No verificado todavía
+- **Cómo suena** cada voz: depende del navegador y del sistema (en Android/Chrome suele haber voz es-US o es-ES; es-AR, menos).
+
 Al final: `ESCALAR.md`.

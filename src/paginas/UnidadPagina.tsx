@@ -97,6 +97,7 @@ export default function UnidadPagina() {
                         <span className="flex-1">{t.nombre}</span>
                         <button className="text-xs text-marca opacity-70 hover:opacity-100 dark:text-marca-claro" onClick={() => navegar(`/chat?alcance=tema&id=${t.id}`)}>Preguntar</button>
                         <button className="text-xs text-marca opacity-70 hover:opacity-100 dark:text-marca-claro" onClick={() => navegar(`/tarjetas/generar?alcance=tema&id=${t.id}&n=10`)}>Tarjetas</button>
+                        <button className="text-xs text-marca opacity-70 hover:opacity-100 dark:text-marca-claro" onClick={() => navegar(`/resumen/${t.id}`)}>Escuchar</button>
                         {escenaDeTema(t.id) && <button className="text-xs text-cyan-600 opacity-80 hover:opacity-100 dark:text-cyan-300" onClick={() => navegar(`/atlas/${escenaDeTema(t.id)!.escena}`)}>3D</button>}
                       </>
                     )}

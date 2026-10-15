@@ -2,7 +2,7 @@
 
 ## Qué es
 PWA local-first para estudiar Medicina (UNR, área "El Ser Humano y Su Medio"): biblioteca de PDFs con chat de citas clicables, tarjetas FSRS, atlas 3D, simuladores y práctica de parcial. Todo vive en el dispositivo (IndexedDB); la IA es la clave gratuita de Gemini del estudiante.
-Estado: Fases 1–4 hechas (ver PROGRESO.md). En curso: Fase 5 (docs/FUNCIONALIDADES.md §H–I); bloques 1 (Tutoría ABP) y 2 (plan de estudio) hechos.
+Estado: Fases 1–4 hechas (ver PROGRESO.md). En curso: Fase 5 (docs/FUNCIONALIDADES.md §H–I); bloques 1 (Tutoría ABP), 2 (plan de estudio) y 3 (resumen en voz alta) hechos.
 
 ## Stack
 - TypeScript ~6, React 19, react-router-dom 7 (HashRouter), Vite 8 + vite-plugin-pwa, Tailwind 4.
@@ -13,7 +13,7 @@ Estado: Fases 1–4 hechas (ver PROGRESO.md). En curso: Fase 5 (docs/FUNCIONALID
 
 ## Estructura
 - `src/paginas/` — una pantalla por ruta (Hoy, Biblioteca, UnidadPagina, Chat, Tarjetas, Repaso, Atlas, Simuladores, Practica, Notas, Ajustes…).
-- `src/componentes/` — UI reutilizable (Hoja, Citas, VisorFuente, ConfigIA, EditorTarjeta, `voz.ts` = dictado/lectura Web Speech).
+- `src/componentes/` — UI reutilizable (Hoja, Citas, VisorFuente, ConfigIA, EditorTarjeta, `voz.ts` = dictado, lectura y lector por partes (Web Speech)).
 - `src/repositorio/` — ÚNICO acceso a datos: `db.ts` (esquema Dexie + migraciones), `tipos.ts`, `index.ts` (API + ajustes por defecto), respaldo .zip.
 - `src/ia/` — `proveedor.ts` (interfaz), `gemini.ts`, `groq.ts`, `cliente.ts` (elige proveedor, cuenta uso, caché), `prompts/` (un prompt por archivo).
 - `src/chat/preguntar.ts` — RAG: búsqueda → prompt `[F1..F10]` → verificación de citas.
@@ -26,6 +26,7 @@ Estado: Fases 1–4 hechas (ver PROGRESO.md). En curso: Fase 5 (docs/FUNCIONALID
 - `src/practica/` — banco de preguntas IA, sesión, simulacro, tarjeta desde el error.
 - `src/tutoria/` — tutoría ABP: `cobertura.ts` (qué temas faltan, puro) y `tutor.ts` (tutor, comparación con la guía, cierre).
 - `src/plan/` — plan de estudio hasta los parciales: `planificar.ts` (puro), `usePlan.ts`, componentes del día.
+- `src/resumen/` — resumen de un tema para escuchar (`resumir.ts`: RAG con citas, texto para la voz).
 - `src/contenido/` — paquete de contenido (UPs, disciplinas, temas, parciales). Lo específico de UNR va SOLO acá.
 - `src/test/` — tests Vitest por módulo.
 - `scripts/` — `iconos.mjs` (íconos PWA), `modelos/convertir.mjs` (BodyParts3D → GLB).
@@ -34,7 +35,7 @@ Estado: Fases 1–4 hechas (ver PROGRESO.md). En curso: Fase 5 (docs/FUNCIONALID
 
 ## Puntos de entrada
 - `index.html` → `src/main.tsx` → `src/App.tsx` (rutas con HashRouter; páginas pesadas con `lazy` a nivel de módulo).
-- Rutas: `/` Hoy · `/biblioteca` · `/up/:id` · `/fuente/:id` · `/chat[/:id]` · `/tarjetas[/generar]` · `/repaso` · `/atlas[/:escena|/recorrido/:id]` · `/simuladores[/:id]` · `/practica[/sesion|/simulacro|/banco|/mapa]` · `/tutoria[/:id]` · `/plan` · `/notas[/:id]` · `/buscar` · `/ajustes` · `/estadisticas` · `/creditos` · `/mas` · `/bienvenida`.
+- Rutas: `/` Hoy · `/biblioteca` · `/up/:id` · `/fuente/:id` · `/chat[/:id]` · `/tarjetas[/generar]` · `/repaso` · `/atlas[/:escena|/recorrido/:id]` · `/simuladores[/:id]` · `/practica[/sesion|/simulacro|/banco|/mapa]` · `/tutoria[/:id]` · `/plan` · `/resumen/:temaId` · `/notas[/:id]` · `/buscar` · `/ajustes` · `/estadisticas` · `/creditos` · `/mas` · `/bienvenida`.
 - No hay backend: la IA se llama desde el navegador a `generativelanguage.googleapis.com`.
 
 ## Comandos
