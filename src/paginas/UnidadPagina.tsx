@@ -7,6 +7,7 @@ import { Markdown } from '../componentes/Markdown'
 import { colorDisciplina, paqueteActivo, unidadPorId } from '../contenido'
 import { temas as repoTemas } from '../repositorio'
 import escenasAtlas from '../atlas/escenas.json'
+import { simuladorPorId } from '../simuladores/catalogo'
 
 const nombreEscena = (id: string) => escenasAtlas.escenas.find((e) => e.id === id)?.titulo ?? id
 import { useContenidoGuia, useFuentes, useTemas } from '../repositorio/hooks'
@@ -49,6 +50,10 @@ export default function UnidadPagina() {
           <button className="btn-primario" onClick={() => navegar(`/chat?alcance=unidad&id=${u.id}`)}><Icono nombre="chat" /> Preguntar sobre la {u.sigla}</button>
           <button className="btn-secundario" onClick={() => navegar(`/tarjetas/generar?alcance=unidad&id=${u.id}&n=30`)}><Icono nombre="tarjetas" /> Hacer tarjetas de la {u.sigla}</button>
           <button className="btn-secundario" onClick={() => navegar(`/repaso?unidad=${u.id}`)}>Repasar la {u.sigla}</button>
+          {paqueteActivo.simuladores.filter((x) => x.unidadIds.includes(u.id)).map((x) => (
+            <button key={x.simulador} className="btn-secundario" onClick={() => navegar(`/simuladores/${x.simulador}`)}><Icono nombre="grafico" /> {simuladorPorId(x.simulador)?.titulo}</button>
+          ))}
+          <button className="btn-secundario" onClick={() => navegar(`/practica/sesion?ups=${u.id}`)}><Icono nombre="check" /> Practicar la {u.sigla}</button>
           {escenasUP.map((a) => (
             <button key={a.escena} className="btn-secundario" onClick={() => navegar(`/atlas/${a.escena}`)}><Icono nombre="cubo" /> {nombreEscena(a.escena)} en 3D</button>
           ))}

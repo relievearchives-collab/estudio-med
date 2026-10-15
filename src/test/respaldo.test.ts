@@ -1,7 +1,7 @@
 import 'fake-indexeddb/auto'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { db } from '../repositorio/db'
-import { atlas, chats, fichasAtlas, fragmentos, fuentes, guardarAjuste, imagenesTarjeta, leerAjustes, notas, revisiones, sembrarTemas, tarjetas, temas } from '../repositorio'
+import { atlas, chats, fichasAtlas, intentos, preguntas, fragmentos, fuentes, guardarAjuste, imagenesTarjeta, leerAjustes, notas, revisiones, sembrarTemas, tarjetas, temas } from '../repositorio'
 import { calificar, estadoNuevo } from '../tarjetas/fsrs'
 import { exportarRespaldo, importarRespaldo } from '../repositorio/respaldo'
 
@@ -33,6 +33,9 @@ async function poblar() {
   // Atlas: una estructura fallada en el Modo Museo y una ficha editada y revisada
   await atlas.responder('rinon-der', 'rinones', false, calificar(estadoNuevo(t0), 1, t0))
   await fichasAtlas.guardar('rinon', { descripcion: 'Mi versión revisada' }, true)
+  // Práctica: una pregunta del banco y dos intentos (uno de simulacro)
+  await preguntas.crear([{ enunciado: '¿Qué determina la TFG?', opciones: [{ texto: 'Kf y PNF', explicacion: 'Starling' }, { texto: 'Solo la PA', explicacion: '' }, { texto: 'La ADH', explicacion: '' }, { texto: 'La aldosterona', explicacion: '' }], correcta: 0, explicacion: '', verificada: true, fragmentoId: 'fr-1', unidadId: 'up3', origen: 'ia' }])
+  await intentos.registrar([{ origen: 'ejercicio', simulador: 'starling', enunciado: 'x', correcta: true, unidadId: 'up3' }, { origen: 'pregunta', enunciado: 'y', correcta: false, simulacroId: 'sim-1' }])
   return f.id
 }
 
@@ -52,6 +55,8 @@ describe('exportar / importar todo', () => {
       revisiones: await revisiones.todas(),
       atlas: await atlas.estados(),
       fichas: await fichasAtlas.todas(),
+      preguntas: await preguntas.todas(),
+      intentos: await intentos.todos(),
     }
     const zip = await exportarRespaldo()
 
@@ -90,6 +95,9 @@ describe('exportar / importar todo', () => {
     expect(await atlas.estados()).toEqual(antes.atlas)
     expect(await fichasAtlas.todas()).toEqual(antes.fichas)
     expect((await fichasAtlas.obtener('rinon'))?.revisado).toBe(true)
+    expect(await preguntas.todas()).toEqual(antes.preguntas)
+    expect(await intentos.todos()).toEqual(antes.intentos)
+    expect(antes.intentos).toHaveLength(2)
     expect((await leerAjustes()).fechasParciales).toEqual({ 'parcial-1': '2026-11-20' })
   })
 

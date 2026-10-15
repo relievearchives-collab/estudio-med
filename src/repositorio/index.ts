@@ -4,7 +4,7 @@ import {
   armarTarjetas, camposComunes, claveEnGrupo, clavesDeBorrador, tarjetaDeClave, type BorradorTarjeta,
 } from '../tarjetas/crear'
 import type {
-  Alcance, Chat, ContenidoGuia, EstadoFSRS, EstructuraAtlas, Evento, FichaEditada, Fragmento, Fuente, ImagenTarjeta, Nota, Pagina, Resaltado, Tarjeta, Tema, UsoIA,
+  Alcance, Chat, ContenidoGuia, EstadoFSRS, EstructuraAtlas, Evento, FichaEditada, Intento, Pregunta, Fragmento, Fuente, ImagenTarjeta, Nota, Pagina, Resaltado, Tarjeta, Tema, UsoIA,
 } from './tipos'
 
 export { nuevoId }
@@ -367,6 +367,37 @@ export const fichasAtlas = {
 }
 
 export type { EstructuraAtlas }
+
+// ───────────────────────── Preguntas e intentos (Fase 4) ─────────────────────────
+
+export const preguntas = {
+  todas: () => db.preguntas.orderBy('creada').reverse().toArray(),
+  contar: () => db.preguntas.count(),
+  obtener: (id: string) => db.preguntas.get(id),
+  deUnidades: (unidadIds: string[]) => db.preguntas.where('unidadId').anyOf(unidadIds).toArray(),
+  async crear(ps: Omit<Pregunta, 'id' | 'creada' | 'actualizada'>[]) {
+    const ahora = Date.now()
+    const nuevas = ps.map((p) => ({ ...p, id: nuevoId('p-'), creada: ahora, actualizada: ahora }))
+    await db.preguntas.bulkAdd(nuevas)
+    return nuevas
+  },
+  guardar: (p: Pregunta) => db.preguntas.put({ ...p, actualizada: Date.now() }),
+  reportar: (id: string, motivo: string) => db.preguntas.update(id, { reportada: motivo, actualizada: Date.now() }),
+  borrar: (id: string) => db.preguntas.delete(id),
+}
+
+export const intentos = {
+  todos: () => db.intentos.toArray(),
+  deSimulacro: (simulacroId: string) => db.intentos.where('simulacroId').equals(simulacroId).toArray(),
+  /** Guarda intentos y el evento de estadísticas correspondiente. */
+  async registrar(lista: Omit<Intento, 'id' | 'fecha'>[]) {
+    const ahora = Date.now()
+    await db.transaction('rw', [db.intentos, db.eventos], async () => {
+      await db.intentos.bulkAdd(lista.map((i) => ({ ...i, fecha: ahora })))
+      await db.eventos.bulkAdd(lista.map((i) => ({ tipo: i.origen === 'ejercicio' ? 'ejercicio' : 'pregunta', detalle: (i.simulador ?? i.preguntaId ?? '') + ':' + (i.correcta ? 'ok' : 'fallo'), fecha: ahora })))
+    })
+  },
+}
 
 // ───────────────────────── Borrado total ─────────────────────────
 

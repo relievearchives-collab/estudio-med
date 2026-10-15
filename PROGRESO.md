@@ -108,6 +108,37 @@ UP3 → *Hacer tarjetas de la UP3* → *Generar* → revisar y *Guardar* → **H
 ### Cómo probarlo
 Más → **Atlas 3D** → *Riñones y vías urinarias superiores*: tocá un riñón (ficha), abrí *Herramientas* (realista, desarmar, capas, corte), probá *Armar*, *Modo Museo* y *¿Dónde está?*. Recorridos: *Camino de la orina*. Para regenerar los modelos: `modelos-3d/LEEME.md`.
 
-## Fase 4 — Simuladores y práctica de parcial
+## Fase 4 — Simuladores y práctica de parcial ✅ (15/10/2026)
+
+### Hecho
+- **9 simuladores** interactivos (deslizadores y gráficos en vivo), cada uno con explicación breve, enlaces a las páginas de la guía del tema ("En la guía: pág. N", abren el visor si la guía está importada), **ejemplo resuelto** y **"Ejercicio nuevo"** con valores al azar, corregido por la app y con la resolución paso a paso:
+  1. **Darrow-Yannet**: peso, sexo, ganancia o pérdida de agua / isotónica / hipertónica / hipotónica; diagrama antes y después, LIC, LEC, plasma, intersticio y osmolaridad.
+  2. **Osmolaridad y tonicidad**: M, mEq/L, osmolaridad teórica y real (φ), presión osmótica (convención de la guía: R = 0,082, T en K), osmolaridad efectiva (σ) y **glóbulo rojo** que se hincha, se arruga o se lisa.
+  3. **Starling**: PAM, resistencias aferente y eferente, Kf, presión de Bowman y oncótica → TFG, FPR, FF y PNF (modelo de arteriolas en serie con π que sube a lo largo del capilar).
+  4. **Clearance y TFG**: U×V/P, cargas filtrada/excretada/reabsorbida o secretada, **Cockcroft-Gault, MDRD-4 (IDMS) y CKD-EPI 2021** con estadio KDIGO; aviso de que la guía no indica la versión.
+  5. **Glucosa (Tm) y PAH**: curvas de titulación con y sin "splay", umbral teórico y real, clearance de PAH que cae al saturarse la secreción.
+  6. **Contracorriente**: el asa de Henle por pasos (bombear → avanzar), reproducción automática; efecto de la urea, la ADH y el flujo de los vasos rectos.
+  7. **ADH, agua libre y SRAA**: escenarios (deshidratación, sobrecarga de agua, hemorragia, dieta con mucha sal) con sensores, hormonas, acción en cada segmento y resultado en orina; clearance osmolar, de agua libre y de agua libre de electrolitos; FENa.
+  8. **Ácido-base**: Henderson-Hasselbalch, **diagrama de Davenport** (isóbaras, línea buffer, punto del paciente y **banda de compensación**), exceso de bases y bases buffer, e **intérprete paso a paso** de gasometrías (coherencia, trastorno primario, Winter y reglas respiratorias aguda/crónica, trastorno agregado, anión gap corregido por albúmina, delta/delta).
+  9. **Análisis de orina**: 8 casos (físico, químico y sedimento) con explicación, y valores de referencia.
+- **Preguntas tipo parcial** (opción múltiple estilo situación clínica, 4–5 opciones con explicación de cada una y cita a la fuente) generadas con IA por lotes desde una UP, tema, disciplina o fuente, o desde una respuesta del chat (*Hacer preguntas*, ya habilitado). Banco editable: editar, **reportar** (sale de los simulacros), **regenerar** con el mismo fragmento o borrar.
+- **Práctica** de a una pregunta con corrección inmediata, mezclando el banco con ejercicios numéricos de las UP elegidas.
+- **Simulacro de parcial** cronometrado (Parcial 1 / Parcial 2 o las UP que elijas, cantidad y minutos): ≈30 % ejercicios numéricos, el resto del banco; se entrega solo al terminar el tiempo; **nota de 0 a 10**, resultado por UP y revisión con explicaciones.
+- **Pregunta o ejercicio fallado → tarjeta** con un toque.
+- **Mapa de calor** de aciertos por UP × disciplina (práctica, simulacros y ejercicios de los simuladores) y **temas flojos**.
+- Accesos desde "Hoy", el menú, cada UP (sus simuladores y *Practicar la UP*). Estadísticas: preguntas respondidas y ejercicios resueltos. Respaldo con el banco y los intentos.
+
+### Verificado
+- `npm test`: **94 tests**. Nuevos: fórmulas (Darrow-Yannet, osmolaridad con el ejemplo de la guía NaCl 0,15 M vs CaCl₂ 0,1 M = 7,45 atm, Starling y modelo de arteriolas, CG/MDRD/CKD-EPI 2021 con valores de referencia, Tm con splay, PAH, contracorriente, agua libre, FENa, Henderson-Hasselbalch, intérprete con trastornos simples, mixtos, crónicos y datos incoherentes); **los 9 generadores de ejercicios con 100 semillas cada uno** (respuesta escrita con coma decimal se acepta, un 20 % de error no); validación de preguntas de la IA y verificación de la cita; generación por lotes y desde el chat (IA simulada); armado del simulacro, nota y resultado por UP; mapa de calor y temas flojos; respaldo con preguntas e intentos.
+- `npm run build` sin errores; cada simulador es un chunk que se carga al abrirlo.
+- En el navegador: los 9 simuladores cargan y se navega entre ellos; Darrow-Yannet y su ejercicio (283,9 mOsm/L corregido con la resolución); intérprete de ácido-base con banda de compensación en Davenport; simulacro de 20 ítems (UP3 + UP4) con cronómetro, entrega, nota y revisión; "Hacer tarjeta" desde un ejercicio fallado; mapa de calor; práctica con una pregunta del banco (opciones mezcladas, explicaciones), reportar → editar → guardar. Vista de celular sin desbordes.
+
+### No verificado todavía
+- **Generación real de preguntas con Gemini** (sin clave: probada con la IA simulada). La calidad depende del modelo; revisá el banco y usá *Reportar* / *Regenerar*.
+- Los modelos de Starling y contracorriente son **didácticos** (lo dicen en pantalla): sirven para razonar direcciones y órdenes de magnitud, no para valores exactos.
+
+### Cómo probarlo
+Más → **Simuladores** → *Ácido-base*: cargá una gasometría en el intérprete. Más → **Práctica de parcial** → *Parcial 1* → *Empezar simulacro*. Para tener preguntas: **Banco de preguntas** → elegí una UP → *Generar* (necesita la clave de Gemini).
+
 ## Fase 5 — Tutoría ABP y extras
 Al final: `ESCALAR.md`.

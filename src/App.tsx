@@ -24,6 +24,13 @@ import UnidadPagina from './paginas/UnidadPagina'
 // El atlas usa three.js (pesado): se carga recién al abrirlo.
 const Atlas = lazy(() => import('./paginas/Atlas'))
 const AtlasEscena = lazy(() => import('./paginas/AtlasEscena'))
+const Practica = lazy(() => import('./paginas/Practica').then((m) => ({ default: m.PracticaInicio })))
+const PracticaSesion = lazy(() => import('./paginas/Practica').then((m) => ({ default: m.PracticaSesion })))
+const PracticaSimulacro = lazy(() => import('./paginas/Practica').then((m) => ({ default: m.PracticaSimulacro })))
+const PracticaBanco = lazy(() => import('./paginas/Practica').then((m) => ({ default: m.PracticaBanco })))
+const PracticaMapa = lazy(() => import('./paginas/Practica').then((m) => ({ default: m.PracticaMapa })))
+const IndiceSimuladores = lazy(() => import('./paginas/Simuladores').then((m) => ({ default: m.IndiceSimuladores })))
+const PaginaSimulador = lazy(() => import('./paginas/Simuladores').then((m) => ({ default: m.PaginaSimulador })))
 
 const NAV = [
   { a: '/', nombre: 'Hoy', icono: 'hoy' },
@@ -35,6 +42,8 @@ const NAV = [
 const NAV_EXTRA = [
   { a: '/buscar', nombre: 'Buscar', icono: 'buscar' },
   { a: '/atlas', nombre: 'Atlas 3D', icono: 'cubo' },
+  { a: '/simuladores', nombre: 'Simuladores', icono: 'grafico' },
+  { a: '/practica', nombre: 'Práctica de parcial', icono: 'check' },
   { a: '/estadisticas', nombre: 'Mis estadísticas', icono: 'grafico' },
   { a: '/ajustes', nombre: 'Ajustes', icono: 'ajustes' },
   { a: '/creditos', nombre: 'Créditos', icono: 'info' },
@@ -100,6 +109,13 @@ function Marco() {
           <Route path="/atlas" element={<Suspense fallback={<Cargando />}><Atlas /></Suspense>} />
           <Route path="/atlas/recorrido/:id" element={<Suspense fallback={<Cargando />}><AtlasEscena /></Suspense>} />
           <Route path="/atlas/:escena" element={<Suspense fallback={<Cargando />}><AtlasEscena /></Suspense>} />
+          <Route path="/simuladores" element={<Suspense fallback={<Cargando />}><IndiceSimuladores /></Suspense>} />
+          <Route path="/simuladores/:id" element={<Suspense fallback={<Cargando />}><PaginaSimulador /></Suspense>} />
+          <Route path="/practica" element={<Suspense fallback={<Cargando />}><Practica /></Suspense>} />
+          <Route path="/practica/sesion" element={<Suspense fallback={<Cargando />}><PracticaSesion /></Suspense>} />
+          <Route path="/practica/simulacro" element={<Suspense fallback={<Cargando />}><PracticaSimulacro /></Suspense>} />
+          <Route path="/practica/banco" element={<Suspense fallback={<Cargando />}><PracticaBanco /></Suspense>} />
+          <Route path="/practica/mapa" element={<Suspense fallback={<Cargando />}><PracticaMapa /></Suspense>} />
           <Route path="/notas" element={<Notas />} />
           <Route path="/notas/:id" element={<Notas />} />
           <Route path="/buscar" element={<Buscar />} />

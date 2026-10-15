@@ -55,6 +55,16 @@ export interface EscenaAtlasPaquete {
   temaIds: string[]
 }
 
+/** Un simulador de fisiología dentro de esta área: unidades, temas y páginas de la guía donde está el tema. */
+export interface SimuladorPaquete {
+  simulador: string
+  unidadIds: string[]
+  disciplinaId: string
+  temaIds: string[]
+  /** Páginas de la guía oficial (para "Ver en la guía"). */
+  paginasGuia: number[]
+}
+
 export interface Parcial {
   id: string
   nombre: string
@@ -84,6 +94,8 @@ export interface PaqueteContenido {
   parciales: Parcial[]
   /** Escenas del atlas 3D que usa esta área (los modelos y fichas son reutilizables entre áreas). */
   atlas: EscenaAtlasPaquete[]
+  /** Simuladores de fisiología que usa esta área. */
+  simuladores: SimuladorPaquete[]
   /** Notas de evaluación/regularidad (resumen propio). */
   evaluacion: string[]
   bibliografiaBase: { disciplinaId: string; obligatoria: string[]; ampliatoria: string[] }[]

@@ -130,6 +130,17 @@ export const paqueteUnrSerHumano: PaqueteContenido = {
     { escena: 'vasos', unidadId: 'up5', prioridad: 4, temaIds: ['up5-anatomia-1', 'up5-anatomia-2', 'up5-anatomia-3', 'up5-anatomia-4'] },
     { escena: 'nervios', unidadId: 'up6', prioridad: 4, temaIds: ['up6-anatomia-1', 'up6-anatomia-2', 'up6-anatomia-3', 'up6-anatomia-4'] },
   ],
+  simuladores: [
+    { simulador: 'compartimentos', unidadIds: ['up1', 'up2'], disciplinaId: 'fisiologia', temaIds: ['up1-fisiologia-3', 'up1-fisiologia-4', 'up2-fisiologia-1', 'up2-fisiologia-3'], paginasGuia: [32, 185] },
+    { simulador: 'osmolaridad', unidadIds: ['up2'], disciplinaId: 'fisica', temaIds: ['up2-fisica-1', 'up2-fisica-2', 'up2-fisica-3', 'up2-fisica-4', 'up2-fisiologia-4'], paginasGuia: [124, 125, 129, 130] },
+    { simulador: 'starling', unidadIds: ['up3'], disciplinaId: 'fisiologia', temaIds: ['up3-fisiologia-4', 'up3-fisiologia-6', 'up3-fisiologia-7'], paginasGuia: [42, 131] },
+    { simulador: 'clearance', unidadIds: ['up3', 'up4'], disciplinaId: 'fisiologia', temaIds: ['up3-fisiologia-8', 'up3-fisiologia-9', 'up4-fisiologia-2'], paginasGuia: [42, 52] },
+    { simulador: 'tm-pah', unidadIds: ['up4'], disciplinaId: 'fisiologia', temaIds: ['up4-fisiologia-4', 'up4-fisiologia-5'], paginasGuia: [52] },
+    { simulador: 'contracorriente', unidadIds: ['up4'], disciplinaId: 'fisiologia', temaIds: ['up4-fisiologia-6', 'up4-fisiologia-7', 'up4-fisiologia-8', 'up4-fisiologia-9'], paginasGuia: [52] },
+    { simulador: 'adh-sraa', unidadIds: ['up5'], disciplinaId: 'fisiologia', temaIds: ['up5-fisiologia-1', 'up5-fisiologia-3', 'up5-fisiologia-5', 'up5-fisiologia-7', 'up5-fisiologia-8'], paginasGuia: [59, 60, 185, 192] },
+    { simulador: 'acidobase', unidadIds: ['up6'], disciplinaId: 'fisiologia', temaIds: ['up6-fisiologia-1', 'up6-fisiologia-2', 'up6-fisiologia-4', 'up6-fisiologia-5', 'up6-fisiologia-6', 'up6-fisiologia-7', 'up6-fisica-3', 'up6-fisica-5'], paginasGuia: [73, 244] },
+    { simulador: 'orina', unidadIds: ['up3'], disciplinaId: 'fisiologia', temaIds: ['up3-fisiologia-10'], paginasGuia: [42, 240] },
+  ],
   parciales: [
     { id: 'parcial-1', nombre: 'Parcial 1', unidadesSugeridas: ['up1', 'up2', 'up3'] },
     { id: 'parcial-2', nombre: 'Parcial 2', unidadesSugeridas: ['up4', 'up5', 'up6'] },

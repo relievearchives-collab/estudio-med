@@ -173,6 +173,8 @@ export default function Hoy() {
       <section className="grid grid-cols-2 gap-3 sm:grid-cols-3">
         <Accion a="/repaso" icono="tarjetas" titulo="Repasar tarjetas" texto="FSRS: justo antes de olvidar" />
         <Accion a="/atlas" icono="cubo" titulo="Atlas 3D" texto="Desarmá, armá y Modo Museo" />
+        <Accion a="/practica" icono="check" titulo="Práctica de parcial" texto="Preguntas, ejercicios y simulacro" />
+        <Accion a="/simuladores" icono="grafico" titulo="Simuladores" texto="Starling, clearance, ácido-base…" />
         <Accion a="/chat" icono="chat" titulo="Preguntale a tus fuentes" texto="Respuestas con cita a la página" />
         <Accion a="/biblioteca" icono="biblioteca" titulo="Unidades Problema" texto="Situaciones y temas por UP" />
         <Accion a="/notas" icono="nota" titulo="Notas" texto="Tus resúmenes enlazados" />

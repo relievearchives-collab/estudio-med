@@ -245,6 +245,57 @@ export interface Revision {
   duracion?: number
 }
 
+// ───────────────────────── Fase 4: preguntas tipo parcial ─────────────────────────
+
+export interface OpcionPregunta {
+  texto: string
+  /** Por qué es correcta o incorrecta. */
+  explicacion: string
+}
+
+/** Pregunta de opción múltiple estilo parcial (situación clínica), editable. */
+export interface Pregunta {
+  id: string
+  enunciado: string
+  opciones: OpcionPregunta[]
+  correcta: number
+  /** Explicación general de la respuesta. */
+  explicacion: string
+  fragmentoId?: string
+  fuenteId?: string
+  pagina?: number
+  /** Frase textual de la fuente que respalda la respuesta. */
+  frase?: string
+  verificada: boolean
+  unidadId?: string
+  disciplinaId?: string
+  temaId?: string
+  origen: 'ia' | 'manual'
+  /** Motivo si el estudiante la reportó como mala. */
+  reportada?: string
+  creada: number
+  actualizada: number
+}
+
+/** Un intento de práctica: una pregunta del banco o un ejercicio numérico de un simulador. */
+export interface Intento {
+  id?: number
+  origen: 'pregunta' | 'ejercicio'
+  preguntaId?: string
+  /** Simulador del ejercicio numérico. */
+  simulador?: string
+  enunciado: string
+  respuesta?: string
+  correcta: boolean
+  unidadId?: string
+  disciplinaId?: string
+  temaId?: string
+  simulacroId?: string
+  fecha: number
+  /** segundos */
+  duracion?: number
+}
+
 // ───────────────────────── Fase 3: atlas 3D ─────────────────────────
 
 /** Estado de repaso de una estructura del atlas (Modo Museo / ¿Dónde está?), con FSRS. */

@@ -1,6 +1,6 @@
 import Dexie, { type EntityTable } from 'dexie'
 import type {
-  Ajuste, CacheIA, Chat, ContenidoGuia, Evento, EstructuraAtlas, FichaEditada, Fragmento, Fuente, ImagenTarjeta, Nota, Pagina, Resaltado, Revision, Tarjeta, Tema, UsoIA,
+  Ajuste, CacheIA, Chat, ContenidoGuia, Evento, EstructuraAtlas, FichaEditada, Fragmento, Fuente, ImagenTarjeta, Intento, Pregunta, Nota, Pagina, Resaltado, Revision, Tarjeta, Tema, UsoIA,
 } from './tipos'
 
 /**
@@ -25,6 +25,8 @@ export class BaseEstudio extends Dexie {
   imagenesTarjeta!: EntityTable<ImagenTarjeta, 'id'>
   estructurasAtlas!: EntityTable<EstructuraAtlas, 'id'>
   fichasEditadas!: EntityTable<FichaEditada, 'id'>
+  preguntas!: EntityTable<Pregunta, 'id'>
+  intentos!: EntityTable<Intento, 'id'>
 
   constructor(nombre = 'estudio-med') {
     super(nombre)
@@ -53,6 +55,11 @@ export class BaseEstudio extends Dexie {
       estructurasAtlas: 'id, vence, escena',
       fichasEditadas: 'id',
     })
+    // Fase 4: banco de preguntas tipo parcial e intentos (práctica, simulacros y ejercicios numéricos).
+    this.version(4).stores({
+      preguntas: 'id, unidadId, disciplinaId, temaId, fragmentoId, creada',
+      intentos: '++id, origen, preguntaId, unidadId, disciplinaId, temaId, simulacroId, fecha',
+    })
   }
 }
 
@@ -61,7 +68,7 @@ export const db = new BaseEstudio()
 /** Tablas que se exportan en el respaldo (todas menos la caché de IA). */
 export const TABLAS_RESPALDO = [
   'ajustes', 'temas', 'contenidoGuia', 'fuentes', 'paginas', 'fragmentos', 'chats', 'notas', 'resaltados', 'usoIA', 'eventos',
-  'tarjetas', 'revisiones', 'imagenesTarjeta', 'estructurasAtlas', 'fichasEditadas',
+  'tarjetas', 'revisiones', 'imagenesTarjeta', 'estructurasAtlas', 'fichasEditadas', 'preguntas', 'intentos',
 ] as const
 export type TablaRespaldo = (typeof TABLAS_RESPALDO)[number]
 
