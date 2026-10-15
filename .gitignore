@@ -1,0 +1,12 @@
+# Material con derechos de terceros: nunca se sube
+material-de-estudio/
+modelos-3d/fuente/
+node_modules/
+dist/
+dev-dist/
+.env
+*.local
+# Copias duplicadas de descargas
+*(1).*
+*(2).*
+(1).gitignore

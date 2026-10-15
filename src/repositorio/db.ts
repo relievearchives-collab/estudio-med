@@ -1,0 +1,53 @@
+import Dexie, { type EntityTable } from 'dexie'
+import type {
+  Ajuste, CacheIA, Chat, ContenidoGuia, Evento, Fragmento, Fuente, Nota, Pagina, Resaltado, Tema, UsoIA,
+} from './tipos'
+
+/**
+ * Base local (IndexedDB). Solo los módulos de src/repositorio/ importan este archivo:
+ * así, para sumar cuentas y sincronización, se reemplaza esta capa sin tocar la UI.
+ */
+export class BaseEstudio extends Dexie {
+  ajustes!: EntityTable<Ajuste, 'clave'>
+  temas!: EntityTable<Tema, 'id'>
+  contenidoGuia!: EntityTable<ContenidoGuia, 'unidadId'>
+  fuentes!: EntityTable<Fuente, 'id'>
+  paginas!: Dexie.Table<Pagina, [string, number]>
+  fragmentos!: EntityTable<Fragmento, 'id'>
+  chats!: EntityTable<Chat, 'id'>
+  notas!: EntityTable<Nota, 'id'>
+  resaltados!: EntityTable<Resaltado, 'id'>
+  usoIA!: EntityTable<UsoIA, 'fecha'>
+  cacheIA!: EntityTable<CacheIA, 'hash'>
+  eventos!: EntityTable<Evento, 'id'>
+
+  constructor(nombre = 'estudio-med') {
+    super(nombre)
+    this.version(1).stores({
+      ajustes: 'clave',
+      temas: 'id, unidadId, disciplinaId',
+      contenidoGuia: 'unidadId',
+      fuentes: 'id, estado, creada',
+      paginas: '[fuenteId+numero], fuenteId',
+      fragmentos: 'id, fuenteId, unidadId, disciplinaId, temaId, [fuenteId+pagina]',
+      chats: 'id, actualizado',
+      notas: 'id, actualizada, *temaIds',
+      resaltados: 'id, fuenteId, [fuenteId+pagina]',
+      usoIA: 'fecha',
+      cacheIA: 'hash, fecha',
+      eventos: '++id, tipo, fecha',
+    })
+  }
+}
+
+export const db = new BaseEstudio()
+
+/** Tablas que se exportan en el respaldo (todas menos la caché de IA). */
+export const TABLAS_RESPALDO = [
+  'ajustes', 'temas', 'contenidoGuia', 'fuentes', 'paginas', 'fragmentos', 'chats', 'notas', 'resaltados', 'usoIA', 'eventos',
+] as const
+export type TablaRespaldo = (typeof TABLAS_RESPALDO)[number]
+
+export function nuevoId(prefijo = '') {
+  return prefijo + (crypto.randomUUID?.() ?? Math.random().toString(36).slice(2) + Date.now().toString(36))
+}
