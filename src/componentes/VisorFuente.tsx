@@ -1,22 +1,12 @@
 import * as pdfjs from 'pdfjs-dist'
-import pdfWorkerUrl from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
 import { useLiveQuery } from 'dexie-react-hooks'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
-import { buscarFrase } from '../busqueda/normalizar'
+import { buscarFrase, limpiarRenglones } from '../busqueda/normalizar'
 import { construirTextoPagina, type ItemTexto, type TextoPagina } from '../procesamiento/textoPagina'
 import { fuentes, paginas, resaltados as repoResaltados } from '../repositorio'
 import type { Fuente, Resaltado } from '../repositorio/tipos'
 import { Icono } from './Icono'
-
-pdfjs.GlobalWorkerOptions.workerSrc = pdfWorkerUrl
-
-const documentos = new Map<string, Promise<pdfjs.PDFDocumentProxy>>()
-function abrirPdf(f: Fuente) {
-  if (!documentos.has(f.id)) {
-    documentos.set(f.id, f.archivo!.arrayBuffer().then((b) => pdfjs.getDocument({ data: new Uint8Array(b) }).promise))
-  }
-  return documentos.get(f.id)!
-}
+import { abrirPdf, imagenDePagina } from './pdf'
 
 export interface ObjetivoVisor {
   /** Frase a resaltar en amarillo (la cita). */
@@ -54,7 +44,7 @@ export function VisorFuente({ fuenteId, pagina: paginaInicial, objetivo, accione
   useEffect(() => setPagina(paginaInicial), [paginaInicial, fuenteId])
   const objetivoActivo = pagina === paginaInicial ? objetivo : undefined
   const resaltadosPagina = useLiveQuery(() => repoResaltados.dePagina(fuenteId, pagina), [fuenteId, pagina]) ?? []
-  const area = useRef<HTMLDivElement>(null)
+  const [capturando, setCapturando] = useState(false)
 
   if (fuente === undefined) return <div className="p-6 text-sm texto-suave">Cargando…</div>
   if (!fuente) return <div className="p-6 text-sm">La fuente ya no existe.</div>
@@ -75,9 +65,10 @@ export function VisorFuente({ fuenteId, pagina: paginaInicial, objetivo, accione
         <button className="btn-fantasma !px-2" disabled={pagina >= total} onClick={() => setPagina((p) => p + 1)} aria-label="Página siguiente"><Icono nombre="der" /></button>
         <div className="flex-1" />
         {acciones?.alOclusion && fuente.archivo && (
-          <button className="btn-fantasma !px-2" title="Tarjeta de oclusión con esta página" aria-label="Oclusión de imagen" onClick={() => {
+          <button className="btn-fantasma !px-2" title="Tarjeta de oclusión con esta página" aria-label="Oclusión de imagen" disabled={capturando} onClick={async () => {
             if (fuente.tipo === 'imagen') return acciones.alOclusion!(fuente.archivo!, { fuenteId, pagina })
-            area.current?.querySelector('canvas')?.toBlob((b) => b && acciones.alOclusion!(b, { fuenteId, pagina }), 'image/png')
+            setCapturando(true)
+            try { acciones.alOclusion!(await imagenDePagina(fuente, pagina), { fuenteId, pagina }) } finally { setCapturando(false) }
           }}><Icono nombre="imagen" /></button>
         )}
         {fuente.tipo === 'pdf' && (
@@ -87,7 +78,7 @@ export function VisorFuente({ fuenteId, pagina: paginaInicial, objetivo, accione
           </>
         )}
       </div>
-      <div ref={area} className="min-h-0 flex-1 overflow-auto p-2">
+      <div className="min-h-0 flex-1 overflow-auto p-2">
         {fuente.tipo === 'pdf' && fuente.archivo
           ? <PaginaPdf fuente={fuente} pagina={pagina} zoom={zoom} objetivo={objetivoActivo} resaltados={resaltadosPagina} acciones={acciones} />
           : <PaginaTexto fuente={fuente} pagina={pagina} objetivo={objetivoActivo} resaltados={resaltadosPagina} acciones={acciones} />}
@@ -95,6 +86,11 @@ export function VisorFuente({ fuenteId, pagina: paginaInicial, objetivo, accione
       </div>
     </div>
   )
+}
+
+/** Texto seleccionado listo para usar: renglones unidos y palabras cortadas por guion ("hormo-" + "nales") reconstruidas. */
+function textoSeleccion(s: string) {
+  return limpiarRenglones(s.split(/\r?\n/)).replace(/\s+/g, ' ').trim()
 }
 
 function rangoObjetivo(texto: string, objetivo?: ObjetivoVisor) {
@@ -287,7 +283,7 @@ function useSeleccion(capa: React.RefObject<HTMLDivElement | null>, texto?: Text
         if (a === undefined || b === undefined || b <= a) return
         const base = el.getBoundingClientRect()
         const ult = r.getBoundingClientRect()
-        setDatos({ texto: texto.texto.slice(a, b).replace(/\s+/g, ' ').trim(), inicio: a, fin: b, pos: { x: ult.left - base.left, y: ult.bottom - base.top + 6 } })
+        setDatos({ texto: textoSeleccion(texto.texto.slice(a, b)), inicio: a, fin: b, pos: { x: ult.left - base.left, y: ult.bottom - base.top + 6 } })
       }, 10)
     }
     el.addEventListener('mouseup', alSoltar)
@@ -372,8 +368,8 @@ function PaginaTexto({ fuente, pagina, objetivo, resaltados, acciones }: {
       {url && <img src={url} alt={fuente.nombre} className="mb-3 max-h-[60vh] w-full rounded-xl object-contain" />}
       <div
         ref={ref} className="tarjeta whitespace-pre-wrap p-4 text-sm leading-relaxed"
-        onMouseUp={() => setSel(window.getSelection()?.toString().trim() ?? '')}
-        onTouchEnd={() => setTimeout(() => setSel(window.getSelection()?.toString().trim() ?? ''), 50)}
+        onMouseUp={() => setSel(textoSeleccion(window.getSelection()?.toString() ?? ''))}
+        onTouchEnd={() => setTimeout(() => setSel(textoSeleccion(window.getSelection()?.toString() ?? '')), 50)}
       >
         {p ? partes : <span className="texto-suave">Sin texto en esta página.</span>}
       </div>

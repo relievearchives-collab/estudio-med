@@ -6,7 +6,7 @@ import type { Mascara } from '../repositorio/tipos'
 import type { BorradorTarjeta } from '../tarjetas/crear'
 import { numerosCloze } from '../tarjetas/fsrs'
 import { Icono } from './Icono'
-import { useUrlBlob } from './TarjetaVista'
+import { useUrlBlob } from './useUrlBlob'
 
 /** Formulario de una tarjeta (controlado). La oclusión usa su propio editor de máscaras. */
 export function EditorTarjeta({ b, alCambiar, compacto }: { b: BorradorTarjeta; alCambiar: (b: BorradorTarjeta) => void; compacto?: boolean }) {

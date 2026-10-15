@@ -6,13 +6,12 @@ import { EditorTarjeta } from '../componentes/EditorTarjeta'
 import { Encabezado } from '../componentes/Encabezado'
 import { Hoja } from '../componentes/Hoja'
 import { Icono } from '../componentes/Icono'
-import { resumenTarjeta } from '../componentes/TarjetaVista'
 import { normalizar } from '../busqueda/normalizar'
 import { paqueteActivo, unidadPorId } from '../contenido'
 import { imagenesTarjeta, tarjetas as repoTarjetas } from '../repositorio'
 import { useAjustes, useFuentes, useRevisionesDesde, useTarjetas, useTemas } from '../repositorio/hooks'
 import type { Tarjeta } from '../repositorio/tipos'
-import { borradorDe, problemaBorrador, textoPlano, type BorradorTarjeta } from '../tarjetas/crear'
+import { borradorDe, problemaBorrador, resumenTarjeta, textoPlano, type BorradorTarjeta } from '../tarjetas/crear'
 import { exportarCSV, importarCSV, unaPorNota } from '../tarjetas/csv'
 import { armarCola, ESTADO, formatearIntervalo, inicioDelDia } from '../tarjetas/fsrs'
 import { descargar } from './Ajustes'
@@ -42,7 +41,8 @@ export default function Tarjetas() {
   const [ocupado, setOcupado] = useState('')
   const [hoy] = useState(() => inicioDelDia())
   const revHoy = useRevisionesDesde(hoy) ?? []
-  const ahora = Date.now()
+  // Hora de referencia de la pantalla (para "Para hoy" / "en 3 d"); se renueva al volver a entrar.
+  const [ahora] = useState(() => Date.now())
 
   const filtradas = useMemo(() => {
     const n = normalizar(q)

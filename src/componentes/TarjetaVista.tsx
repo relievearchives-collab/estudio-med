@@ -1,15 +1,8 @@
-import { useEffect, useMemo } from 'react'
 import { useImagenTarjeta } from '../repositorio/hooks'
 import type { Mascara, Tarjeta } from '../repositorio/tipos'
 import { renderCloze } from '../tarjetas/fsrs'
 import { Markdown } from './Markdown'
-
-/** URL temporal de un Blob (se libera sola). */
-export function useUrlBlob(b?: Blob) {
-  const url = useMemo(() => (b ? URL.createObjectURL(b) : ''), [b])
-  useEffect(() => () => { if (url) URL.revokeObjectURL(url) }, [url])
-  return url
-}
+import { useUrlBlob } from './useUrlBlob'
 
 /**
  * Imagen con las máscaras de oclusión encima. La máscara activa se pinta en naranja
@@ -71,11 +64,4 @@ export function ContenidoTarjeta({ t, revelar }: { t: Tarjeta; revelar: boolean 
       {revelar && <div className="border-t pt-3 leading-relaxed borde"><Markdown texto={t.dorso} /></div>}
     </div>
   )
-}
-
-/** Resumen de una línea (listas). */
-export function resumenTarjeta(t: Pick<Tarjeta, 'tipo' | 'frente' | 'cloze' | 'mascaras' | 'mascara'>) {
-  if (t.tipo === 'cloze') return (t.cloze ?? '').replace(/\{\{c\d+::(.*?)(?:::.*?)?\}\}/gs, '[$1]')
-  if (t.tipo === 'oclusion') return `${t.frente || 'Oclusión de imagen'} · ${t.mascaras?.find((m) => m.id === t.mascara)?.etiqueta ?? `${t.mascaras?.length ?? 0} máscaras`}`
-  return t.frente
 }

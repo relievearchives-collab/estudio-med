@@ -4,7 +4,7 @@ import { EstadoFuente } from '../componentes/EstadoFuente'
 import { Icono } from '../componentes/Icono'
 import { paqueteActivo } from '../contenido'
 import { marca } from '../marca'
-import { useMemo } from 'react'
+import { useState } from 'react'
 import { useAjustes, useConteoFragmentos, useFragmentosPorUnidad, useFuentes, useRevisionesDesde, useTarjetas, useTemas, useUsoIAHoy } from '../repositorio/hooks'
 import { armarCola, ESTADO, inicioDelDia, racha } from '../tarjetas/fsrs'
 import { temasFlojos } from '../tarjetas/flojos'
@@ -30,11 +30,12 @@ export default function Hoy() {
   const temas = useTemas() ?? []
   const fragsPorUnidad = useFragmentosPorUnidad() ?? {}
   // Un año de repasos alcanza para la racha; los temas flojos miran los últimos 30 días.
-  const desde = useMemo(() => inicioDelDia() - 365 * DIA, [])
+  // Hora de referencia de la pantalla: se renueva al volver a entrar.
+  const [ahora] = useState(() => Date.now())
+  const desde = inicioDelDia(ahora) - 365 * DIA
   const revs = useRevisionesDesde(desde)
   if (!a) return null
 
-  const ahora = Date.now()
   const hoy = inicioDelDia(ahora)
   const nuevasHoy = (revs ?? []).filter((r) => r.fecha >= hoy && r.antes.state === ESTADO.nueva).length
   const cola = armarCola(tarjetas ?? [], ahora, a.nuevasPorDia, nuevasHoy)
@@ -52,8 +53,8 @@ export default function Hoy() {
     .sort((x, y) => x.dias! - y.dias!)
   const enProceso = fuentes.filter((f) => f.estado !== 'listo')
   const guia = fuentes.find((f) => f.esGuia)
-  const necesitaBackup = nFrag > 0 && (!a.ultimoBackup || Date.now() - a.ultimoBackup > 7 * DIA)
-  const hora = new Date().getHours()
+  const necesitaBackup = nFrag > 0 && (!a.ultimoBackup || ahora - a.ultimoBackup > 7 * DIA)
+  const hora = new Date(ahora).getHours()
   const saludo = hora < 12 ? 'Buen día' : hora < 20 ? 'Buenas tardes' : 'Buenas noches'
 
   return (

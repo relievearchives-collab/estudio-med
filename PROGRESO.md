@@ -40,12 +40,12 @@ Abrir http://localhost:5173 → Bienvenida → pegar la clave → importar `mate
 ## Fase 2 — Retención ✅ (15/10/2026)
 
 ### Hecho
-- **Tarjetas** básica, cloze (cada hueco es una tarjeta) y **oclusión de imagen** (máscaras dibujadas a mano sobre una foto o sobre una página de la guía capturada desde el visor). Todas editables, suspendibles y borrables; enlazadas al fragmento, la fuente y la página de origen.
+- **Tarjetas** básica, cloze (cada hueco es una tarjeta) y **oclusión de imagen** (máscaras dibujadas a mano sobre una foto o sobre una página de la guía capturada desde el visor en alta resolución, 1800 px). Todas editables, suspendibles y borrables; enlazadas al fragmento, la fuente y la página de origen.
 - **Generación con IA por lotes** (Flash-Lite, JSON con esquema, una idea por tarjeta, prompt en `src/ia/prompts/tarjetas.ts`) desde:
   - una **UP, disciplina, tema o fuente** ("Hacer tarjetas de la UP3": 30 tarjetas en 2 llamadas);
   - una **selección del visor** (*Crear tarjeta* en la barra de selección);
   - una **respuesta del chat** (*Hacer tarjetas*, usa solo los fragmentos citados).
-  **Vista previa** para aceptar, editar o descartar cada una, con "✓ Respaldo verificado" (la frase de respaldo está textual en el fragmento) que abre la página.
+  **Vista previa** para aceptar, editar o descartar cada una, con "✓ Respaldo verificado" (la frase de respaldo está textual en el fragmento) que abre la página; las que no lo tienen vienen desmarcadas.
 - **Repaso FSRS** (`ts-fsrs`): Otra vez / Difícil / Bien / Fácil con el **próximo intervalo en cada botón**, teclas 1–4, espacio para revelar, *Deshacer* (Ctrl+Z), *Ver en la fuente*, *Editar*, *Suspender*. Repaso filtrado por UP o tema. Retención objetivo y nuevas por día en **Ajustes**.
 - **"Hoy"**: primero la cola del día (vencidas + nuevas + en aprendizaje), **racha**, **temas flojos** (o, sin datos todavía, UP con material sin tarjetas), cuenta regresiva y el resto.
 - **Exportar a Anki `.apkg`** (SQLite armado en el navegador con sql.js; mazo por UP; las oclusiones van con su imagen) y **CSV**; **importar CSV** (con o sin encabezado, `,` `;` o tab).
@@ -56,6 +56,12 @@ Abrir http://localhost:5173 → Bienvenida → pegar la clave → importar `mate
 - `npm test`: **46 tests** en verde. Nuevos: scheduling (orden de intervalos, crecimiento, lapsos, efecto de la retención, preview = calificar), cola del día y tope de nuevas, racha, temas flojos, cloze, editar un cloze sin perder FSRS, responder/deshacer, generación con IA simulada (lotes, validación, verificación de la frase, chat), CSV ida y vuelta, `.apkg` abierto con sql.js, y **respaldo con estado FSRS + historial + imagen de oclusión**.
 - `npm run build` sin errores.
 - En el navegador, con la **guía real** importada: "Hacer tarjetas de la UP3" → 2 llamadas al modelo de lotes → 30 propuestas, 27 con respaldo verificado; descartar/desmarcar y guardar; repaso con teclado (25 nuevas por el tope, intervalos 1 min / 6 min / 10 min / 8 d) y deshacer; selección en la pág. 42 → *Crear tarjeta*; captura de la pág. 24 → oclusión con 3 máscaras → repaso con la máscara destapada; chat → *Hacer tarjetas*; búsqueda; `.apkg` real en el navegador (153 ms, mazo "UP3"); respaldo de 12,3 MB exportado e importado con tarjetas, historial e imagen idénticos. Sin errores en consola.
+
+### Pulido posterior
+- Captura de página para oclusión en alta resolución (antes copiaba el canvas visible, ~580 px).
+- La selección del visor une renglones y palabras cortadas por guion ("hormo- nales" → "hormonales") para preguntar, notas y tarjetas.
+- Propuestas con respaldo sin verificar desmarcadas por defecto.
+- Repaso: tarjeta actual como estado derivado (sin saltos ni repeticiones), botones fijos que no tapan la fila de acciones; sin warnings de lint en el código de la Fase 2. Revisado en escritorio y modo oscuro.
 
 ### No verificado todavía
 - **Gemini real:** igual que en la Fase 1, sin clave: la IA se probó con `generateContent` simulado. La calidad de las tarjetas depende del modelo real; revisar la vista previa la primera vez.

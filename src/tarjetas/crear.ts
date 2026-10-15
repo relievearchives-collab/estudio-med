@@ -84,3 +84,10 @@ export function textoPlano(t: Pick<Tarjeta, 'tipo' | 'frente' | 'dorso' | 'cloze
   if (t.tipo === 'oclusion') return `${t.frente} ${(t.mascaras ?? []).map((m) => m.etiqueta).join(', ')} ${t.dorso}`.trim()
   return `${t.frente} — ${t.dorso}`
 }
+
+/** Resumen de una línea (listas). */
+export function resumenTarjeta(t: Pick<Tarjeta, 'tipo' | 'frente' | 'cloze' | 'mascaras' | 'mascara'>) {
+  if (t.tipo === 'cloze') return (t.cloze ?? '').replace(/\{\{c\d+::(.*?)(?:::.*?)?\}\}/gs, '[$1]')
+  if (t.tipo === 'oclusion') return `${t.frente || 'Oclusión de imagen'} · ${t.mascaras?.find((m) => m.id === t.mascara)?.etiqueta ?? `${t.mascaras?.length ?? 0} máscaras`}`
+  return t.frente
+}

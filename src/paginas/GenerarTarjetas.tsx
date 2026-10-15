@@ -62,7 +62,8 @@ function GenerarIA({ params }: { params: URLSearchParams }) {
     try {
       const ps = await generarTarjetas(origen, cantidad, tipos, (h, t) => setProgreso(t > 1 ? `Lote ${Math.min(h + 1, t)} de ${t}` : ''))
       setPropuestas((prev) => [...prev, ...ps])
-      setAceptadas((prev) => new Set([...prev, ...ps.map((p) => p.clave)]))
+      // Las que no tienen respaldo verificado vienen desmarcadas: hay que revisarlas antes de guardarlas.
+      setAceptadas((prev) => new Set([...prev, ...ps.filter((p) => p.verificada).map((p) => p.clave)]))
       if (!ps.length) setError('La IA no devolvió tarjetas válidas. Probá con otro alcance o de nuevo.')
     } catch (e) { setError((e as Error).message) }
     setEstado('listo'); setProgreso('')
@@ -128,7 +129,9 @@ function GenerarIA({ params }: { params: URLSearchParams }) {
       {propuestas.length > 0 && (
         <section className="space-y-2">
           <div className="flex flex-wrap items-center gap-2">
-            <h2 className="flex-1 text-sm font-semibold">Vista previa · {aceptadas.size} de {propuestas.length} aceptadas</h2>
+            <h2 className="flex-1 text-sm font-semibold">Vista previa · {aceptadas.size} de {propuestas.length} aceptadas
+              {propuestas.some((p) => !p.verificada) && <span className="block text-xs font-normal texto-suave">Las que tienen respaldo sin verificar vienen desmarcadas: revisalas con el enlace a la página antes de aceptarlas.</span>}
+            </h2>
             <button className="btn-fantasma !py-1 text-xs" onClick={() => setAceptadas(new Set(propuestas.map((p) => p.clave)))}>Aceptar todas</button>
             <button className="btn-fantasma !py-1 text-xs" onClick={() => setAceptadas(new Set())}>Ninguna</button>
           </div>
