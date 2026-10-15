@@ -4,7 +4,7 @@ import {
   armarTarjetas, camposComunes, claveEnGrupo, clavesDeBorrador, tarjetaDeClave, type BorradorTarjeta,
 } from '../tarjetas/crear'
 import type {
-  Alcance, Chat, ContenidoGuia, EstadoFSRS, EstructuraAtlas, Evento, FichaEditada, Intento, Pregunta, Fragmento, Fuente, ImagenTarjeta, Nota, Pagina, Resaltado, Tarjeta, Tema, Tutoria, UsoIA,
+  Alcance, Chat, ContenidoGuia, EstadoFSRS, ExamenOral, EstructuraAtlas, Evento, FichaEditada, Intento, Pregunta, Fragmento, Fuente, ImagenTarjeta, Nota, Pagina, Resaltado, Tarjeta, Tema, Tutoria, UsoIA,
 } from './tipos'
 
 export { nuevoId }
@@ -406,7 +406,7 @@ export const intentos = {
     const ahora = Date.now()
     await db.transaction('rw', [db.intentos, db.eventos], async () => {
       await db.intentos.bulkAdd(lista.map((i) => ({ ...i, fecha: ahora })))
-      await db.eventos.bulkAdd(lista.map((i) => ({ tipo: i.origen === 'ejercicio' ? 'ejercicio' : 'pregunta', detalle: (i.simulador ?? i.preguntaId ?? '') + ':' + (i.correcta ? 'ok' : 'fallo'), fecha: ahora })))
+      await db.eventos.bulkAdd(lista.map((i) => ({ tipo: i.origen, detalle: (i.simulador ?? i.preguntaId ?? '') + ':' + (i.correcta ? 'ok' : 'fallo'), fecha: ahora })))
     })
   },
 }
@@ -428,6 +428,24 @@ export const tutorias = {
     return db.tutorias.get(id)
   },
   borrar: (id: string) => db.tutorias.delete(id),
+}
+
+// ───────────────────────── Exámenes orales (Fase 5) ─────────────────────────
+
+export const orales = {
+  todos: () => db.orales.orderBy('actualizado').reverse().toArray(),
+  obtener: (id: string) => db.orales.get(id),
+  async crear(e: Omit<ExamenOral, 'id' | 'creado' | 'actualizado' | 'actual'>) {
+    const ahora = Date.now()
+    const nuevo: ExamenOral = { ...e, id: nuevoId('or-'), actual: 0, creado: ahora, actualizado: ahora }
+    await db.orales.add(nuevo)
+    return nuevo
+  },
+  async actualizar(id: string, cambios: Partial<ExamenOral>) {
+    await db.orales.update(id, { ...cambios, actualizado: Date.now() })
+    return db.orales.get(id)
+  },
+  borrar: (id: string) => db.orales.delete(id),
 }
 
 // ───────────────────────── Borrado total ─────────────────────────

@@ -280,7 +280,7 @@ export interface Pregunta {
 /** Un intento de práctica: una pregunta del banco o un ejercicio numérico de un simulador. */
 export interface Intento {
   id?: number
-  origen: 'pregunta' | 'ejercicio'
+  origen: 'pregunta' | 'ejercicio' | 'oral'
   preguntaId?: string
   /** Simulador del ejercicio numérico. */
   simulador?: string
@@ -390,4 +390,49 @@ export interface Tutoria {
   terminada?: number
   creada: number
   actualizada: number
+}
+
+// ───────────────────────── Fase 5: examen oral ─────────────────────────
+
+export interface TurnoOral {
+  rol: 'examinador' | 'estudiante'
+  texto: string
+}
+
+/** Una pregunta del examen oral con su rúbrica (puntos clave) y lo que pasó al responderla. */
+export interface PreguntaOral {
+  enunciado: string
+  /** Puntos clave que una respuesta completa tiene que mencionar (rúbrica). */
+  puntos: string[]
+  fragmentoId?: string
+  frase?: string
+  verificada: boolean
+  unidadId?: string
+  disciplinaId?: string
+  temaId?: string
+  turnos: TurnoOral[]
+  /** Índices de `puntos` que el estudiante cubrió (unión de todas sus respuestas). */
+  cubiertos: number[]
+  /** Los que cubrió en la primera respuesta (antes de la repregunta). */
+  cubiertosPrimera?: number[]
+  /** Errores conceptuales detectados. */
+  errores: string[]
+  repreguntada: boolean
+  /** 0–10, calculada por código a partir de cubiertos y errores. */
+  nota?: number
+  devolucion?: Segmento[]
+}
+
+export interface ExamenOral {
+  id: string
+  alcance: Alcance
+  titulo: string
+  preguntas: PreguntaOral[]
+  /** Pregunta en curso. */
+  actual: number
+  /** Nota final 0–10 (promedio por código) al terminar. */
+  nota?: number
+  terminado?: number
+  creado: number
+  actualizado: number
 }

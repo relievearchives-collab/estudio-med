@@ -188,4 +188,19 @@ Ajustes → fechas de los parciales; después mirá *Plan de hoy* en Hoy o Más 
 ### No verificado todavía
 - **Cómo suena** cada voz: depende del navegador y del sistema (en Android/Chrome suele haber voz es-US o es-ES; es-AR, menos).
 
+### Bloque 4: Examen oral por voz ✅ (15/10/2026)
+- Elegís de qué (UP, disciplina, tema o fuentes) y cuántas preguntas (3, 5 u 8). La IA arma preguntas abiertas de oral desde tus fragmentos, cada una con **2–4 puntos clave** (rúbrica) y cita verificada.
+- El examinador **lee la pregunta en voz alta**; respondés **hablando** (botón grande de dictado; el texto se puede corregir) o escribiendo, o "No sé".
+- La IA dice qué puntos clave cubriste y qué errores conceptuales dijiste; el **código** decide: si faltan puntos, **una repregunta** (también en voz alta); después **califica**: proporción de puntos (los que salen tras la repregunta valen 70 %) − 1,5 por error, redondeado a 0,5. Devolución con ✓/✗ por punto, errores y citas.
+- Resultado final (promedio), orales anteriores con su nota, "Otro oral del mismo tema". Cada pregunta queda como intento (`origen: 'oral'`, aprobada con ≥ 6): suma al mapa de calor y a los temas flojos. Estadísticas: preguntas de examen oral y tutorías cerradas.
+- Accesos: Más → *Examen oral*, *Oral de la UP* en cada unidad y la grilla de Hoy. Tabla `orales` (Dexie v6) en el respaldo.
+
+### Verificado
+- `npm test`: **123 tests**. Nuevos: nota por código (con y sin repregunta, errores, límites), promedio, índices válidos, validación de preguntas y su cita; flujo con IA simulada (una sola repregunta, nota 4 con un error, intento y evento registrados, segunda pregunta 10, nota final 7); respuesta guardada si la IA falla y reintento sin duplicarla; aviso sin material; respaldo con orales.
+- `npm run build` y lint sin errores ni avisos nuevos.
+- En el navegador con la guía real, IA y voz simuladas (respuestas escritas): UP3 con 2 preguntas; la pregunta y la repregunta se leyeron una vez cada una; puntos ✓/✗ con "(después de la repregunta)", error conceptual y cita; nota final 7 "¡Aprobado!"; Estadísticas muestra 2 preguntas de examen oral. Vista de celular sin desbordes.
+
+### No verificado todavía
+- **Dictado real** (necesita micrófono; en Chrome/Edge con Web Speech) y la calidad de la evaluación con Gemini real.
+
 Al final: `ESCALAR.md`.

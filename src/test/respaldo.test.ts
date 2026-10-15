@@ -1,7 +1,7 @@
 import 'fake-indexeddb/auto'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { db } from '../repositorio/db'
-import { atlas, chats, fichasAtlas, intentos, preguntas, fragmentos, fuentes, guardarAjuste, imagenesTarjeta, leerAjustes, notas, revisiones, sembrarTemas, tarjetas, temas, tutorias } from '../repositorio'
+import { atlas, chats, fichasAtlas, intentos, preguntas, fragmentos, fuentes, guardarAjuste, imagenesTarjeta, leerAjustes, notas, revisiones, sembrarTemas, tarjetas, temas, tutorias, orales } from '../repositorio'
 import { calificar, estadoNuevo } from '../tarjetas/fsrs'
 import { exportarRespaldo, importarRespaldo } from '../repositorio/respaldo'
 
@@ -39,6 +39,8 @@ async function poblar() {
   // Tutoría ABP con ideas, conversación y preguntas analizadas
   const tu = await tutorias.crear('up3')
   await tutorias.actualizar(tu.id, { ideas: ['edemas'], mensajes: [{ rol: 'tutor', texto: '¿Qué pensás?', fecha: 1 }], preguntas: [{ texto: '¿Qué es la TFG?', temaIds: ['t1'] }], faltantes: [], etapa: 'preguntas' })
+  // Examen oral con una pregunta calificada
+  await orales.crear({ alcance: { tipo: 'unidad', unidadId: 'up3' }, titulo: 'UP3', nota: 8.5, preguntas: [{ enunciado: '¿TFG?', puntos: ['a', 'b'], verificada: true, turnos: [{ rol: 'examinador', texto: '¿TFG?' }], cubiertos: [0, 1], cubiertosPrimera: [0], errores: [], repreguntada: true, nota: 8.5 }] })
   return f.id
 }
 
@@ -61,6 +63,7 @@ describe('exportar / importar todo', () => {
       preguntas: await preguntas.todas(),
       intentos: await intentos.todos(),
       tutorias: await tutorias.todas(),
+      orales: await orales.todos(),
     }
     const zip = await exportarRespaldo()
 
@@ -104,6 +107,8 @@ describe('exportar / importar todo', () => {
     expect(antes.intentos).toHaveLength(2)
     expect(antes.tutorias).toHaveLength(1)
     expect(await tutorias.todas()).toEqual(antes.tutorias)
+    expect(antes.orales).toHaveLength(1)
+    expect(await orales.todos()).toEqual(antes.orales)
     expect((await leerAjustes()).fechasParciales).toEqual({ 'parcial-1': '2026-11-20' })
   })
 

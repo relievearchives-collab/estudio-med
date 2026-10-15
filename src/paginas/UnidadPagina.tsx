@@ -49,6 +49,7 @@ export default function UnidadPagina() {
         <div className="mt-3 flex flex-wrap gap-2">
           <button className="btn-primario" onClick={() => navegar(`/chat?alcance=unidad&id=${u.id}`)}><Icono nombre="chat" /> Preguntar sobre la {u.sigla}</button>
           <button className="btn-secundario" onClick={async () => navegar(`/tutoria/${(await repoTutorias.crear(u.id)).id}`)}><Icono nombre="chat" /> Tutoría ABP</button>
+          <button className="btn-secundario" onClick={() => navegar(`/oral?alcance=unidad&id=${u.id}`)}><Icono nombre="mic" /> Oral de la {u.sigla}</button>
           <button className="btn-secundario" onClick={() => navegar(`/tarjetas/generar?alcance=unidad&id=${u.id}&n=30`)}><Icono nombre="tarjetas" /> Hacer tarjetas de la {u.sigla}</button>
           <button className="btn-secundario" onClick={() => navegar(`/repaso?unidad=${u.id}`)}>Repasar la {u.sigla}</button>
           {paqueteActivo.simuladores.filter((x) => x.unidadIds.includes(u.id)).map((x) => (

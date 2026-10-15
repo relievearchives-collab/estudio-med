@@ -1,7 +1,7 @@
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from './db'
 import { leerAjustes, usoIA, type Ajustes } from './index'
-import type { Chat, ContenidoGuia, EstructuraAtlas, FichaEditada, Fuente, ImagenTarjeta, Nota, Revision, Intento, Tarjeta, Tema, Tutoria, UsoIA } from './tipos'
+import type { Chat, ContenidoGuia, EstructuraAtlas, ExamenOral, FichaEditada, Fuente, ImagenTarjeta, Nota, Revision, Intento, Tarjeta, Tema, Tutoria, UsoIA } from './tipos'
 
 /** Consultas reactivas para la UI (se actualizan solas cuando cambian los datos). */
 
@@ -43,3 +43,7 @@ export const useTutorias = (): Tutoria[] | undefined => useLiveQuery(() => db.tu
 export const useTutoria = (id?: string): Tutoria | undefined | null =>
   useLiveQuery(async () => (id ? ((await db.tutorias.get(id)) ?? null) : null), [id])
 export const useIntentos = (): Intento[] | undefined => useLiveQuery(() => db.intentos.toArray(), [])
+export const useOrales = (): ExamenOral[] | undefined => useLiveQuery(() => db.orales.orderBy('actualizado').reverse().toArray(), [])
+/** undefined mientras carga; null si no existe. */
+export const useOral = (id?: string): ExamenOral | undefined | null =>
+  useLiveQuery(async () => (id ? ((await db.orales.get(id)) ?? null) : null), [id])
