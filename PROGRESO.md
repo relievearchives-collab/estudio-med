@@ -140,5 +140,23 @@ Más → **Atlas 3D** → *Riñones y vías urinarias superiores*: tocá un riñ
 ### Cómo probarlo
 Más → **Simuladores** → *Ácido-base*: cargá una gasometría en el intérprete. Más → **Práctica de parcial** → *Parcial 1* → *Empezar simulacro*. Para tener preguntas: **Banco de preguntas** → elegí una UP → *Generar* (necesita la clave de Gemini).
 
-## Fase 5 — Tutoría ABP y extras
+## Fase 5 — Tutoría ABP y extras (en curso)
+
+### Bloque 1: Tutoría ABP ✅ (15/10/2026)
+- **5 pasos** como en la tutoría del área: **situación problemática** (texto oficial de la guía importada o el resumen, con *Ver en la guía*), **lluvia de ideas** (ideas e hipótesis; escribir, pegar varios renglones o dictar), **tutor IA** que solo hace preguntas y orienta hacia los temas de cada disciplina sin nombrarlos, **preguntas de aprendizaje** y **cierre integrador**.
+- **Comparar con la guía:** la IA asigna cada pregunta a temas de la UP y el **código** calcula qué quedó afuera ("Cubriste X de Y temas") y muestra hasta 6 "Te faltó pensar en…" repartidos entre disciplinas, cada uno con **cita verificada** a un fragmento de ese tema.
+- **Cierre:** "Explicá la situación integrando todas las disciplinas" → devolución con citas, **disciplinas que no integraste** (calculado por código) y **tarjetas sugeridas** que se guardan en el mazo con un toque.
+- Varias tutorías por UP, se retoman donde quedaron, se borran. Accesos: Más → *Tutoría ABP* y el botón *Tutoría ABP* de cada UP. Entran en el respaldo (tabla `tutorias`, Dexie v5).
+
+### Verificado
+- `npm test`: **103 tests**. Nuevos: asignación de temas con números inválidos, temas y disciplinas sin cubrir, reparto entre disciplinas, separación de ítems pegados; flujo con IA simulada (contexto del tutor, mensaje guardado si la IA falla, faltantes decididos por código con cita verificada, cierre con citas, disciplinas faltantes, tarjetas guardadas una sola vez, aviso sin material); respaldo con tutorías.
+- `npm run build` y lint sin errores nuevos.
+- En el navegador, con la **guía real** (247 págs.) e IA simulada: UP3 de punta a punta: situación oficial, ideas pegadas en varios renglones, dos turnos con el tutor, 2 preguntas → "Cubriste 3 de 23 temas" y 6 faltantes (5 con cita verificada, 1 sin material), cierre con 2 citas, 4 disciplinas faltantes y 2 tarjetas guardadas. Vista de celular sin desbordes.
+
+### No verificado todavía
+- **Tutor real con Gemini:** que de verdad no dé respuestas y que la asignación de preguntas a temas sea buena depende del modelo (probado con IA simulada).
+
+### Cómo probarlo
+Abrí una UP → *Tutoría ABP* (o Más → *Tutoría ABP*). Necesita la clave de Gemini para el tutor, la comparación y el cierre; las citas, la guía importada.
+
 Al final: `ESCALAR.md`.

@@ -327,3 +327,67 @@ export interface ImagenTarjeta {
   nombre?: string
   creada: number
 }
+
+// ───────────────────────── Fase 5: tutoría ABP ─────────────────────────
+
+export type EtapaTutoria = 'situacion' | 'ideas' | 'tutor' | 'preguntas' | 'cierre'
+
+export interface MensajeTutoria {
+  rol: 'estudiante' | 'tutor'
+  texto: string
+  fecha: number
+}
+
+/** Pregunta de aprendizaje del estudiante y los temas de la UP que la IA le asignó (validados por código). */
+export interface PreguntaAprendizaje {
+  texto: string
+  temaIds: string[]
+}
+
+/** Tema de la UP que no quedó cubierto: lo decide el código; la IA solo redacta el "te faltó…". */
+export interface FaltanteTutoria {
+  temaId: string
+  disciplinaId: string
+  texto: string
+  cita?: CitaVerificada
+}
+
+/** Devolución del cierre integrador. */
+export interface DevolucionTutoria {
+  segmentos: Segmento[]
+  /** Disciplinas de la UP que la explicación no integró (calculado por código). */
+  disciplinasFaltantes: string[]
+  /** Fragmentos enviados a la IA (para enlazar las tarjetas sugeridas). */
+  fragmentoIds: string[]
+  /** Tarjetas sugeridas para lo que faltó (el estudiante elige cuáles guardar). */
+  tarjetas: TarjetaSugerida[]
+}
+
+export interface TarjetaSugerida {
+  tipo: 'basica' | 'cloze'
+  frente: string
+  dorso: string
+  cloze?: string
+  fragmentoId?: string
+  frase: string
+  verificada: boolean
+  /** Ya se guardó en el mazo. */
+  guardada?: boolean
+}
+
+/** Una tutoría ABP sobre la situación problemática de una UP. */
+export interface Tutoria {
+  id: string
+  unidadId: string
+  etapa: EtapaTutoria
+  ideas: string[]
+  hipotesis: string[]
+  mensajes: MensajeTutoria[]
+  preguntas: PreguntaAprendizaje[]
+  faltantes?: FaltanteTutoria[]
+  explicacion?: string
+  devolucion?: DevolucionTutoria
+  terminada?: number
+  creada: number
+  actualizada: number
+}

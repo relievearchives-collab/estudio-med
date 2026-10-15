@@ -1,7 +1,7 @@
 import 'fake-indexeddb/auto'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { db } from '../repositorio/db'
-import { atlas, chats, fichasAtlas, intentos, preguntas, fragmentos, fuentes, guardarAjuste, imagenesTarjeta, leerAjustes, notas, revisiones, sembrarTemas, tarjetas, temas } from '../repositorio'
+import { atlas, chats, fichasAtlas, intentos, preguntas, fragmentos, fuentes, guardarAjuste, imagenesTarjeta, leerAjustes, notas, revisiones, sembrarTemas, tarjetas, temas, tutorias } from '../repositorio'
 import { calificar, estadoNuevo } from '../tarjetas/fsrs'
 import { exportarRespaldo, importarRespaldo } from '../repositorio/respaldo'
 
@@ -36,6 +36,9 @@ async function poblar() {
   // Práctica: una pregunta del banco y dos intentos (uno de simulacro)
   await preguntas.crear([{ enunciado: '¿Qué determina la TFG?', opciones: [{ texto: 'Kf y PNF', explicacion: 'Starling' }, { texto: 'Solo la PA', explicacion: '' }, { texto: 'La ADH', explicacion: '' }, { texto: 'La aldosterona', explicacion: '' }], correcta: 0, explicacion: '', verificada: true, fragmentoId: 'fr-1', unidadId: 'up3', origen: 'ia' }])
   await intentos.registrar([{ origen: 'ejercicio', simulador: 'starling', enunciado: 'x', correcta: true, unidadId: 'up3' }, { origen: 'pregunta', enunciado: 'y', correcta: false, simulacroId: 'sim-1' }])
+  // Tutoría ABP con ideas, conversación y preguntas analizadas
+  const tu = await tutorias.crear('up3')
+  await tutorias.actualizar(tu.id, { ideas: ['edemas'], mensajes: [{ rol: 'tutor', texto: '¿Qué pensás?', fecha: 1 }], preguntas: [{ texto: '¿Qué es la TFG?', temaIds: ['t1'] }], faltantes: [], etapa: 'preguntas' })
   return f.id
 }
 
@@ -57,6 +60,7 @@ describe('exportar / importar todo', () => {
       fichas: await fichasAtlas.todas(),
       preguntas: await preguntas.todas(),
       intentos: await intentos.todos(),
+      tutorias: await tutorias.todas(),
     }
     const zip = await exportarRespaldo()
 
@@ -98,6 +102,8 @@ describe('exportar / importar todo', () => {
     expect(await preguntas.todas()).toEqual(antes.preguntas)
     expect(await intentos.todos()).toEqual(antes.intentos)
     expect(antes.intentos).toHaveLength(2)
+    expect(antes.tutorias).toHaveLength(1)
+    expect(await tutorias.todas()).toEqual(antes.tutorias)
     expect((await leerAjustes()).fechasParciales).toEqual({ 'parcial-1': '2026-11-20' })
   })
 

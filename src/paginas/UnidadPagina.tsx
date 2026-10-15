@@ -5,7 +5,7 @@ import { Encabezado } from '../componentes/Encabezado'
 import { Icono } from '../componentes/Icono'
 import { Markdown } from '../componentes/Markdown'
 import { colorDisciplina, paqueteActivo, unidadPorId } from '../contenido'
-import { temas as repoTemas } from '../repositorio'
+import { temas as repoTemas, tutorias as repoTutorias } from '../repositorio'
 import escenasAtlas from '../atlas/escenas.json'
 import { simuladorPorId } from '../simuladores/catalogo'
 
@@ -48,6 +48,7 @@ export default function UnidadPagina() {
           : <p className="leading-relaxed">{u.resumenSituacion} <span className="block pt-2 text-xs texto-suave">(Resumen. Importá la guía para ver el texto oficial.)</span></p>}
         <div className="mt-3 flex flex-wrap gap-2">
           <button className="btn-primario" onClick={() => navegar(`/chat?alcance=unidad&id=${u.id}`)}><Icono nombre="chat" /> Preguntar sobre la {u.sigla}</button>
+          <button className="btn-secundario" onClick={async () => navegar(`/tutoria/${(await repoTutorias.crear(u.id)).id}`)}><Icono nombre="chat" /> Tutoría ABP</button>
           <button className="btn-secundario" onClick={() => navegar(`/tarjetas/generar?alcance=unidad&id=${u.id}&n=30`)}><Icono nombre="tarjetas" /> Hacer tarjetas de la {u.sigla}</button>
           <button className="btn-secundario" onClick={() => navegar(`/repaso?unidad=${u.id}`)}>Repasar la {u.sigla}</button>
           {paqueteActivo.simuladores.filter((x) => x.unidadIds.includes(u.id)).map((x) => (

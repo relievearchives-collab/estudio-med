@@ -4,7 +4,7 @@ import {
   armarTarjetas, camposComunes, claveEnGrupo, clavesDeBorrador, tarjetaDeClave, type BorradorTarjeta,
 } from '../tarjetas/crear'
 import type {
-  Alcance, Chat, ContenidoGuia, EstadoFSRS, EstructuraAtlas, Evento, FichaEditada, Intento, Pregunta, Fragmento, Fuente, ImagenTarjeta, Nota, Pagina, Resaltado, Tarjeta, Tema, UsoIA,
+  Alcance, Chat, ContenidoGuia, EstadoFSRS, EstructuraAtlas, Evento, FichaEditada, Intento, Pregunta, Fragmento, Fuente, ImagenTarjeta, Nota, Pagina, Resaltado, Tarjeta, Tema, Tutoria, UsoIA,
 } from './tipos'
 
 export { nuevoId }
@@ -397,6 +397,25 @@ export const intentos = {
       await db.eventos.bulkAdd(lista.map((i) => ({ tipo: i.origen === 'ejercicio' ? 'ejercicio' : 'pregunta', detalle: (i.simulador ?? i.preguntaId ?? '') + ':' + (i.correcta ? 'ok' : 'fallo'), fecha: ahora })))
     })
   },
+}
+
+// ───────────────────────── Tutorías ABP (Fase 5) ─────────────────────────
+
+export const tutorias = {
+  todas: () => db.tutorias.orderBy('actualizada').reverse().toArray(),
+  obtener: (id: string) => db.tutorias.get(id),
+  deUnidad: (unidadId: string) => db.tutorias.where('unidadId').equals(unidadId).reverse().sortBy('actualizada'),
+  async crear(unidadId: string) {
+    const ahora = Date.now()
+    const t: Tutoria = { id: nuevoId('tu-'), unidadId, etapa: 'situacion', ideas: [], hipotesis: [], mensajes: [], preguntas: [], creada: ahora, actualizada: ahora }
+    await db.tutorias.add(t)
+    return t
+  },
+  async actualizar(id: string, cambios: Partial<Tutoria>) {
+    await db.tutorias.update(id, { ...cambios, actualizada: Date.now() })
+    return db.tutorias.get(id)
+  },
+  borrar: (id: string) => db.tutorias.delete(id),
 }
 
 // ───────────────────────── Borrado total ─────────────────────────
