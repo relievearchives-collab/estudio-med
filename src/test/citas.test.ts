@@ -56,6 +56,13 @@ describe('verificación de citas', () => {
   it('acepta elisiones con "..."', () => {
     expect(fraseEnTexto('Factores determinantes ... ecuación de Starling', enviados[0].texto)).toBe(true)
   })
+  it('acepta una palabra cortada al final de renglón copiada con espacio ("ARTERIO- LA")', () => {
+    const texto = 'Las células yuxtaglomerulares de la ARTERIO-\nLA EFERENTE y de la aferente secretan renina.'
+    expect(fraseEnTexto('de la ARTERIO- LA EFERENTE y de la aferente', texto)).toBe(true)
+    expect(fraseEnTexto('de la ARTERIOLA EFERENTE y de la aferente', texto)).toBe(true)
+    // Un guion real con espacio que no está en el texto sigue sin verificar
+    expect(fraseEnTexto('de la ARTERIO- LO EFERENTE y de la aferente', texto)).toBe(false)
+  })
   it('rechaza frases que no están o que son demasiado cortas', () => {
     expect(fraseEnTexto('la ecuación de Henderson', enviados[0].texto)).toBe(false)
     expect(fraseEnTexto('de la', enviados[0].texto)).toBe(false)

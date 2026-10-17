@@ -140,7 +140,7 @@ Más → **Atlas 3D** → *Riñones y vías urinarias superiores*: tocá un riñ
 ### Cómo probarlo
 Más → **Simuladores** → *Ácido-base*: cargá una gasometría en el intérprete. Más → **Práctica de parcial** → *Parcial 1* → *Empezar simulacro*. Para tener preguntas: **Banco de preguntas** → elegí una UP → *Generar* (necesita la clave de Gemini).
 
-## Fase 5 — Tutoría ABP y extras (en curso)
+## Fase 5 — Tutoría ABP y extras ✅
 
 ### Bloque 1: Tutoría ABP ✅ (15/10/2026)
 - **5 pasos** como en la tutoría del área: **situación problemática** (texto oficial de la guía importada o el resumen, con *Ver en la guía*), **lluvia de ideas** (ideas e hipótesis; escribir, pegar varios renglones o dictar), **tutor IA** que solo hace preguntas y orienta hacia los temas de cada disciplina sin nombrarlos, **preguntas de aprendizaje** y **cierre integrador**.
@@ -216,5 +216,20 @@ Ajustes → fechas de los parciales; después mirá *Plan de hoy* en Hoy o Más 
 
 ### No verificado todavía
 - Calidad y coherencia clínica de los casos con Gemini real (la app corrige lo numérico, no la historia).
+
+### Bloque 6: Tablas y mapas conceptuales editables ✅ (16/10/2026)
+- **Generar** una tabla comparativa o un mapa conceptual a partir de una consigna ("arteriola aferente vs. eferente", "regulación de la filtración") dentro de un alcance (todo, UP, disciplina, tema o fuentes). **Cada celda y cada concepto lleva su cita**, verificada como en el chat; lo que no está en las fuentes dice "No figura en tus fuentes". También se puede **empezar en blanco**.
+- **Tabla editable:** encabezados, aspectos y celdas; agregar o quitar filas y columnas (hasta 6). Si cambiás un texto citado queda marcado "editado".
+- **Mapa editable** (SVG propio, sin librerías): disposición automática por niveles, flechas con etiqueta; tocar un concepto abre el panel para editar el texto, sumar un concepto relacionado, relacionarlo con otro, cambiar o quitar relaciones y borrarlo; **arrastrar** lo mueve (queda guardado) y *Reacomodar* vuelve al automático. Punto verde = cita verificada.
+- *Guardar como nota* (tabla en Markdown o mapa como viñetas, con fuente y página de cada cita) y *Copiar en Markdown*. Accesos: Más → *Tablas y mapas* y *Mapa o tabla* en cada UP. Tabla `esquemas` (Dexie v8) en el respaldo.
+- **Citas más tolerantes (toda la app):** si la IA copia una palabra cortada al final de renglón con un espacio ("ARTERIO- LA"), la cita ahora se verifica. Apareció al probar con la guía real.
+
+### Verificado
+- `npm test`: **140 tests**. Nuevos: validación de tablas y mapas (columnas, celdas faltantes, ids repetidos, relaciones inválidas o en bucle, citas), cortes de renglón, niveles con ciclos e islas, cajas sin superposición y posiciones manuales, borde de las flechas, Markdown de tabla y de mapa, generación con IA simulada y avisos sin material; cita con palabra cortada; respaldo con esquemas.
+- `npm run build` y lint sin errores ni avisos nuevos.
+- En el navegador con la guía real e IA simulada: mapa de "filtración glomerular" con 6 conceptos y 5 relaciones, todas las citas verificadas; editar un concepto, agregar uno nuevo y arrastrar otro (posición guardada); nota con "(Guía del área, pág. 42)…"; tabla aferente/eferente con una cita gris (inventada), celda editada marcada "editado" y fila nueva.
+
+## Fase 5 — cerrada ✅ (16/10/2026)
+Los 6 bloques de docs/FUNCIONALIDADES.md §H–I están hechos. Quedan fuera, a decidir: realidad aumentada (WebXR) y modo pirámide holográfica, nombrados en PROMPT.md pero no en las funcionalidades.
 
 Al final: `ESCALAR.md`.

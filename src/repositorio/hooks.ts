@@ -1,7 +1,7 @@
 import { useLiveQuery } from 'dexie-react-hooks'
 import { db } from './db'
 import { leerAjustes, usoIA, type Ajustes } from './index'
-import type { CasoEnCurso, Chat, ContenidoGuia, EstructuraAtlas, ExamenOral, FichaEditada, Fuente, ImagenTarjeta, Nota, Revision, Intento, Tarjeta, Tema, Tutoria, UsoIA } from './tipos'
+import type { CasoEnCurso, Chat, ContenidoGuia, Esquema, EstructuraAtlas, ExamenOral, FichaEditada, Fuente, ImagenTarjeta, Nota, Revision, Intento, Tarjeta, Tema, Tutoria, UsoIA } from './tipos'
 
 /** Consultas reactivas para la UI (se actualizan solas cuando cambian los datos). */
 
@@ -51,3 +51,7 @@ export const useCasos = (): CasoEnCurso[] | undefined => useLiveQuery(() => db.c
 /** undefined mientras carga; null si no existe. */
 export const useCaso = (id?: string): CasoEnCurso | undefined | null =>
   useLiveQuery(async () => (id ? ((await db.casos.get(id)) ?? null) : null), [id])
+export const useEsquemas = (): Esquema[] | undefined => useLiveQuery(() => db.esquemas.orderBy('actualizado').reverse().toArray(), [])
+/** undefined mientras carga; null si no existe. */
+export const useEsquema = (id?: string): Esquema | undefined | null =>
+  useLiveQuery(async () => (id ? ((await db.esquemas.get(id)) ?? null) : null), [id])

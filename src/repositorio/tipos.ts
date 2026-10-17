@@ -489,3 +489,43 @@ export interface CasoEnCurso {
   creado: number
   actualizado: number
 }
+
+// ───────────────────────── Fase 5: tablas y mapas conceptuales ─────────────────────────
+
+/** Texto editable con la cita que lo respaldaba al generarse. */
+export interface CeldaCitada {
+  texto: string
+  cita?: CitaVerificada
+  /** El estudiante cambió el texto: la cita respalda la versión original. */
+  editado?: boolean
+}
+
+export interface TablaComparativa {
+  /** Lo que se compara (encabezados de columna). */
+  columnas: string[]
+  filas: { aspecto: string; celdas: CeldaCitada[] }[]
+}
+
+export interface NodoMapa extends CeldaCitada {
+  id: string
+  /** Posición elegida a mano (si no, la calcula el layout). */
+  x?: number
+  y?: number
+}
+
+export interface MapaConceptual {
+  nodos: NodoMapa[]
+  relaciones: { desde: string; hasta: string; etiqueta: string }[]
+}
+
+export interface Esquema {
+  id: string
+  tipo: 'tabla' | 'mapa'
+  titulo: string
+  consigna: string
+  alcance: Alcance
+  tabla?: TablaComparativa
+  mapa?: MapaConceptual
+  creado: number
+  actualizado: number
+}

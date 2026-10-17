@@ -4,7 +4,7 @@ import {
   armarTarjetas, camposComunes, claveEnGrupo, clavesDeBorrador, tarjetaDeClave, type BorradorTarjeta,
 } from '../tarjetas/crear'
 import type {
-  Alcance, CasoEnCurso, Chat, ContenidoGuia, EstadoFSRS, ExamenOral, EstructuraAtlas, Evento, FichaEditada, Intento, Pregunta, Fragmento, Fuente, ImagenTarjeta, Nota, Pagina, Resaltado, Tarjeta, Tema, Tutoria, UsoIA,
+  Alcance, CasoEnCurso, Chat, ContenidoGuia, Esquema, EstadoFSRS, ExamenOral, EstructuraAtlas, Evento, FichaEditada, Intento, Pregunta, Fragmento, Fuente, ImagenTarjeta, Nota, Pagina, Resaltado, Tarjeta, Tema, Tutoria, UsoIA,
 } from './tipos'
 
 export { nuevoId }
@@ -464,6 +464,24 @@ export const casos = {
     return db.casos.get(id)
   },
   borrar: (id: string) => db.casos.delete(id),
+}
+
+// ───────────────────────── Tablas y mapas conceptuales (Fase 5) ─────────────────────────
+
+export const esquemas = {
+  todos: () => db.esquemas.orderBy('actualizado').reverse().toArray(),
+  obtener: (id: string) => db.esquemas.get(id),
+  async crear(e: Omit<Esquema, 'id' | 'creado' | 'actualizado'>) {
+    const ahora = Date.now()
+    const nuevo: Esquema = { ...e, id: nuevoId('es-'), creado: ahora, actualizado: ahora }
+    await db.esquemas.add(nuevo)
+    return nuevo
+  },
+  async actualizar(id: string, cambios: Partial<Esquema>) {
+    await db.esquemas.update(id, { ...cambios, actualizado: Date.now() })
+    return db.esquemas.get(id)
+  },
+  borrar: (id: string) => db.esquemas.delete(id),
 }
 
 // ───────────────────────── Borrado total ─────────────────────────

@@ -1,7 +1,7 @@
 import 'fake-indexeddb/auto'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { db } from '../repositorio/db'
-import { atlas, chats, fichasAtlas, intentos, preguntas, fragmentos, fuentes, guardarAjuste, imagenesTarjeta, leerAjustes, notas, revisiones, sembrarTemas, tarjetas, temas, tutorias, orales, casos } from '../repositorio'
+import { atlas, chats, fichasAtlas, intentos, preguntas, fragmentos, fuentes, guardarAjuste, imagenesTarjeta, leerAjustes, notas, revisiones, sembrarTemas, tarjetas, temas, tutorias, orales, casos, esquemas } from '../repositorio'
 import { calificar, estadoNuevo } from '../tarjetas/fsrs'
 import { exportarRespaldo, importarRespaldo } from '../repositorio/respaldo'
 
@@ -43,6 +43,8 @@ async function poblar() {
   await orales.crear({ alcance: { tipo: 'unidad', unidadId: 'up3' }, titulo: 'UP3', nota: 8.5, preguntas: [{ enunciado: '¿TFG?', puntos: ['a', 'b'], verificada: true, turnos: [{ rol: 'examinador', texto: '¿TFG?' }], cubiertos: [0, 1], cubiertosPrimera: [0], errores: [], repreguntada: true, nota: 8.5 }] })
   // Caso clínico en curso con datos revelados
   await casos.crear({ unidadId: 'up3', caso: { titulo: 'Caso', paciente: { edad: 40, sexo: 'mujer', descripcion: '' }, motivo: 'm', interrogatorio: [{ pregunta: 'p', respuesta: 'r', relevante: true }], examen: [], estudios: [{ nombre: 'Na', grupo: 'laboratorio', resultado: '140', clave: 'na', valor: 140, relevante: true }], consigna: 'c', puntos: ['a', 'b'], verificada: false } })
+  // Mapa conceptual con un nodo movido a mano y una cita
+  await esquemas.crear({ tipo: 'mapa', titulo: 'TFG', consigna: 'TFG', alcance: { tipo: 'todo' }, mapa: { nodos: [{ id: 'n1', texto: 'TFG', x: 120, y: 40, cita: { n: 1, frase: 'f', verificada: true, fragmentoId: 'fr-1' } }, { id: 'n2', texto: 'PNF', editado: true }], relaciones: [{ desde: 'n1', hasta: 'n2', etiqueta: 'depende de' }] } })
   return f.id
 }
 
@@ -67,6 +69,7 @@ describe('exportar / importar todo', () => {
       tutorias: await tutorias.todas(),
       orales: await orales.todos(),
       casos: await casos.todos(),
+      esquemas: await esquemas.todos(),
     }
     const zip = await exportarRespaldo()
 
@@ -114,6 +117,8 @@ describe('exportar / importar todo', () => {
     expect(await orales.todos()).toEqual(antes.orales)
     expect(antes.casos).toHaveLength(1)
     expect(await casos.todos()).toEqual(antes.casos)
+    expect(antes.esquemas).toHaveLength(1)
+    expect(await esquemas.todos()).toEqual(antes.esquemas)
     expect((await leerAjustes()).fechasParciales).toEqual({ 'parcial-1': '2026-11-20' })
   })
 

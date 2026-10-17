@@ -2,7 +2,7 @@
 
 ## Qué es
 PWA local-first para estudiar Medicina (UNR, área "El Ser Humano y Su Medio"): biblioteca de PDFs con chat de citas clicables, tarjetas FSRS, atlas 3D, simuladores y práctica de parcial. Todo vive en el dispositivo (IndexedDB); la IA es la clave gratuita de Gemini del estudiante.
-Estado: Fases 1–4 hechas (ver PROGRESO.md). En curso: Fase 5 (docs/FUNCIONALIDADES.md §H–I); bloques 1 (Tutoría ABP), 2 (plan de estudio), 3 (resumen en voz alta), 4 (examen oral) y 5 (caso clínico) hechos.
+Estado: Fases 1–5 hechas (ver PROGRESO.md).
 
 ## Stack
 - TypeScript ~6, React 19, react-router-dom 7 (HashRouter), Vite 8 + vite-plugin-pwa, Tailwind 4.
@@ -29,6 +29,7 @@ Estado: Fases 1–4 hechas (ver PROGRESO.md). En curso: Fase 5 (docs/FUNCIONALID
 - `src/resumen/` — resumen de un tema para escuchar (`resumir.ts`: RAG con citas, texto para la voz).
 - `src/oral/` — examen oral: `examen.ts` (preguntas con rúbrica, repregunta y nota calculada por código).
 - `src/caso/` — caso clínico: `caso.ts` (flujo, proceso) y `derivados.ts` (saneo de valores y cálculos con las fórmulas de los simuladores).
+- `src/esquemas/` — tablas y mapas conceptuales: `generar.ts` (IA + citas) y `layout.ts` (disposición del mapa y Markdown).
 - `src/contenido/` — paquete de contenido (UPs, disciplinas, temas, parciales). Lo específico de UNR va SOLO acá.
 - `src/test/` — tests Vitest por módulo.
 - `scripts/` — `iconos.mjs` (íconos PWA), `modelos/convertir.mjs` (BodyParts3D → GLB).
@@ -37,7 +38,7 @@ Estado: Fases 1–4 hechas (ver PROGRESO.md). En curso: Fase 5 (docs/FUNCIONALID
 
 ## Puntos de entrada
 - `index.html` → `src/main.tsx` → `src/App.tsx` (rutas con HashRouter; páginas pesadas con `lazy` a nivel de módulo).
-- Rutas: `/` Hoy · `/biblioteca` · `/up/:id` · `/fuente/:id` · `/chat[/:id]` · `/tarjetas[/generar]` · `/repaso` · `/atlas[/:escena|/recorrido/:id]` · `/simuladores[/:id]` · `/practica[/sesion|/simulacro|/banco|/mapa]` · `/tutoria[/:id]` · `/plan` · `/resumen/:temaId` · `/oral[/:id]` · `/caso[/:id]` · `/notas[/:id]` · `/buscar` · `/ajustes` · `/estadisticas` · `/creditos` · `/mas` · `/bienvenida`.
+- Rutas: `/` Hoy · `/biblioteca` · `/up/:id` · `/fuente/:id` · `/chat[/:id]` · `/tarjetas[/generar]` · `/repaso` · `/atlas[/:escena|/recorrido/:id]` · `/simuladores[/:id]` · `/practica[/sesion|/simulacro|/banco|/mapa]` · `/tutoria[/:id]` · `/plan` · `/resumen/:temaId` · `/oral[/:id]` · `/caso[/:id]` · `/esquemas` · `/esquema/:id` · `/notas[/:id]` · `/buscar` · `/ajustes` · `/estadisticas` · `/creditos` · `/mas` · `/bienvenida`.
 - No hay backend: la IA se llama desde el navegador a `generativelanguage.googleapis.com`.
 
 ## Comandos

@@ -17,6 +17,13 @@ const MIN_FRASE = 12
  * cada tramo tiene que aparecer, en orden.
  */
 export function fraseEnTexto(frase: string, texto: string): boolean {
+  if (fraseEnTextoExacta(frase, texto)) return true
+  // La IA a veces copia una palabra cortada al final de renglón como "ARTERIO- LA": se prueba unida.
+  const unida = frase.replace(/(\p{L})[-‐­]\s+(\p{L})/gu, '$1$2')
+  return unida !== frase && fraseEnTextoExacta(unida, texto)
+}
+
+function fraseEnTextoExacta(frase: string, texto: string): boolean {
   const tramos = frase.split(/\.{3}|…|\[\.\.\.\]/).map(normalizar).filter((t) => t.length >= 3)
   if (!tramos.length || tramos.join(' ').length < MIN_FRASE) return false
   const t = normalizar(texto)
